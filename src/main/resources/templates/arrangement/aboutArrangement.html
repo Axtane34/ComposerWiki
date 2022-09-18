@@ -1,0 +1,63 @@
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Аранжировка</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            padding: 30px;
+        }
+        .s{
+            display: flex;
+            margin-bottom: 10px;
+            border-bottom: 2px dotted black;
+            padding-bottom: 6px;
+        }
+        .s > p:first-child{
+            color: #494949;
+            width: 250px;
+            text-align: right;
+            font-weight: bold;
+        }
+        .s > p:last-child {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="arrangementAuthor s"><p>Автор аранжировки: </p><p th:text="${arrangement.getArrangementAuthor()}"></p></div>
+    <div class="arrangementName s"><p>Название аранжировки: </p><p th:text="${arrangement.getArrangementName()}"></p></div>
+    <div class="dedication s"><p>Посвящение: </p><p th:text="${arrangement.getDedication()}"></p></div>
+    <div class="textAuthor s"><p>Автор текста: </p><p th:text="${arrangement.getTextAuthor()}"></p></div>
+    <div class="description s"><p>Описание: </p><p th:text="${arrangement.getDescription()}"></p></div>
+    <div class="opus s"><p>Номер опуса: </p><p th:text="${arrangement.getOpus()}"></p></div>
+    <div class="music s"><p>a'Cappella или инструменты: </p><p th:text="${arrangement.getMusic()}"></p></div>
+    <div class="chorusType s"><p>Тип хора: </p><p th:text="${arrangement.getChorusType()}"></p></div>
+    <div class="voiceCount s"><p>Количество голосов: </p><p th:text="${arrangement.getVoiceCount()}"></p></div>
+    <div class="chorusStructure s"><p>Состав хора и солисты: </p><p th:text="${arrangement.getChorusStructure()}"></p></div>
+    <div class="timing s"><p>Хронометраж: </p><p th:text="${arrangement.getTiming()}"></p></div>
+    <div class="writeDate s"><p>Дата написания: </p><p th:text="${arrangement.getWriteDate()}"></p></div>
+    <div class="premiereDate s"><p>Дата премьеры: </p><p th:text="${arrangement.getPremiereDate()}"></p></div>
+    <div class="premierePlace s"><p>Место премьеры: </p><p th:text="${arrangement.getPremierePlace()}"></p></div>
+</div>
+<script>
+    let musics = document.querySelectorAll('.music p')
+    let bodys = document.querySelectorAll('p')
+
+    musics.forEach(music => {
+        music.innerHTML = music.innerHTML.replace("Cappella,", "a'Cappella")
+        music.innerHTML = music.innerHTML.replace("Инструментальный состав: ,", "Инструментальный состав: ")
+    })
+
+    bodys.forEach(body => {
+        body.innerHTML = body.innerHTML.replace(",", ", ")
+    })
+
+</script>
+</body>
+</html>

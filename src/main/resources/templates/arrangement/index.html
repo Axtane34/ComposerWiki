@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Хоры</title>
+</head>
+<body>
+<div th:each="arrangement : ${arrangements}">
+    <a th:href="@{/arrangement/{id}(id=${arrangement.getId()})}"
+       th:text="${arrangement.getArrangementName() + ', '} + ${arrangement.getArrangementAuthor() + ', '} + ${arrangement.getUserAuthor().getLogin()}">chorus</a>
+</div>
+</body>
+</html>

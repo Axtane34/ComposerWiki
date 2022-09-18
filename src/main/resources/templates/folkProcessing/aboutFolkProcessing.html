@@ -1,0 +1,63 @@
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Обработка народной песни</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            padding: 30px;
+        }
+        .s{
+            display: flex;
+            margin-bottom: 10px;
+            border-bottom: 2px dotted black;
+            padding-bottom: 6px;
+        }
+        .s > p:first-child{
+            color: #494949;
+            width: 250px;
+            text-align: right;
+            font-weight: bold;
+        }
+        .s > p:last-child {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="folkProcessingAuthor s"><p>Имя автора обработки: </p><p th:text="${folkProcessing.getFolkProcessingAuthor()}"></p></div>
+    <div class="folkProcessingName s"><p>Название обработки: </p><p th:text="${folkProcessing.getFolkProcessingName()}"></p></div>
+    <div class="dedication s"><p>Посвящение: </p><p th:text="${folkProcessing.getDedication()}"></p></div>
+    <div class="textAuthor s"><p>Автор текста: </p><p th:text="${folkProcessing.getTextAuthor()}"></p></div>
+    <div class="description s"><p>Описание: </p><p th:text="${folkProcessing.getDescription()}"></p></div>
+    <div class="opus s"><p>Номер опуса: </p><p th:text="${folkProcessing.getOpus()}"></p></div>
+    <div class="music s"><p>a'Cappella или инструменты: </p><p th:text="${folkProcessing.getMusic()}"></p></div>
+    <div class="chorusType s"><p>Тип хора: </p><p th:text="${folkProcessing.getChorusType()}"></p></div>
+    <div class="voiceCount s"><p>Количество голосов: </p><p th:text="${folkProcessing.getVoiceCount()}"></p></div>
+    <div class="chorusStructure s"><p>Состав хора и солисты: </p><p th:text="${folkProcessing.getChorusStructure()}"></p></div>
+    <div class="timing s"><p>Хронометраж: </p><p th:text="${folkProcessing.getTiming()}"></p></div>
+    <div class="writeDate s"><p>Дата написания: </p><p th:text="${folkProcessing.getWriteDate()}"></p></div>
+    <div class="premiereDate s"><p>Дата премьеры: </p><p th:text="${folkProcessing.getPremiereDate()}"></p></div>
+    <div class="premierePlace s"><p>Место премьеры: </p><p th:text="${folkProcessing.getPremierePlace()}"></p></div>
+</div>
+<script>
+    let musics = document.querySelectorAll('.music p')
+    let bodys = document.querySelectorAll('p')
+
+    musics.forEach(music => {
+        music.innerHTML = music.innerHTML.replace("Cappella,", "a'Cappella")
+        music.innerHTML = music.innerHTML.replace("Инструментальный состав: ,", "Инструментальный состав: ")
+    })
+
+    bodys.forEach(body => {
+        body.innerHTML = body.innerHTML.replace(",", ", ")
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+        }
+        .container input,p{
+            width: 100%;
+            height: 23px;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        .container p{
+            font-size: 14pt;
+        }
+        .signIn{
+            width: 100%;
+        }
+        a{
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <div class="signIn">
+      <form th:method="POST" th:action="@{/CAHI/registration}" th:object="${person}">
+          <p>РЕГИСТРАЦИЯ</p>
+          <label for="username">Введите логин: </label>
+          <input type="text" th:field="*{username}" id="username"/>
+          <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</div>
+          <br/>
+          <label for="password">Введите пароль: </label>
+          <input type="password" th:field="*{password}" id="password"/>
+          <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+          <br/>
+          <label for="email">Введите email: </label>
+          <input type="text" th:field="*{email}" id="email"/>
+          <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+          <br/>
+          <input type="submit" value="Создать аккаунт"/>
+      </form>
+      <a href="/CAHI/login">Войти</a>
+  </div>
+</div>
+</body>
+</html>

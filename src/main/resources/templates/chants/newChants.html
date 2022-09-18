@@ -1,0 +1,143 @@
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление нового распева</title>
+    <style>
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        input, select, button {
+            height: 26px;
+            width: 400px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <sss>
+        <form th:method="POST" th:action="@{/chants}" th:object="${chants}">
+            <div class="region"><input type="text" placeholder="введите регион" th:field="*{region}"></div>
+            <div class="incipit"><input type="text" placeholder="введите инципит" th:field="*{incipit}"></div>
+            <div class="description"><input type="text" placeholder="описание" th:field="*{description}"></div>
+            <div class="chorusType">
+                <select th:field="*{chorusType}">
+                    <option th:value="'тип не выбран'">выбрать тип хора</option>
+                    <option th:value="'Смешанный'">Смешанный</option>
+                    <option th:value="'Мужской'">Мужской</option>
+                    <option th:value="'Женский'">Женский</option>
+                    <option th:value="'Синодальный*'">Синодальный*</option>
+                </select>
+            </div>
+            <div class="voiceCount"><input type="text" placeholder="введите кол-во голосов" th:field="*{voiceCount}">
+            </div>
+            <div class="chorusStructure">
+                <input type="text" placeholder="состав хора (например, SATB)" th:field="*{chorusStructure}"> <br>
+                <select th:field="*{chorusStructure}">
+                    <option th:value="'количество не выбрано'">количество хоров</option>
+                    <option th:value="'один хор'">один хор</option>
+                    <option th:value="'двойной'">двойной</option>
+                    <option th:value="'тройной'">тройной</option>
+                    <option th:value="'четверной'">четверной</option>
+                </select>
+                <div class="optionVoices">
+                    <select>
+                        <option disabled selected>выбрать солиста</option>
+                        <option>дискант</option>
+                        <option>альт</option>
+                        <option>сопрано</option>
+                        <option>контральто</option>
+                        <option>контратенор</option>
+                        <option>тенор</option>
+                        <option>баритон</option>
+                        <option>бас</option>
+                    </select> </br>
+                    <input type="text" class="instruments" placeholder="список голосов" th:field="*{chorusStructure}">
+                </div>
+            </div>
+            <div class="timing"><input type="text" placeholder="хронометраж" th:field="*{timing}"></div>
+
+            <input type="submit" value="Опубликовать">
+        </form>
+    </sss>
+
+    <div th:if="${updatedDraft==null}">
+        <form th:method="POST" th:action="@{/draft/newDraft}" th:object="${draft}">
+            <input type="text" placeholder="введите название черновика" th:field="*{draftName}">
+            <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}"> <br>
+            <input class="btnSave" type="submit" value="Сохранить в черновик">
+        </form>
+    </div>
+
+    <div th:if="${updatedDraft!=null}">
+        <form th:method="PATCH" th:action="@{/draft/{id}(id=${updatedDraft.getId()})}" th:object="${updatedDraft}">
+            <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}">
+            <input class="btnSave" type="submit" value="Обновить черновик">
+        </form>
+    </div>
+</div>
+<script>
+    if (document.querySelector('.statement').value!==''){
+        document.getElementsByTagName("sss")[0].innerHTML = document.querySelector('.statement').value
+    }
+    window.onload = function () {
+        let optionVoices = document.querySelector('.optionVoices')
+
+        function selector(target, placeHolder, targetName) {
+            let select = target.querySelector('select')
+            let input = target.querySelector('input')
+            select.addEventListener('change', () => {
+                if (input.value === '') {
+                    let time
+                    setTimeout(() => {
+                        time = prompt(targetName)
+                        input.value += select.value + ' ' + 'x' + time
+                        select.options[select.selectedIndex].remove()
+                        select.value = placeHolder
+                    }, 0)
+                } else if (input.value.includes(select.value)) {
+                } else {
+                    let time
+                    setTimeout(() => {
+                        time = prompt(targetName)
+                        input.value += ', ' + select.value + ' ' + 'x' + time
+                        select.options[select.selectedIndex].remove()
+                        select.value = placeHolder
+                    }, 0)
+                }
+            })
+        }
+
+        selector(optionVoices, 'выбрать солиста', 'количество голосов выбранного типа')
+
+        let btnSave = document.querySelector('.btnSave')
+        btnSave.addEventListener('click', ()=>{
+            let inputs = document.querySelectorAll('input')
+
+            let selects = document.querySelectorAll('select')
+
+            inputs.forEach(inp =>{
+                let value = inp.value
+                inp.setAttribute("value", value)
+            })
+            selects.forEach(select =>{
+                const selectedOption = select.options[select.selectedIndex];
+                console.log(selectedOption)
+                let options = select.querySelectorAll('option')
+                options.forEach(option =>{
+                    option.removeAttribute("selected")
+                })
+                selectedOption.setAttribute("selected","selected")
+            })
+            let statement = document.querySelector('.statement')
+            statement.value = document.getElementsByTagName("sss")[0].innerHTML
+        })
+    }
+</script>
+</body>
+</html>

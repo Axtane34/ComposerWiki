@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/circleInfo.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/btnStyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/menu.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/menuIn.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/bio.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/debug.css}"/>
+</head>
+<body>
+<div class="bg"><!--контейнер для бг фото-->
+    <div class="enter">
+        <div class="enterFrame">
+            <div class="splite">
+                <div style="display: none" class="menuTitle"><p>имя пользователя</p></div>
+                <input type="text" placeholder="фамилия">
+            </div>
+            <button class="submit defaultBtn enterBtn" btnType='quote'>войти</button>
+        </div>
+
+    </div>
+    <div class="content"> <!--контейнер 1226px-->
+        <div class="debug">
+
+            <form class="inputContainer" th:method="POST" th:action="@{/composer}" th:object="${composer}">
+                <div class="name">
+                    ФИО
+                    <input type="text" keyValue="фио" th:field="*{fio}">
+                </div>
+                <div class="username">
+                    юзернейм
+                    <input type="text" keyValue="имя пользователя" th:field="*{username}">
+                </div>
+                <div class="epoch">
+                    эпоха
+                    <input type="text" keyValue="эпоха" th:field="*{epoch}">
+                </div>
+                <div class="dateOfBirth">
+                    когда родился
+                    <input type="text" keyValue="дата рождения" th:field="*{dateOfBirth}">
+                </div>
+                <div class="birthPlace">
+                    где родился
+                    <input type="text" keyValue="место рождения" th:field="*{placeOfBirth}">
+                </div>
+                <div class="deathPlace">
+                    место смерти
+                    <input type="text" keyValue="место смерти" th:field="*{placeOfDeath}">
+                </div>
+                <div class="activityYears">
+                    годы активности
+                    <input type="text" keyValue="годы активности" th:field="*{yearsOfActivity}">
+                </div>
+                <div class="dateOfDeath">
+                    дата смерти
+                    <input type="text" keyValue="дата смерти" th:field="*{dateOfDeath}">
+                </div>
+                <div class="buried">
+                    место захоронения
+                    <input type="text" keyValue="похоронен" th:field="*{burialPlace}">
+                </div>
+                <div class="composerQuote">
+                    цитата
+                    <input type="text" keyValue="цитаты композитора" th:field="*{composerQuotes}">
+                </div>
+                <div class="positiveQuotes">
+                    положительные цитаты
+                    <input type="text" keyValue="положительные цитаты о композиторе" th:field="*{positiveQuotes}">
+                </div>
+                <div class="negativeQuotes">
+                    негативные цитаты
+                    <input type="text" keyValue="негативные цитаты о композиторе" th:field="*{negativeQuotes}">
+                </div>
+                <div class="biography">
+                    биография
+                    <input type="text" keyValue="биография" th:field="*{biography}">
+                </div>
+                <div class="deathReason">
+                    причина смерти
+                    <input type="text" keyValue="причина смерти" th:field="*{deathReason}">
+                </div>
+                <div class="facts">
+                    факты
+                    <input type="text" keyValue="интересные факты" th:field="*{interestingFacts}">
+                </div>
+                <div class="mistake">
+                    заблуждения
+                    <input type="text" keyValue="заблуждения" th:field="*{delusions}">
+                </div>
+                <input type="submit" class="debugBtn" value="ДОБАВИТЬ">
+            </form>
+        </div>
+        <div class="header">header</div>
+        <div class="main">
+            <div class="nav">nav</div>
+            <div class="columns">
+                <div class="left">
+                    <div class="svgFrame" menuField = "lifeDeath">
+                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
+                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
+                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
+                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
+                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
+                        </svg>
+                        <p class="svgFrameTitle">жизнь | смерть</p>
+                        <p class="svgFrameStatus">100%</p>
+                    </div>
+                    <div class="svgFrame" menuField = "factsQuotes">
+                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
+                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
+                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
+                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
+                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
+                        </svg>
+                        <p class="svgFrameTitle">факты | цитаты</p>
+                        <p class="svgFrameStatus">100%</p>
+                    </div>
+
+                </div>
+                <div class="center">
+                    <div class="svgFrame" menuField = "aboutFio">
+                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
+                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
+                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
+                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
+                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
+                        </svg>
+                        <p class="svgFrameTitle">фио | эпоха | автограф</p>
+                        <p class="svgFrameStatus">100%</p>
+                    </div>
+                    <div class="svgFrame" menuField = "photo">
+                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
+                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
+                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
+                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
+                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
+                        </svg>
+                    </div>
+                    <div class="svgFrame" menuField = "etc">
+                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
+                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
+                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
+                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
+                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
+                        </svg>
+                        <p class="svgFrameTitle">разное</p>
+                        <p class="svgFrameStatus">100%</p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="svgFrame" menuField = "bio">
+                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
+                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
+                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
+                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
+                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
+                        </svg>
+                        <p class="svgFrameTitle">биография</p>
+                        <p class="svgFrameStatus">100%</p>
+                    </div>
+                    <div class="svgFrame" menuField = "environment">
+                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
+                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
+                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
+                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
+                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
+                        </svg>
+                        <p class="svgFrameTitle">окружение</p>
+                        <p class="svgFrameStatus">100%</p>
+                    </div>
+                </div>
+            </div> <!--колонки с SVG-->
+            <div class="navSaveBtns">
+                <div class="defaultBtn pushButton">
+                    <p>опубликовать</p>
+                </div>
+            </div>
+            <!------------------------------------------меню----------------------------------->
+
+            <!-------------------------------жизнь и смерть------------------------------------>
+            <ul class="menu" menuField ="lifeDeath">
+                <li menuInField = "dateOfBirth">
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">Дата рождения</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li menuInField = "placeOfBirth">
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">место рождения</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li menuInField = "activity">
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">годы активности</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li menuInField = "dateOfDeath">
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">дата | причина смерти</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li menuInField = "placeOfDeath">
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">Место смерти</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li menuInField = "buried">
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">Похоронен</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+            </ul> <!--1 уровень-->
+
+                <ul class="menuIn" menuInField = "dateOfBirth"> <!--2 уровень-->
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>дата рождения</p></li>
+                        <li class="menuAll pick"><p>точная дата</p><input type="text" placeholder="dd.mm.yyyy" data-mask="date"></li> <!--СТИЛЬ КАЛЕНДАРЯ-->
+                        <li class="menuAll pick"><p>между</p><input type="number"><p>и</p><input type="number"></li> <!--СТИЛЬ МЕЖДУ-->
+                        <li class="menuAll menuAround pick"><p>около</p><input type="number"></li>
+                        <li class="menuAll menuAutofill last pick"><p>неизвестно</p><input type="checkbox"></li>
+                    </div>
+                    <div class="submit defaultBtn" btnType='default'><p>СОХРАНИТЬ</p></div>
+                </ul> <!--2 уровень-->
+
+                <ul class="menuIn" menuInField = "placeOfBirth"> <!--2 уровень-->
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>место рождения</p></li>
+                        <li>
+                            <select class="menuList">
+                                <option>государство</option>
+                                <option>страна</option>
+                            </select>
+                        </li>
+                        <li class="miniTextFrame"><textarea></textarea></li>
+                        <li>
+                            <select class="menuList">
+                                <option>регион</option>
+                                <option>область</option>
+                                <option>губерния</option>
+                            </select>
+                        </li>
+                        <li class="miniTextFrame"><textarea></textarea></li>
+                        <li>
+                            <select class="menuList">
+                                <option>город</option>
+                                <option>село</option>
+                            </select>
+                        </li>
+                        <li class="miniTextFrame last"><textarea></textarea></li>
+                    </div>
+                    <div class="submit defaultBtn" btnType='select'><p>СОХРАНИТЬ</p></div>
+                </ul>
+
+                <ul class="menuIn" menuInField = "activity"> <!--2 уровень-->
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>годы активности</p></li>
+                        <li class="menuAll last pick"><p>даты</p><input type="number"><p>-</p><input type="number"></li>
+                    </div>
+                    <div class="submit defaultBtn" btnType='default'><p>СОХРАНИТЬ</p></div>
+                </ul>
+
+                <ul class="menuIn" menuInField = "dateOfDeath">
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>дата смерти</p></li>
+                        <li class="menuAll pick"><p>точная дата</p><input type="text" placeholder="dd.mm.yyyy" data-mask="date"></li> <!--СТИЛЬ КАЛЕНДАРЯ-->
+                        <li class="menuAll pick"><p>между</p><input type="number"><p>и</p><input type="number"></li>
+                        <li class="menuAll menuAround pick"><p>около</p><input type="number"></li>
+                        <li class="menuAll menuAutofill pick"><p>неизвестно</p><input type="checkbox"></li>
+                    </div>
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>причина смерти</p></li>
+                        <li class="bigTextFrame pick"><textarea></textarea></li>
+                        <li class="menuAll menuAutofill last pick"><p>неизвестно</p><input type="checkbox"></li>
+                    </div>
+                    <div class="submit defaultBtn" btnType='default'><p>СОХРАНИТЬ</p></div>
+                </ul>
+
+                <ul class="menuIn" menuInField = "placeOfDeath"> <!--2 уровень-->
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>место смерти</p></li>
+                        <li>
+                            <select class="menuList">
+                                <option>государство</option>
+                                <option>страна</option>
+                            </select>
+                        </li>
+                        <li class="miniTextFrame"><textarea></textarea></li>
+                        <li>
+                            <select class="menuList">
+                                <option>регион</option>
+                                <option>область</option>
+                                <option>губерния</option>
+                            </select>
+                        </li>
+                        <li class="miniTextFrame"><textarea></textarea></li>
+                        <li>
+                            <select class="menuList">
+                                <option>город</option>
+                                <option>село</option>
+                            </select>
+                        </li>
+                        <li class="miniTextFrame last"><textarea></textarea></li>
+                    </div>
+                    <div class="submit defaultBtn" btnType='select'><p>СОХРАНИТЬ</p></div>
+                </ul>
+
+                <ul class="menuIn" menuInField = "buried">
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>похоронен</p></li>
+                        <li class="bigTextFrame pick"><textarea></textarea></li>
+                        <li class="menuAll menuAutofill last pick"><p>неизвестно</p><input type="checkbox"></li>
+                    </div>
+                    <div class="submit defaultBtn" btnType='default'><p>СОХРАНИТЬ</p></div>
+                </ul>
+
+
+            <!----------------------------------------цитаты----------------------------------->
+            <ul class="menu" menuField = "factsQuotes">
+                <li menuInField = 'composQuotes'>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">ЦИТАТЫ композитора</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li menuInField = 'quotesAboutP'>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">цитаты о композиторе (П)</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li menuInField = 'quotesAboutN'>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">ЦИТАТЫ о композиторе (Н)</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li menuInField = 'interestingFacts'>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">интересные факты</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li menuInField = 'delusion'>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">заблуждения</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+            </ul> <!--1 уровень-->
+
+                <ul class="menuIn" menuInField = "composQuotes">
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>цитаты композитора</p></li>
+                        <div class="quoteContainer">
+                                <textarea></textarea>
+                        </div>
+                        <div class="quoteContainerBtn last">
+                            <div class="plusBtn"><p>+</p></div>
+                        </div>
+                    </div>
+                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
+                </ul> <!--2 уровень-->
+
+                <ul class="menuIn" menuInField = "quotesAboutP">
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>положительные цитаты о композиторе</p></li>
+                        <div class="quoteContainer">
+                            <textarea></textarea>
+                        </div>
+                        <div class="quoteContainerBtn">
+                            <div class="plusBtn"><p>+</p></div>
+                        </div>
+                    </div>
+                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
+                </ul>
+
+                <ul class="menuIn" menuInField = "quotesAboutN">
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>негативные цитаты о композиторе</p></li>
+                        <div class="quoteContainer">
+                            <textarea></textarea>
+                        </div>
+                        <div class="quoteContainerBtn">
+                            <div class="plusBtn"><p>+</p></div>
+                        </div>
+                    </div>
+                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
+                </ul>
+
+                <ul class="menuIn" menuInField = "interestingFacts">
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>интересные факты</p></li>
+                        <div class="quoteContainer">
+                            <textarea></textarea>
+                        </div>
+                        <div class="quoteContainerBtn last">
+                            <div class="plusBtn"><p>+</p></div>
+                        </div>
+                    </div>
+                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
+                </ul>
+
+                <ul class="menuIn" menuInField = "delusion">
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>заблуждения</p></li>
+                        <div class="quoteContainer">
+                            <textarea></textarea>
+                        </div>
+                        <div class="quoteContainerBtn last">
+                            <div class="plusBtn"><p>+</p></div>
+                        </div>
+                    </div>
+                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
+                </ul>
+
+
+            <!-------------------------------фио эпоха автограф-------------------------------->
+            <ul class="menu" menuField = "aboutFio">
+                <li menuInField = "fio">
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">ФИО</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+
+                <li menuInField = "epoch">
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">ЭПОХА</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+
+                <li menuInField = "autograph">
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">АВТОГРАФ (В РАЗРАБОТКЕ)</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+            </ul> <!--1 уровень-->
+
+                <ul class="menuIn" menuInField = "fio">
+                    <div class="splite">
+                        <li class="menuAll menuTitle"><p>фио</p></li>
+                        <li class="miniTextFrame px8"><textarea placeholder="Фамилия"></textarea></li>
+                        <li class="miniTextFrame px8"><textarea placeholder="Имя"></textarea></li>
+                        <li class="miniTextFrame last"><textarea placeholder="Отчество"></textarea></li>
+                    </div>
+                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
+                </ul> <!--2 уровень-->
+                <ul class="menuIn" menuInField = "epoch">
+                    <div class="splite">
+                        <li class="menuAll menuTitle px8"><p>эпоха</p></li>
+                        <li>
+                            <select class="menuList menuListOp last">
+                                <option value="" disabled selected>Выбор эпохи</option>
+                                <option>Средневековье</option>
+                                <option>Ренессанс</option>
+                                <option>Барокко</option>
+                                <option>Классицизм</option>
+                                <option>Романтизм</option>
+                                <option>Модернизм</option>
+                                <option>XX век</option>
+                                <option>XXI век</option>
+                            </select>
+                        </li>
+                    </div>
+                    <div class="submit defaultBtn" btnType='select'><p>СОХРАНИТЬ</p></div>
+                </ul>
+                <ul class="menuIn" menuInField = "autograph">
+                    <div class="splite">
+                        <li class="menuAll menuTitle fileInput"><input type="file"></li>
+                    </div>
+                </ul>
+
+            <!-------------------------------загрузка фото------------------------------------->
+            <ul class="menu" menuField = "photo">
+                <li>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">В разработке</p>
+                        <input type="file">
+                    </div>
+                </li>
+
+            </ul>
+
+            <!-------------------------------разное-------------------------------------------->
+            <ul class="menu" menuField = "etc">
+                <li class="menuAll menuTitle"><p>в разработке</p></li>
+            </ul>
+
+            <!-------------------------------биография----------------------------------------->
+            <ul class="menu bio" menuField = "bio">
+                <div class="bioLeft">
+                    <div class="childAge">
+                        <li>
+                            <div class="menuFrame">
+                                <input class="bioAge" type="text" placeholder="Введите название раздела">
+                                <div class="addBioBtn"><p>+</p></div>
+                            </div>
+                        </li>
+
+                    </div>
+                    <div class="youngAge">
+                        <li>
+                            <div class="menuFrame">
+                                <input class="bioAge" type="text" placeholder="Введите название раздела">
+                                <div class="addBioBtn"><p>+</p></div>
+                            </div>
+                        </li>
+                    </div>
+                    <div class="adultAge">
+                        <li>
+                            <div class="menuFrame">
+                                <input class="bioAge" type="text" placeholder="Введите название раздела">
+                                <div class="addBioBtn"><p>+</p></div>
+                            </div>
+                        </li>
+                    </div>
+                    <div class="oldAge">
+                        <li>
+                            <div class="menuFrame">
+                                <input class="bioAge" type="text" placeholder="Введите название раздела">
+                                <div class="addBioBtn"><p>+</p></div>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+                <div class="bioRight">
+                    <div class="splite">
+
+                    </div>
+                </div>
+                <div class="submit defaultBtn bioSave" btnType='bio'><p>сохранить</p></div>
+            </ul>
+
+
+            <!-------------------------------окружение----------------------------------------->
+            <ul class="menu" menuField = "environment">
+                <li class="menuAll menuTitle"><p>в разработке</p></li>
+                <!--    <li>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">музыкальное окружение</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">литературное окружение</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">учителя</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">ученики</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">вдохновители</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="menuFrame">
+                        <p class="menuFrameTitle">последователи</p>
+                        <p class="menuStatus">100%</p>
+                    </div>
+                </li>-->
+            </ul>
+
+        </div>
+        <div class="footer">footer</div>
+    </div>
+</div>
+<div class="fog"></div>
+<script th:src="@{/assets/newComposer/main.js}"></script>
+<script th:src="@{/assets/newComposer/quotes.js}"></script>
+<script th:src="@{/assets/newComposer/bio.js}"></script>
+<script th:src="@{/assets/newComposer/debug.js}"></script>
+<script th:src="@{/assets/newComposer/concat.js}"></script>
+<script th:src="@{/assets/newComposer/imask.js}"></script>
+</body>
+</html>

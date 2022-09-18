@@ -1,0 +1,56 @@
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление нового хора</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            padding: 30px;
+        }
+        .s{
+            display: flex;
+            margin-bottom: 10px;
+            border-bottom: 2px dotted black;
+            padding-bottom: 6px;
+        }
+        .s > p:first-child{
+            color: #494949;
+            width: 250px;
+            text-align: right;
+            font-weight: bold;
+        }
+        .s > p:last-child {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="writingStyle s"><p>Стиль сочинения: </p><p th:text="${opusDPS.getWritingStyle()}"></p></div>
+    <div class="composerName s"><p>Имя композитора: </p><p th:text="${opusDPS.getComposerName()}"></p></div>
+    <div class="incipit s"><p>Инципит: </p><p th:text="${opusDPS.getIncipit()}"></p></div>
+    <div class="compilerDecoder s"><p>Составитель/расшифровщик: </p><p th:text="${opusDPS.getCompilerDecoder()}"></p></div>
+    <div class="cypher s"><p>Шифр: </p><p th:text="${opusDPS.getCypher()}"></p></div>
+    <div class="description s"><p>Описание: </p><p th:text="${opusDPS.getDescription()}"></p></div>
+    <div class="chorusType s"><p>Тип хора: </p><p th:text="${opusDPS.getChorusType()}"></p></div>
+    <div class="voiceCount s"><p>Количество голосов: </p><p th:text="${opusDPS.getVoiceCount()}"></p></div>
+    <div class="chorusStructure s"><p>Состав хора и солисты: </p><p th:text="${opusDPS.getChorusStructure()}"></p></div>
+    <div class="timing s"><p>Хронометраж: </p><p th:text="${opusDPS.getTiming()}"></p></div>
+    <div class="writeDate s"><p>Дата написания: </p><p th:text="${opusDPS.getWriteDate()}"></p></div>
+    <div class="premiereDate s"><p>Дата премьеры: </p><p th:text="${opusDPS.getPremiereDate()}"></p></div>
+    <div class="premierePlace s"><p>Место премьеры: </p><p th:text="${opusDPS.getPremierePlace()}"></p></div>
+</div>
+<script>
+    let bodys = document.querySelectorAll('p')
+
+    bodys.forEach(body => {
+        body.innerHTML = body.innerHTML.replace(",", ", ")
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+.svgFrame{
+    position: relative;
+    width: 302px;
+    margin-bottom: 25px;
+}/*карточка меню */
+
+.svgFrame svg{
+    width: 220px;
+    height: 220px;
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+}/*графика svg круга*/
+
+.cls-1,.cls-2,.cls-3,.cls-4{fill:none;}.cls-1,.cls-2{stroke:#000;}.cls-2,.cls-3,.cls-4{stroke-miterlimit:10;}.cls-2{stroke-width:5px;}.cls-3{stroke:#930000;stroke-width:7px;}.cls-4{stroke:#c4c4c4;stroke-width:10px;}
+
+.cls-1{
+    cursor: pointer;
+    fill: #494649;
+}
+
+
+/*настройка полей текста и шрифтов*/
+/*================================*/
+
+.svgFrameTitle,.svgFrameStatus{
+    text-align: center;
+}/*P -  общие стили текста*/
+
+.svgFrameTitle{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+}/*P -  размер и вес шрифта*/
+.svgFrameStatus{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+}/*P -  размер и вес шрифта*/
