@@ -55,12 +55,16 @@ public class PersonController {
 
     @GetMapping("/account")
     public String show(Model person) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails)authentication.getPrincipal();
         //registration.addAttribute("drafts", registrationsService.findAllWithEnum(PublicationStatus.DRAFT, login));
         //registration.addAttribute("moderating", registrationsService.findAllWithEnum(PublicationStatus.MODERATING, login));
-        person.addAttribute("publications", peopleService.findAllWithEnum(PublicationStatus.PUBLISHED, personDetails.getPerson().getUsername()));
+        person.addAttribute("publications", peopleService.findAllWithEnum(PublicationStatus.PUBLISHED, getPerson().getUsername()));
         person.addAttribute("composers", composersService.findAll());
         return "account/user";
+    }
+
+    private Person getPerson(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails)authentication.getPrincipal();
+        return personDetails.getPerson();
     }
 }

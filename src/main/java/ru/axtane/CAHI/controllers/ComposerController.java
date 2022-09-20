@@ -1,5 +1,6 @@
 package ru.axtane.CAHI.controllers;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,9 +29,10 @@ public class ComposerController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("composer", composersService.findById(id));
-        model.addAttribute("cappellaChoirs", composersService.findChoirs(PublicationStatus.PUBLISHED, id, true));
-        model.addAttribute("instrumentalChoirs", composersService.findChoirs(PublicationStatus.PUBLISHED, id, false));
+        Composer composer = composersService.findById(id);
+            model.addAttribute("composer", composer);
+            model.addAttribute("cappellaChoirs", composersService.findChoirs(PublicationStatus.PUBLISHED, composer, true));
+            model.addAttribute("instrumentalChoirs", composersService.findChoirs(PublicationStatus.PUBLISHED, composer, false));
         return "composer/aboutComposer";
     }
 

@@ -1,87 +1,41 @@
-package ru.axtane.CAHI.models;
+package ru.axtane.CAHI.dto;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import ru.axtane.CAHI.models.*;
 import ru.axtane.CAHI.models.enums.PublicationStatus;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "composer")
-public class Composer {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "firstname")
+public class ComposerDTO {
     private String firstName;
-    @Column(name = "lastname")
     private String lastName;
-    @Column(name = "middleName")
     private String middleName;
-    @Column(name = "epoch")
     private String epoch;
-    @Column(name = "dateOfBirth")
     private String dateOfBirth;
-    @Column(name = "placeOfBirth")
     private String placeOfBirth;
-    @Column(name = "activity")
     private String activity;
-    @Column(name = "dateOfDeath")
     private String dateOfDeath;
-    @Column(name = "reasonOfDeath")
     private String reasonOfDeath;
-    @Column(name = "placeOfDeath")
     private String placeOfDeath;
-    @Column(name = "buried")
     private String buried;
-    @Column(name = "composQuotes")
     private String composQuotes;
-    @Column(name = "positiveQuotes")
     private String positiveQuotes;
-    @Column(name = "negativeQuotes")
     private String negativeQuotes;
-    @Column(name = "facts")
     private String facts;
-    @Column(name = "article")
     private String article;
-    @Column(name = "letterTo")
     private String letterTo;
-    @Column(name = "letterFrom")
     private String letterFrom;
-    @Column(name = "mistake")
     private String mistake;
-    @Column(name = "bioMini")
     private String bioMini;
-    @Column(name = "bio")
     private String bio;
-    @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "id")
     private Person userAuthor;
-    @Enumerated(EnumType.STRING)
     private PublicationStatus publicationStatus;
-    @OneToMany(mappedBy = "composer")
     private List<Chorus> choirs = new ArrayList<>();
-    @OneToMany(mappedBy = "composer")
     private List<Arrangement> arrangements = new ArrayList<>();
-    @OneToMany(mappedBy = "composer")
     private List<FolkProcessing> folkProcessingList = new ArrayList<>();
-    @OneToMany(mappedBy = "composer")
     private List<OpusAS> opusAS = new ArrayList<>();
-    @OneToMany(mappedBy = "composer")
     private List<OpusDPS> opusDPS = new ArrayList<>();
-    @Transient
     private boolean publicationsEmpty;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -314,35 +268,4 @@ public class Composer {
     public void setPublicationsEmpty(boolean publicationsEmpty) {
         this.publicationsEmpty = publicationsEmpty;
     }
-    public void addOpusDPS(OpusDPS opusDPS){
-        if (this.getOpusDPS()==null)
-            this.setOpusDPS(new ArrayList<>());
-        this.getOpusDPS().add(opusDPS);
-        opusDPS.setComposer(this);
-    }
-    public void addOpusAS(OpusAS opusAS){
-        if (this.getOpusAS()==null)
-            this.setOpusAS(new ArrayList<>());
-        this.getOpusAS().add(opusAS);
-        opusAS.setComposer(this);
-    }
-    public void addFolkProcessing(FolkProcessing folkProcessing){
-        if (this.getFolkProcessingList()==null)
-            this.setFolkProcessingList(new ArrayList<>());
-        this.getFolkProcessingList().add(folkProcessing);
-        folkProcessing.setComposer(this);
-    }
-    public void addArrangement(Arrangement arrangement){
-        if (this.getArrangements()==null)
-            this.setArrangements(new ArrayList<>());
-        this.getArrangements().add(arrangement);
-        arrangement.setComposer(this);
-    }
-    public void addChorus(Chorus chorus){
-        if (this.getChoirs()==null)
-            this.setChoirs(new ArrayList<>());
-        this.getChoirs().add(chorus);
-        chorus.setComposer(this);
-    }
-
 }
