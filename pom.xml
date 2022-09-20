@@ -14,7 +14,10 @@
 	<name>CAHI</name>
 	<description>web app for university grant</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<!--<java.version>1.8</java.version>-->
+		<java.version>8</java.version>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
