@@ -29,6 +29,10 @@ public class PeopleService {
         return peopleRepository.findByUsername(username).orElse(null);
     }
 
+    public Person findByEmail(String email){
+        return peopleRepository.findByEmail(email);
+    }
+
     public Person findAllWithEnum(PublicationStatus publicationStatus, String login){
         Person person = findByLogin(login);
         person.getComposers().removeIf(composer -> !composer.getPublicationStatus().equals(publicationStatus));
