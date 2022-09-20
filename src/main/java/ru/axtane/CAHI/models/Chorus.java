@@ -44,7 +44,7 @@ public class Chorus {
     @Enumerated(EnumType.STRING)
     private PublicationStatus publicationStatus;
     @ManyToOne
-    @JoinColumn(name = "userAuthorName", referencedColumnName = "id")
+    @JoinColumn(name = "userId", referencedColumnName = "id")
     private Person userAuthor;
     @ManyToOne
     @JoinColumn(name = "composerId", referencedColumnName = "id")

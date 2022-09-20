@@ -22,6 +22,7 @@ public class Person {
     @Size(min = 2, max=100, message = "Имя должно быть от 2 до 100 символов длиной")
     @Column(name = "username")
     private String username;
+    @NotEmpty(message = "Пароль не должен быть пустым")
     @Column(name = "password")
     private String password;
     @Email(message = "Корректно укажите адрес электронной почты")
