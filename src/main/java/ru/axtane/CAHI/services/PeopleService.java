@@ -20,12 +20,10 @@ public class PeopleService {
     }
 
     public Person findById(int id){
-        peopleRepository.findById(id).ifPresent(person -> Hibernate.initialize(person.getChoirs()));
         return peopleRepository.findById(id).orElse(null);
     }
 
     public Person findByLogin(String username){
-        peopleRepository.findByUsername(username).ifPresent(person -> Hibernate.initialize(person.getChoirs()));
         return peopleRepository.findByUsername(username).orElse(null);
     }
 
