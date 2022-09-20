@@ -18,7 +18,7 @@ public class Draft {
     @Enumerated(EnumType.STRING)
     private DraftType draftType;
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "userId", referencedColumnName = "id")
     private Person userAuthor;
     @Transient
     private String typeUrl;
