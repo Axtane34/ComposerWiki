@@ -1,62 +1,272 @@
-*{
+    /*тень*/
+input[type=submit], .saveBtn, .m1, .m2Title, .m2Label, input[type=button] {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+p, option, select {
+    text-transform: uppercase;
+}
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-.container {
-    margin: 40px auto;
-    width: 600px;
-}
-input, select, button, textarea {
-    height: 26px;
-    width: 100%;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    display: block;
-}
-textarea{
-    padding: 4px;
-    height: 210px;
-    resize: none;
-}
-.label{
+
+.localSave{
     display: none;
 }
-.label p{
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 6px;
-}
-.customDivBtn{
-    position: absolute;
-    top: 50%;
-    right: 1%;
-    transform: translateY(-50%);
-    width: 15px;
-    height: 15px;
-    background-image: url("img/close.png");
-    background-size: 100%,100%;
-}
-.customInputContainer{
-    width: 100%;
-    position: relative;
-}
-.customDiv{
-    margin-top: 2px;
-    margin-bottom: 6px;
-}
-.chapterFrame{
-    border: 3px dashed rgba(48, 121, 204, 0.94);
-    padding: 2px;
-    margin-top: 2px;
-    margin-bottom: 14px;
-}
-.btnContainer{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
-.subChapterBtn,.noSubChapterBtn{
-    width: 46%;
+
+.content {
+    margin: 0 auto;
+    width: 880px;
+    padding-top: 24px;
 }
 
+.header {
+    height: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+    line-height: 100px;
+    border: 1px dotted black;
+}
+
+.roundMenu {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 110px;
+}
+
+.col {
+    width: 210px;
+}
+
+.col:first-child, .col:last-child {
+    padding-top: 100px;
+}
+
+.cell {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+.cell:last-child {
+    margin-bottom: 0;
+}
+
+.round {
+    transition: all 1s ease 0s;
+    background-color: rgba(54, 66, 114);
+    width: 176px;
+    height: 176px;
+    border: 1px dotted black;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-size: 100%, 100%;
+}
+
+.roundF{
+
+    background-color: rgb(52, 77, 169);
+    border-radius: 30%;
+    transform: rotate(-360deg);
+}
+
+.cell p:nth-child(2) {
+    font-size: 19px;
+    line-height: 28px;
+}
+
+.cell p:nth-child(3) {
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.submitBar {
+    width: 100%;
+    padding: 32px 180px;
+    display: flex;
+    justify-content: space-between;
+}
+
+input[type=submit], input[type=button] {
+    width: 250px;
+    height: 24px;
+}
+
+.saveBtn, .saveBtn2{
+    cursor: pointer;
+    width: 220px;
+    height: 30px;
+    margin: 54px auto 0 auto;
+    background-color: rgba(255, 255, 255, 0.8);;
+}
+
+.footer {
+    line-height: 32px;
+    text-align: center;
+    height: 32px;
+    border: 1px dotted black;
+}
+
+.menu {
+    z-index: 3;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: none;
+    margin-bottom: 10px;
+}
+
+.m1 {
+    width: 350px;
+    padding: 12px 26px;
+    height: 54px;
+    background-color: rgba(239, 239, 239, 0.8);
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+.m1 p:nth-child(1) {
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.m1 p:nth-child(2) {
+    font-size: 10px;
+    line-height: 11px;
+}
+
+.m2 {
+    display: none;
+}
+
+.m2Title {
+    width: 350px;
+    height: 54px;
+    background-color: #EFEFEF;
+    margin-bottom: 26px;
+}
+
+.m2TitleIn {
+    margin-top: 32px;
+}
+
+.m2Label {
+    width: 350px;
+    display: flex;
+    height: 54px;
+    background-color: rgba(239, 239, 239, 0.8);
+    margin-bottom: 7px;
+}
+
+.m2Textarea textarea {
+    resize: none;
+    height: 171px;
+    width: 350px;
+}
+
+.fog {
+    display: none;
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(28, 28, 28, 0.9);
+}
+.bioFrame{
+    height: 760px;
+    display: flex;
+}
+.bioLeft{
+    position: relative;
+}
+.bioRight{
+    width: 780px;
+    margin-left: 24px;
+}
+.miniBio{
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
+}
+.miniBio textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    padding: 10px;
+
+}
+
+
+
+.btnAdd{
+    position: absolute;
+    margin-top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-size: 100%, 100%;
+    background-image: url("img/add.png");
+    cursor: pointer;
+}
+
+.btnDel{
+    position: absolute;
+    right: 8px;
+    bottom: 11px;
+    width: 16px;
+    height: 16px;
+    background-size: 100%, 100%;
+    background-image: url("img/close.png");
+    cursor: pointer;
+}
+.textareaCont{
+    width: 350px;
+    position: relative;
+    margin-bottom: 4px;
+}
+.textareaCont input{
+    height: 30px;
+    width: 100%;
+    margin-bottom: 4px;
+}
+.newDivCell{
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 550px;
+}
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.bioLabelAdd, .biaLabelDell{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    bottom: 7px;
+}
+.bioLabelAdd{
+    right: 7px;
+}
+.biaLabelDell{
+    right: 28px;
+}
+.bioLabel{
+    position: relative;
+}
+.bioLabelIn{
+    width: 310px;
+    height: 54px;
+    background-color: #C4C4C4;
+    position: absolute;
+    right: 0;
+
+}

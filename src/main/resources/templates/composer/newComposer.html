@@ -1,378 +1,484 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Добавление нового композитор</title>
+    <title>Document</title>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/composer/newComposer.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/composer/bioStyle.css}"/>
 </head>
 <body>
-    <div class="container">
-        <button class="navBtn" value="aboutFio">ФИО И ЭПОХА</button>
-        <button class="navBtn" value="lifeDeath">ЖИЗНЬ И СМЕРТЬ</button>
-        <button class="navBtn" value="literature">ЛИТЕРАТУРА</button>
-        <button class="navBtn" value="bio">БИОГРАФИЯ</button>
-        <sss>
-            <form th:method="POST" th:action="@{/composer}" th:object="${composer}">
-                <div class="label aboutFio">
-                    <p>ФИО И ЭПОХА</p>
-                    <div class="lastName"><input type="text" placeholder="введите фамилию" th:field="*{lastName}"></div>
-                    <div class="firstName"><input type="text" placeholder="введите имя" th:field="*{firstName}"></div>
-                    <div class="middleName"><input type="text" placeholder="введите отчество" th:field="*{middleName}"></div>
-                    <div class="epoch">
-                        <select th:field="*{epoch}">
-                            <option th:value="'тип не выбран'">выбрать эпоху</option>
-                            <option th:value="'Средневековье'">Средневековье</option>
-                            <option th:value="'Ренессанс'">Ренессанс</option>
-                            <option th:value="'Барокко'">Барокко</option>
-                            <option th:value="'Классицизм'">Классицизм</option>
-                            <option th:value="'Романтизм'">Романтизм</option>
-                            <option th:value="'Модернизм*'">Модернизм</option>
-                            <option th:value="'XX век'">XX век</option>
-                            <option th:value="'XXI век'">XXI век</option>
-                        </select>
-                    </div>
-                    <button class="saveBtn">Сохранить</button>
+<div class="fog"></div>
+<div class="content">
+    <div class="header">ЛОГОТИП И НАВИГАЦИЯ</div>
+    <sss>
+        <form th:method="POST" th:action="@{/composer}" th:object="${composer}">
+            <div class="roundMenu">
+                <div class="col">
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>жизнь | смерть</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div attr='0' class="m1 btn_js">
+                                <p>дата рождения</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='1' class="m1 btn_js">
+                                <p>место рождения</p>
+                                <p>100%</p>
+
+                            </div>
+                            <div attr='2' class="m1 btn_js">
+                                <p>годы активности</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='3' class="m1 btn_js">
+                                <p>дата | причина смерти</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='4' class="m1 btn_js">
+                                <p>место смерти</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='5' class="m1 btn_js">
+                                <p>похоронен</p>
+                                <p>100%</p>
+                            </div>
+                            <div class="back_js">назад</div>
+                        </div>
+                        <div class="menu">
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{dateOfBirth}">
+                                    <div class="m2Title"><p>дата рождения (выбрать одно)</p></div>
+                                    <div class="m2Label"><p class="except">точная дата</p><input type="number"></div>
+                                    <div class="m2Label"><p>между</p><input type="number">
+                                        <p>и</p><input type="number"></div>
+                                    <div class="m2Label"><p>около</p><input type="number"></div>
+                                    <div class="m2Label"><p>неизвестно</p><input class="except" type="checkbox"></div>
+                                </section>
+
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{placeOfBirth}">
+                                    <div class="m2Title"><p>место рождения</p></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>государство</option>
+                                            <option>страна</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>регион</option>
+                                            <option>область</option>
+                                            <option>губерния</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>город</option>
+                                            <option>село</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                </section>
+
+
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{activity}">
+                                    <div class="m2Title"><p>годы активности</p></div>
+                                    <div class="m2Label"><p class="except">даты</p><input type="number">
+                                        <p>-</p><input type="number"></div>
+                                </section>
+
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{dateOfDeath}">
+                                    <div class="m2Title"><p>дата смерти (выбрать одно)</p></div>
+                                    <div class="m2Label"><p class="except">точная дата</p><input type="number"></div>
+                                    <div class="m2Label"><p>между</p><input type="number">
+                                        <p>и</p><input type="number"></div>
+                                    <div class="m2Label"><p>около</p><input type="number"></div>
+                                    <div class="m2Label"><p>неизвестно</p><input class="except" type="checkbox"></div>
+                                </section>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{reasonOfDeath}">
+                                    <div class="m2Title m2TitleIn"><p>причина смерти (выбрать одно)</p></div>
+                                    <div class="m2Textarea"><textarea></textarea></div>
+                                    <div class="m2Label"><p>неизвестно</p><input class="except" type="checkbox"></div>
+                                </section>
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{placeOfDeath}">
+                                    <div class="m2Title"><p>место смерти</p></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>государство</option>
+                                            <option>страна</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>регион</option>
+                                            <option>область</option>
+                                            <option>губерния</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>город</option>
+                                            <option>село</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                </section>
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{buried}">
+                                    <div class="m2Title"><p>похоронен (выбрать одно)</p></div>
+                                    <div class="m2Textarea"><textarea></textarea></div>
+                                    <div class="m2Label"><p>неизвестно</p><input class="except" type="checkbox"></div>
+                                </section>
+
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                        </div>
+                    </div> <!--жизнь смерть | th:скрытые поля-->
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>литература</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div attr='0' class="m1 btn_js">
+                                <p>цитаты композитора</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='1' class="m1 btn_js">
+                                <p>цитаты о композиторе(п)</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='2' class="m1 btn_js">
+                                <p>цитаты о композиторе(н)</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='3' class="m1 btn_js">
+                                <p>интересные факты</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='4' class="m1 btn_js">
+                                <p>статьи</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='5' class="m1 btn_js">
+                                <p>письма от композитора</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='6' class="m1 btn_js">
+                                <p>письма к композитору</p>
+                                <p>100%</p>
+                            </div>
+                            <div class="back_js">назад</div>
+                        </div>
+                        <div class="menu">
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{composQuotes}">
+                                    <div class="m2Title"><p>цитата композитора</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">quote</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите цитату"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "quote" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{positiveQuotes}">
+                                    <div class="m2Title"><p>положительные цитаты о композиторе</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">qAuthor</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="автор цитаты">
+                                                <p style="display: none">quote</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите цитату о композиторе"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "quoteAbout" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn2 saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{negativeQuotes}">
+                                    <div class="m2Title"><p>негативные цитаты о композиторе</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">qAuthor</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="автор цитаты">
+                                                <p style="display: none">quote</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите цитату о композиторе"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "quoteAbout" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn2 saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{facts}">
+                                    <div class="m2Title"><p>факты</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">fact</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите факт"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "facts" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{article}">
+                                    <div class="m2Title"><p>статьи</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">author</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="автор статьи">
+                                                <p style="display: none">article</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите статью"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "topic" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn2 saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <!--ПИСЬМА ОТ КОМПОЗИТОРА-->
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{letterTo}">
+                                    <div class="m2Title"><p>письма от композитора</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">from</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="адресат">
+                                                <p style="display: none">topic</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="тема письма">
+                                                <p style="display: none">letter</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите письмо"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "letterFrom" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn2 saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <!--ПИСЬМА К КОМПОЗИТОРА-->
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{letterFrom}">
+                                    <div class="m2Title"><p>письма к композитору</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">from</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="имя отравителя">
+                                                <p style="display: none">topic</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="тема письма">
+                                                <p style="display: none">letter</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите письмо"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "letterTo" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn2 saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                        </div>
+
+                        <div class="menu">
+                            <div class="m2 l3_js">
+                                <p>факты вглубь2</p>
+                            </div>
+                        </div>
+                    </div> <!--литература | th:скрытые поля-->
                 </div>
-
-                <div class="label lifeDeath"><p>ЖИЗНЬ И СМЕРТЬ</p>
-                    <div class="dateOfBirth"><input type="text" placeholder="дата рождения" th:field="*{dateOfBirth}"></div>
-                    <div class="placeOfBirth"><input type="text" placeholder="место рождения" th:field="*{placeOfBirth}"></div>
-                    <div class="activity"><input type="text" placeholder="годы активности" th:field="*{activity}"></div>
-                    <div class="dateOfDeath"><input type="text" placeholder="дата смерти" th:field="*{dateOfDeath}"></div>
-                    <div class="reasonOfDeath"><input type="text" placeholder="причина смерти" th:field="*{reasonOfDeath}"></div>
-                    <div class="placeOfDeath"><input type="text" placeholder="место смерти" th:field="*{placeOfDeath}"></div>
-                    <div class="buried"><input type="text" placeholder="место захоронения" th:field="*{buried}"></div>
-                    <button class="saveBtn">Сохранить</button>
+                <div class="col">
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>фио | эпоха</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div class="back_js">назад</div>
+                            <div class="m2Title"><p>фио</p></div>
+                            <div class="m2Label"><input type="text" placeholder="фамилия" th:field="*{lastName}"></div>
+                            <div class="m2Label"><input type="text" placeholder="имя" th:field="*{firstName}"></div>
+                            <div class="m2Label"><input type="text" placeholder="отчество" th:field="*{middleName}">
+                            </div>
+                            <div class="m2Title m2TitleIn"><p>эпоха</p></div>
+                            <div class="m2Label">
+                                <select th:field="*{epoch}">
+                                    <option th:value="'тип не выбран'">выбрать эпоху</option>
+                                    <option th:value="'Средневековье'">Средневековье</option>
+                                    <option th:value="'Ренессанс'">Ренессанс</option>
+                                    <option th:value="'Барокко'">Барокко</option>
+                                    <option th:value="'Классицизм'">Классицизм</option>
+                                    <option th:value="'Романтизм'">Романтизм</option>
+                                    <option th:value="'Модернизм*'">Модернизм</option>
+                                    <option th:value="'XX век'">XX век</option>
+                                    <option th:value="'XXI век'">XXI век</option>
+                                </select>
+                            </div>
+                            <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                        </div>
+                    </div> <!--фио и эпоха | th:обычные поля-->
+                    <div class="cell">
+                        <div class="round roundJs"></div>
+                    </div> <!--фото-->
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>разное</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div attr='0' class="m1">
+                                <p>в разработке</p>
+                                <p>...</p>
+                            </div>
+                            <div class="back_js">назад</div>
+                        </div>
+                    </div> <!--разное | в разработке-->
                 </div>
-
-                <div class="label literature"><p>ЛИТЕРАТУРА</p>
-                    <div class="block composQuotes">
-                        <button class="addBtn composQuotesBtn">добавить новую цитату композитора</button>
-                        <input class="composQuotesInput" th:field="*{composQuotes}" type="hidden">
-                    </div>
-                    <div class="block positiveQuotes">
-                        <button class="addBtn positiveQuotesBtn">добавить положительную цитату о композиторе</button>
-                        <input class="positiveQuotesInput" th:field="*{positiveQuotes}" type="hidden">
-                    </div>
-                    <div class="block negativeQuotes">
-                        <button class="addBtn negativeQuotesBtn">добавить негативную цитату о композиторе</button>
-                        <input class="negativeQuotesInput" th:field="*{negativeQuotes}" type="hidden">
-                    </div>
-                    <div class="block facts">
-                        <button class="addBtn factsBtn">добавить интересные факты</button>
-                        <input class="factsInput" th:field="*{facts}" type="hidden">
-                    </div>
-                    <div class="block article">
-                        <button class="addBtn articleBtn">добавить новую статью</button>
-                        <input class="articleInput" th:field="*{article}" type="hidden">
-                    </div>
-                    <div class="block letterTo">
-                        <button class="addBtn letterToBtn">письма к композитору</button>
-                        <input class="letterToInput" th:field="*{letterTo}" type="hidden">
-                    </div>
-                    <div class="block letterFrom">
-                        <button class="addBtn letterFromBtn">письма от композитора</button>
-                        <input class="letterFromInput" th:field="*{letterFrom}" type="hidden">
-                    </div>
-                    <div class="block mistake">
-                        <button class="addBtn mistakeBtn">добавить заблуждения</button>
-                        <input class="mistakeInput" th:field="*{mistake}" type="hidden">
-                    </div>
-                    <button class="saveBtn">Сохранить</button>
+                <div class="col">
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>биография</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div class="back_js">назад</div>
+                            <div class="bioFrame">
+                                <div class="bioLeft">
+                                    <div class="m1">
+                                        <p>краткая биография</p>
+                                        <p>100%</p>
+                                    </div>
+                                    <section class="bioSect">
+                                        <div class="cont">
+                                            <div class="mainC"><input type="text" placeholder="введите название раздела"><div class="btnLabelAdd" onclick="f2(this)"></div></div>
+                                            <div class="cells">
+                                                <div class="cellBio"><div class="item" draggable="true"><p>подраздел</p><div class="btnDell" onclick="this.parentElement.parentElement.remove()"></div></div></div>
+                                            </div>
+                                            <div class="addBtn" onclick=f1(this)></div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="bioRight">
+                                    <div class="miniBio">
+                                        <textarea placeholder="введите краткую биографию"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!--био-->
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>окружение</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div attr='0' class="m1">
+                                <p>в разработке</p>
+                                <p>...</p>
+                            </div>
+                            <div class="back_js">назад</div>
+                        </div>
+                    </div> <!--окружение | в разработке-->
                 </div>
+            </div>
+            <div class="submitBar">
+                <input type="submit" value="опубликовать">
+                <input class="ls_js" type="button" value="Сохранить в черновик">
+            </div>
+        </form>
+    </sss>
+    <div class="draftFrame" th:if="${updatedDraft==null}">
+        <form th:method="POST" th:action="@{/draft/newDraft}" th:object="${draft}">
+            <input class="draftName" type="hidden" placeholder="введите название черновика" th:field="*{draftName}">
+            <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}">
+            <input class="localSave" type="submit" value="Сохранить в черновик">
 
-                <div class="label bio"><p>БИОГРАФИЯ</p>
-                    <div class="block bioFrame">
-                        <textarea class="bioMini" placeholder="введите краткую биография (отображается в окне представления)" th:field="*{bioMini}"></textarea>
-                        <input class="bioInput" th:field="*{bio}" type="hidden">
-                        <button class="addBtn bioBtn">добавить раздел для подробной биографии</button>
-                    </div>
-                    <button class="saveBtn">Сохранить</button>
-                </div>
-                <br>
-                <input class="submitBtn" type="submit" value="Опубликовать">
-                <br>
-            </form>
-        </sss>
-
-        <div class="draftFrame" th:if="${updatedDraft==null}">
-            <form th:method="POST" th:action="@{/draft/newDraft}" th:object="${draft}">
-                <input type="text" placeholder="введите название черновика" th:field="*{draftName}">
-                <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}">
-                <input class="btnSave" type="submit" value="Сохранить в черновик">
-            </form>
-        </div>
-
-        <div class="draftFrame" th:if="${updatedDraft!=null}">
-            <form th:method="PATCH" th:action="@{/draft/{id}(id=${updatedDraft.getId()})}" th:object="${updatedDraft}">
-                <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}">
-                <input class="btnSave" type="submit" value="Обновить черновик">
-            </form>
-        </div>
-
-
+        </form>
     </div>
-<script>
-    let global = false
-    let isFirst = true
-    if (document.querySelector('.statement').value!==''){
-        document.getElementsByTagName("sss")[0].innerHTML = document.querySelector('.statement').value
-        global = true
-    }
-    window.onload = function() {
-        let submitBtn = document.querySelector('.submitBtn')
-        document.querySelectorAll('.navBtn').forEach(navBtn => {
-            navBtn.addEventListener('click', () => {
-                document.querySelector('.' + navBtn.value).style.display = 'block'
-                submitBtn.style.display = 'none'
-                document.querySelectorAll('.navBtn').forEach(navBtn => {
-                    navBtn.style.display = 'none'
-                })
-                document.querySelector('.draftFrame').style.display = 'none'
-                if(global && isFirst){
-                    document.querySelectorAll('.customDivBtn').forEach(customDivBtn =>{
-                        customDivBtn.addEventListener('click', (e)=>{
-                            e.preventDefault()
-                            customDivBtn.parentElement.parentElement.remove()
-                        })
-                    })
-                    document.querySelectorAll('.subChapterBtn').forEach(subChapterBtn =>{
-                        subChapterBtn.addEventListener('click', (e)=>{
-                            e.preventDefault()
-                            createDiv2('textarea', subChapterBtn.parentElement.parentElement, 100 + "%", 30, 120, 'название подраздела (например, Жизнь в Москве)', 'текст подраздела', 'label2', 'text')
-                            if(subChapterBtn.parentElement.parentElement.querySelector('.noSubChapterBtn')){
-                                subChapterBtn.parentElement.parentElement.querySelector('.noSubChapterBtn').remove()
-                            }
-                        })
-                    })
-                    document.querySelectorAll('.noSubChapterBtn').forEach(noSubChapterBtn =>{
-                        noSubChapterBtn.addEventListener('click', (e)=>{
-                            e.preventDefault()
-                            createDiv1(false, 'textarea', noSubChapterBtn.parentElement.parentElement, 100 + "%", 120, 'текст раздела', 'text')
-                            if(noSubChapterBtn.parentElement.parentElement.querySelector('.btnContainer')){
-                                noSubChapterBtn.parentElement.parentElement.querySelector('.btnContainer').remove()
-                            }
-                        })
-                    })
-                    isFirst = false
-                }
-            })
-        })
-        document.querySelectorAll('.saveBtn').forEach(saveBtn => {
-            saveBtn.addEventListener('click', (e) => {
-                e.preventDefault()
-                saveBtn.parentElement.style.display = 'none'
-                submitBtn.style.display = 'block'
-                document.querySelectorAll('.navBtn').forEach(navBtn => {
-                    navBtn.style.display = 'block'
-                })
-                document.querySelector('.draftFrame').style.display = 'block'
 
-                saveBtn.parentElement.querySelectorAll('.block').forEach(block => {
-                    secretInput(block.querySelector('input'))
-                })
-            })
-        })
-        document.querySelectorAll('.addBtn').forEach(addBtn => {
-            addBtn.addEventListener('click', (e) => {
-                e.preventDefault()
-                switch (addBtn.classList[1]) {
-                    case 'composQuotesBtn':
-                        createDiv1(true, 'input', addBtn.parentElement, 100 + "%", 30, 'введите цитату', '|')
-                        break
-                    case 'positiveQuotesBtn':
-                        createDiv2('input', addBtn.parentElement, 100 + "%", 30, 30, 'введите автора цитаты', 'введите цитату', 'name', 'text')
-                        break
-                    case 'negativeQuotesBtn':
-                        createDiv2('input', addBtn.parentElement, 100 + "%", 30, 30, 'введите автора цитаты', 'введите цитату', 'name', 'text')
-                        break
-                    case 'factsBtn':
-                        createDiv1(true, 'input', addBtn.parentElement, 100 + "%", 30, 'введите факт', '|')
-                        break
-                    case 'articleBtn':
-                        createDiv2('textarea', addBtn.parentElement, 100 + "%", 30, 120, 'введите автора статьи', 'введите статью', 'name', 'text')
-                        break
-                    case 'letterToBtn':
-                        createDiv3('textarea', addBtn.parentElement, 100 + "%", 30, 120, 'имя отправителя', 'тема письма', 'текст письма', 'name', 'topic', 'text')
-                        break
-                    case 'letterFromBtn':
-                        createDiv3('textarea', addBtn.parentElement, 100 + "%", 30, 120, 'адресат', 'тема письма', 'текст письма', 'name', 'topic', 'text')
-                        break
-                    case 'mistakeBtn':
-                        createDiv1(true, 'input', addBtn.parentElement, 100 + "%", 30, 'введите заблуждение', '|')
-                        break
-                    case 'bioBtn':
-                        createBio(addBtn.parentElement, 100 + "%", 30, 'название раздела (например, Юность)', true, 'label1')
-                        break
-                }
-            })
-        })
-
-        function secretInput(inputClass) {
-            let target = inputClass
-            let inputs = target.parentElement.querySelectorAll('.customInput')
-            target.value = ""
-            inputs.forEach(input => {
-                target.value += input.classList[1] + input.value
-            })
-        }
-
-
-        function createDiv1(close, isDiv, parent, width, height, placeholder, className1) {
-            let customDiv = document.createElement("div")
-            let customInputContainer = document.createElement("div")
-            let customInput1 = document.createElement(isDiv)
-            if (close) {
-                let customDivBtn = document.createElement("div")
-                customDivBtn.classList.add('customDivBtn')
-                customInputContainer.appendChild(customDivBtn)
-                customDivBtn.addEventListener('click', () => {
-                    customDiv.remove()
-                })
-            }
-            customDiv.classList.add('customDiv')
-            customInput1.classList.add('customInput', className1)
-            customInput1.placeholder = placeholder
-            customInputContainer.classList.add('customInputContainer')
-            parent.appendChild(customDiv)
-            customDiv.appendChild(customInputContainer)
-            customInput1.style.width = width
-            customInput1.style.height = height + 'px'
-            customInputContainer.appendChild(customInput1)
-        }
-
-        function createDiv2(isDiv, parent, width, height1, height2, placeholder1, placeholder2, className1, className2) {
-            let customDiv = document.createElement("div")
-            let customInputContainer = document.createElement("div")
-            let customInput1 = document.createElement("input")
-            let customInput2 = document.createElement(isDiv)
-            let customDivBtn = document.createElement("div")
-            customDiv.classList.add('customDiv')
-            customInput1.classList.add('customInput', className1)
-            customInput1.placeholder = placeholder1
-            customInput2.classList.add('customInput', className2)
-            customInput2.placeholder = placeholder2
-            customDivBtn.classList.add('customDivBtn')
-            customInputContainer.classList.add('customInputContainer')
-            parent.appendChild(customDiv)
-            customDiv.appendChild(customInputContainer)
-            customInput1.style.width = width
-            customInput1.style.height = height1 + 'px'
-            customInput2.style.width = width
-            customInput2.style.height = height2 + 'px'
-            customInputContainer.appendChild(customInput1)
-            customDiv.appendChild(customInput2)
-            customInputContainer.appendChild(customDivBtn)
-            customDivBtn.addEventListener('click', () => {
-                customDiv.remove()
-            })
-        }
-
-        function createDiv3(isDiv, parent, width, height, height2, placeholder1, placeholder2, placeholder3, className1, className2, className3) {
-            let customDiv = document.createElement("div")
-            let customInputContainer = document.createElement("div")
-            let customInput1 = document.createElement("input")
-            let customInput2 = document.createElement("input")
-            let customInput3 = document.createElement(isDiv)
-            let customDivBtn = document.createElement("div")
-            customDiv.classList.add('customDiv')
-            customInput1.classList.add('customInput', className1)
-            customInput1.placeholder = placeholder1
-            customInput2.classList.add('customInput', className2)
-            customInput2.placeholder = placeholder2
-            customInput3.classList.add('customInput', className3)
-            customInput3.placeholder = placeholder3
-            customDivBtn.classList.add('customDivBtn')
-            customInputContainer.classList.add('customInputContainer')
-            parent.appendChild(customDiv)
-            customDiv.appendChild(customInputContainer)
-            customInput1.style.width = width
-            customInput1.style.height = height + 'px'
-            customInput2.style.width = width
-            customInput2.style.height = height + 'px'
-            customInput3.style.width = width
-            customInput3.style.height = height2 + 'px'
-            customInputContainer.appendChild(customInput1)
-            customDiv.appendChild(customInput2)
-            customDiv.appendChild(customInput3)
-            customInputContainer.appendChild(customDivBtn)
-            customDivBtn.addEventListener('click', () => {
-                customDiv.remove()
-            })
-        }
-
-        function createBio(parent, width, height, placeholder, close, className1) {
-            let customDiv = document.createElement("div")
-            let customInputContainer = document.createElement("div")
-            let customInput1 = document.createElement("input")
-            let btnContainer = document.createElement("div")
-            let subChapterBtn = document.createElement("button")
-            let noSubChapterBtn = document.createElement("button")
-
-            if (close) {
-                let customDivBtn = document.createElement("div")
-                customDivBtn.classList.add('customDivBtn')
-                customInputContainer.appendChild(customDivBtn)
-                customDivBtn.addEventListener('click', () => {
-                    customDiv.remove()
-                })
-            }
-
-            customDiv.classList.add('chapterFrame')
-            customInput1.classList.add('customInput', className1)
-            customInput1.placeholder = placeholder
-            btnContainer.classList.add('btnContainer')
-            subChapterBtn.classList.add('subChapterBtn')
-            noSubChapterBtn.classList.add('noSubChapterBtn')
-            subChapterBtn.innerHTML = "добавить подраздел"
-            noSubChapterBtn.innerHTML = "подраздел не нужен"
-            customInputContainer.classList.add('customInputContainer')
-            parent.appendChild(customDiv)
-            customDiv.appendChild(customInputContainer)
-            customDiv.appendChild(btnContainer)
-            btnContainer.appendChild(subChapterBtn)
-            btnContainer.appendChild(noSubChapterBtn)
-            customInput1.style.width = width
-            customInput1.style.height = height + 'px'
-            customInputContainer.appendChild(customInput1)
-
-            subChapterBtn.addEventListener('click', (e) => {
-                e.preventDefault()
-                createDiv2('textarea', customDiv, 100 + "%", 30, 120, 'название подраздела (например, Жизнь в Москве)', 'текст подраздела', 'label2', 'text')
-                noSubChapterBtn.remove()
-            })
-            noSubChapterBtn.addEventListener('click', (e) => {
-                createDiv1(false, 'textarea', customDiv, 100 + "%", 120, 'текст раздела', 'text')
-                e.preventDefault()
-                btnContainer.remove()
-            })
-
-
-
-        }
-        let btnSave = document.querySelector('.btnSave')
-        btnSave.addEventListener('click', (e)=>{
-            document.querySelectorAll('input').forEach(input =>{
-                let value = input.value
-                input.setAttribute("value", value)
-            })
-            document.querySelectorAll('textarea').forEach(textarea =>{
-                textarea.innerHTML = textarea.value
-            })
-            document.querySelectorAll('select').forEach(select =>{
-                const selectedOption = select.options[select.selectedIndex];
-                let options = select.querySelectorAll('option')
-                options.forEach(option =>{
-                    option.removeAttribute("selected")
-                })
-                selectedOption.setAttribute("selected","selected")
-            })
-
-            let statement = document.querySelector('.statement')
-            statement.value = document.getElementsByTagName("sss")[0].innerHTML
-        })
-
-    }
-</script>
+    <div class="draftFrame" th:if="${updatedDraft!=null}">
+        <form th:method="PATCH" th:action="@{/draft/{id}(id=${updatedDraft.getId()})}" th:object="${updatedDraft}">
+            <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}">
+            <input class="localSave" type="submit" value="Обновить черновик">
+        </form>
+    </div>
+    <div class="footer">ПОДВАЛ</div>
+</div>
+<script th:src="@{/assets/composer/main3.js}"></script>
+<script th:src="@{/assets/composer/bio.js}"></script>
 </body>
 </html>
+
+
