@@ -11,11 +11,53 @@ window.onload = function (){
     })
 
 
+    function test1(){
+        let lastCell
+        let lastItem
+        document.querySelectorAll('.item').forEach(item=>{
+            item.addEventListener('dragstart', function (){
+                setTimeout(()=>{
+                    this.style.display = 'none'
+                },0)
+                lastItem = this
+                lastCell = this.parentElement
+            })
+            item.addEventListener('dragend', function (){
+                this.style.display = 'block'
+            })
+        })
+        document.querySelectorAll('.cellBio').forEach(cell=>{
+            cell.addEventListener('dragenter', function (e){
+                if(this.parentElement.contains(lastItem)){
+                    lastCell.append(this.children[0])
+                    this.append(lastItem)
+                }
+
+            })
+            cell.addEventListener('dragleave', function (e){
+                e.preventDefault()
+                lastCell = this
+                if(this.parentElement.contains(lastItem)){
+                    lastCell = this
+                }
+            })
+
+            cell.addEventListener('dragover', function (e){
+                e.preventDefault()
+            })
+            cell.addEventListener('drop', function (){
+                if(this.parentElement.contains(lastItem)){
+                    this.append(lastItem)
+                }
+            })
+        })
+    }
 
 
     let mass = []
     document.querySelectorAll('.btn_js').forEach(btn=>{
         btn.addEventListener('click', ()=>{
+            test1()
             document.querySelector('.fog').style.display = 'block'
             btn.parentElement.style.zIndex = '2'
             mass.push(btn)
