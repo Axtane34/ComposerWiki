@@ -5,6 +5,8 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/composer/newComposer.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/composer/bioStyle.css}"/>
+   <!-- <link rel="stylesheet" href="newComposer.css">
+    <link rel="stylesheet" href="bioStyle.css">-->
 </head>
 <body>
 <div class="fog"></div>
@@ -16,7 +18,7 @@
                 <div class="col">
                     <div class="frame">
                         <div class="cell">
-                            <div class="round btn_js"></div>
+                            <div class="round roundLive btn_js"></div>
                             <p>жизнь | смерть</p>
                             <p>100%</p>
                         </div>
@@ -175,7 +177,7 @@
                     </div> <!--жизнь смерть | th:скрытые поля-->
                     <div class="frame">
                         <div class="cell">
-                            <div class="round btn_js"></div>
+                            <div class="round roundFacts btn_js"></div>
                             <p>литература</p>
                             <p>100%</p>
                         </div>
@@ -358,7 +360,7 @@
                 <div class="col">
                     <div class="frame">
                         <div class="cell">
-                            <div class="round btn_js"></div>
+                            <div class="round roundFio btn_js"></div>
                             <p>фио | эпоха</p>
                             <p>100%</p>
                         </div>
@@ -387,11 +389,11 @@
                         </div>
                     </div> <!--фио и эпоха | th:обычные поля-->
                     <div class="cell">
-                        <div class="round roundJs"></div>
+                        <div class="round roundFoto roundJs"></div>
                     </div> <!--фото-->
                     <div class="frame">
                         <div class="cell">
-                            <div class="round btn_js"></div>
+                            <div class="round roundOther btn_js"></div>
                             <p>разное</p>
                             <p>100%</p>
                         </div>
@@ -407,39 +409,49 @@
                 <div class="col">
                     <div class="frame">
                         <div class="cell">
-                            <div class="round btn_js"></div>
+                            <div class="round roundBio btn_js"></div>
                             <p>биография</p>
                             <p>100%</p>
                         </div>
                         <div class="menu">
                             <div class="back_js">назад</div>
+                            <input type="text" placeholder="скрытое поле1" th:field="*{bio}"> <!--ПОЛНОЕ БИО-->
                             <div class="bioFrame">
                                 <div class="bioLeft">
-                                    <div class="m1">
+                                    <div class="bioMini" style="border: 2px dotted white" onclick="f3(this)">
                                         <p>краткая биография</p>
-                                        <p>100%</p>
                                     </div>
+                                    <div class="line"></div>
+
                                     <section class="bioSect">
                                         <div class="cont">
-                                            <div class="mainC"><input type="text" placeholder="введите название раздела"><div class="btnLabelAdd" onclick="f2(this)"></div></div>
+                                            <div class="mainC"><input type="text" sep="label" placeholder="введите название раздела" oninput="this.setAttribute('value', this.value)"><div class="btnLabelAdd" onclick="f2(this)"></div></div>
                                             <div class="cells">
-                                                <div class="cellBio"><div class="item" draggable="true"><p>подраздел</p><div class="btnDell" onclick="this.parentElement.parentElement.remove()"></div></div></div>
                                             </div>
                                             <div class="addBtn" onclick=f1(this)></div>
                                         </div>
                                     </section>
+                                    <div class="saveBtn" onclick="this.parentElement.parentElement.parentElement.querySelector('.saveBtn_js').click()"><p>сохранить</p></div>
                                 </div>
                                 <div class="bioRight">
                                     <div class="miniBio">
-                                        <textarea placeholder="введите краткую биографию"></textarea>
+                                        <textarea th:field="*{bioMini}" placeholder="введите краткую биографию" oninput="this.innerHTML = this.value"></textarea> <!--КРАТКОЕ БИО-->
                                     </div>
+                                    <!--<div class="bioAll fullBio">
+                                        <input oninput="this.setAttribute('value', this.value)" type="text" class="bioLabelInput" placeholder="введите название подраздела">
+                                        <div class="line2"></div>
+                                        <textarea oninput="this.innerHTML = this.value" maxlength="120" class="bioSourceInput" placeholder="введите источник (не более 120 символов)"></textarea>
+                                        <textarea oninput="this.innerHTML = this.value" placeholder="Введите текст подраздела" class="bioTextInput"></textarea>
+                                    </div>-->
+
                                 </div>
                             </div>
+                            <div class="saveBtn3 saveBtn_js" style="margin-top: 30px; display: none"></div>
                         </div>
                     </div> <!--био-->
                     <div class="frame">
                         <div class="cell">
-                            <div class="round btn_js"></div>
+                            <div class="round roundAll btn_js"></div>
                             <p>окружение</p>
                             <p>100%</p>
                         </div>
@@ -478,6 +490,8 @@
 </div>
 <script th:src="@{/assets/composer/main3.js}"></script>
 <script th:src="@{/assets/composer/bio.js}"></script>
+<!--<script src="main3.js"></script>
+<script src="bio.js"></script>-->
 </body>
 </html>
 

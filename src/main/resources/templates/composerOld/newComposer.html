@@ -1,600 +1,484 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/style.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/circleInfo.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/btnStyle.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/menu.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/menuIn.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/bio.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/assets/newComposer/debug.css}"/>
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/composer/newComposer.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/composer/bioStyle.css}"/>
 </head>
 <body>
-<div class="bg"><!--контейнер для бг фото-->
-    <div class="enter">
-        <div class="enterFrame">
-            <div class="splite">
-                <div style="display: none" class="menuTitle"><p>имя пользователя</p></div>
-                <input type="text" placeholder="фамилия">
-            </div>
-            <button class="submit defaultBtn enterBtn" btnType='quote'>войти</button>
-        </div>
-
-    </div>
-    <div class="content"> <!--контейнер 1226px-->
-        <div class="debug">
-
-            <form class="inputContainer" th:method="POST" th:action="@{/composer}" th:object="${composer}">
-                <div class="name">
-                    ФИО
-                    <input type="text" keyValue="фио" th:field="*{fio}">
-                </div>
-                <div class="username">
-                    юзернейм
-                    <input type="text" keyValue="имя пользователя" th:field="*{username}">
-                </div>
-                <div class="epoch">
-                    эпоха
-                    <input type="text" keyValue="эпоха" th:field="*{epoch}">
-                </div>
-                <div class="dateOfBirth">
-                    когда родился
-                    <input type="text" keyValue="дата рождения" th:field="*{dateOfBirth}">
-                </div>
-                <div class="birthPlace">
-                    где родился
-                    <input type="text" keyValue="место рождения" th:field="*{placeOfBirth}">
-                </div>
-                <div class="deathPlace">
-                    место смерти
-                    <input type="text" keyValue="место смерти" th:field="*{placeOfDeath}">
-                </div>
-                <div class="activityYears">
-                    годы активности
-                    <input type="text" keyValue="годы активности" th:field="*{yearsOfActivity}">
-                </div>
-                <div class="dateOfDeath">
-                    дата смерти
-                    <input type="text" keyValue="дата смерти" th:field="*{dateOfDeath}">
-                </div>
-                <div class="buried">
-                    место захоронения
-                    <input type="text" keyValue="похоронен" th:field="*{burialPlace}">
-                </div>
-                <div class="composerQuote">
-                    цитата
-                    <input type="text" keyValue="цитаты композитора" th:field="*{composerQuotes}">
-                </div>
-                <div class="positiveQuotes">
-                    положительные цитаты
-                    <input type="text" keyValue="положительные цитаты о композиторе" th:field="*{positiveQuotes}">
-                </div>
-                <div class="negativeQuotes">
-                    негативные цитаты
-                    <input type="text" keyValue="негативные цитаты о композиторе" th:field="*{negativeQuotes}">
-                </div>
-                <div class="biography">
-                    биография
-                    <input type="text" keyValue="биография" th:field="*{biography}">
-                </div>
-                <div class="deathReason">
-                    причина смерти
-                    <input type="text" keyValue="причина смерти" th:field="*{deathReason}">
-                </div>
-                <div class="facts">
-                    факты
-                    <input type="text" keyValue="интересные факты" th:field="*{interestingFacts}">
-                </div>
-                <div class="mistake">
-                    заблуждения
-                    <input type="text" keyValue="заблуждения" th:field="*{delusions}">
-                </div>
-                <input type="submit" class="debugBtn" value="ДОБАВИТЬ">
-            </form>
-        </div>
-        <div class="header">header</div>
-        <div class="main">
-            <div class="nav">nav</div>
-            <div class="columns">
-                <div class="left">
-                    <div class="svgFrame" menuField = "lifeDeath">
-                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
-                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
-                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
-                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
-                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
-                        </svg>
-                        <p class="svgFrameTitle">жизнь | смерть</p>
-                        <p class="svgFrameStatus">100%</p>
-                    </div>
-                    <div class="svgFrame" menuField = "factsQuotes">
-                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
-                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
-                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
-                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
-                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
-                        </svg>
-                        <p class="svgFrameTitle">факты | цитаты</p>
-                        <p class="svgFrameStatus">100%</p>
-                    </div>
-
-                </div>
-                <div class="center">
-                    <div class="svgFrame" menuField = "aboutFio">
-                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
-                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
-                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
-                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
-                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
-                        </svg>
-                        <p class="svgFrameTitle">фио | эпоха | автограф</p>
-                        <p class="svgFrameStatus">100%</p>
-                    </div>
-                    <div class="svgFrame" menuField = "photo">
-                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
-                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
-                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
-                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
-                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
-                        </svg>
-                    </div>
-                    <div class="svgFrame" menuField = "etc">
-                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
-                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
-                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
-                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
-                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
-                        </svg>
-                        <p class="svgFrameTitle">разное</p>
-                        <p class="svgFrameStatus">100%</p>
-                    </div>
-                </div>
-                <div class="right">
-                    <div class="svgFrame" menuField = "bio">
-                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
-                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
-                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
-                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
-                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
-                        </svg>
-                        <p class="svgFrameTitle">биография</p>
-                        <p class="svgFrameStatus">100%</p>
-                    </div>
-                    <div class="svgFrame" menuField = "environment">
-                        <svg class="vector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.11 218.86">
-                            <path class="cls-2" d="M32,159.46a94.69,94.69,0,0,1-12.71-47.34C19.25,60.2,62,17.46,114,17.46a93.86,93.86,0,0,1,49.21,14"/>
-                            <path class="cls-3" d="M84.34,215.46c-56-13.24-91.27-70.38-78.07-126.57"/>
-                            <path class="cls-4" d="M130.32,5c54.09,7.58,92.39,58.45,84.83,112.71"/>
-                            <circle class="cls-1" cx="113.25" cy="112.46" r="84.5"/>
-                        </svg>
-                        <p class="svgFrameTitle">окружение</p>
-                        <p class="svgFrameStatus">100%</p>
-                    </div>
-                </div>
-            </div> <!--колонки с SVG-->
-            <div class="navSaveBtns">
-                <div class="defaultBtn pushButton">
-                    <p>опубликовать</p>
-                </div>
-            </div>
-            <!------------------------------------------меню----------------------------------->
-
-            <!-------------------------------жизнь и смерть------------------------------------>
-            <ul class="menu" menuField ="lifeDeath">
-                <li menuInField = "dateOfBirth">
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">Дата рождения</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li menuInField = "placeOfBirth">
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">место рождения</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li menuInField = "activity">
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">годы активности</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li menuInField = "dateOfDeath">
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">дата | причина смерти</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li menuInField = "placeOfDeath">
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">Место смерти</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li menuInField = "buried">
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">Похоронен</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-            </ul> <!--1 уровень-->
-
-                <ul class="menuIn" menuInField = "dateOfBirth"> <!--2 уровень-->
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>дата рождения</p></li>
-                        <li class="menuAll pick"><p>точная дата</p><input type="text" placeholder="dd.mm.yyyy" data-mask="date"></li> <!--СТИЛЬ КАЛЕНДАРЯ-->
-                        <li class="menuAll pick"><p>между</p><input type="number"><p>и</p><input type="number"></li> <!--СТИЛЬ МЕЖДУ-->
-                        <li class="menuAll menuAround pick"><p>около</p><input type="number"></li>
-                        <li class="menuAll menuAutofill last pick"><p>неизвестно</p><input type="checkbox"></li>
-                    </div>
-                    <div class="submit defaultBtn" btnType='default'><p>СОХРАНИТЬ</p></div>
-                </ul> <!--2 уровень-->
-
-                <ul class="menuIn" menuInField = "placeOfBirth"> <!--2 уровень-->
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>место рождения</p></li>
-                        <li>
-                            <select class="menuList">
-                                <option>государство</option>
-                                <option>страна</option>
-                            </select>
-                        </li>
-                        <li class="miniTextFrame"><textarea></textarea></li>
-                        <li>
-                            <select class="menuList">
-                                <option>регион</option>
-                                <option>область</option>
-                                <option>губерния</option>
-                            </select>
-                        </li>
-                        <li class="miniTextFrame"><textarea></textarea></li>
-                        <li>
-                            <select class="menuList">
-                                <option>город</option>
-                                <option>село</option>
-                            </select>
-                        </li>
-                        <li class="miniTextFrame last"><textarea></textarea></li>
-                    </div>
-                    <div class="submit defaultBtn" btnType='select'><p>СОХРАНИТЬ</p></div>
-                </ul>
-
-                <ul class="menuIn" menuInField = "activity"> <!--2 уровень-->
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>годы активности</p></li>
-                        <li class="menuAll last pick"><p>даты</p><input type="number"><p>-</p><input type="number"></li>
-                    </div>
-                    <div class="submit defaultBtn" btnType='default'><p>СОХРАНИТЬ</p></div>
-                </ul>
-
-                <ul class="menuIn" menuInField = "dateOfDeath">
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>дата смерти</p></li>
-                        <li class="menuAll pick"><p>точная дата</p><input type="text" placeholder="dd.mm.yyyy" data-mask="date"></li> <!--СТИЛЬ КАЛЕНДАРЯ-->
-                        <li class="menuAll pick"><p>между</p><input type="number"><p>и</p><input type="number"></li>
-                        <li class="menuAll menuAround pick"><p>около</p><input type="number"></li>
-                        <li class="menuAll menuAutofill pick"><p>неизвестно</p><input type="checkbox"></li>
-                    </div>
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>причина смерти</p></li>
-                        <li class="bigTextFrame pick"><textarea></textarea></li>
-                        <li class="menuAll menuAutofill last pick"><p>неизвестно</p><input type="checkbox"></li>
-                    </div>
-                    <div class="submit defaultBtn" btnType='default'><p>СОХРАНИТЬ</p></div>
-                </ul>
-
-                <ul class="menuIn" menuInField = "placeOfDeath"> <!--2 уровень-->
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>место смерти</p></li>
-                        <li>
-                            <select class="menuList">
-                                <option>государство</option>
-                                <option>страна</option>
-                            </select>
-                        </li>
-                        <li class="miniTextFrame"><textarea></textarea></li>
-                        <li>
-                            <select class="menuList">
-                                <option>регион</option>
-                                <option>область</option>
-                                <option>губерния</option>
-                            </select>
-                        </li>
-                        <li class="miniTextFrame"><textarea></textarea></li>
-                        <li>
-                            <select class="menuList">
-                                <option>город</option>
-                                <option>село</option>
-                            </select>
-                        </li>
-                        <li class="miniTextFrame last"><textarea></textarea></li>
-                    </div>
-                    <div class="submit defaultBtn" btnType='select'><p>СОХРАНИТЬ</p></div>
-                </ul>
-
-                <ul class="menuIn" menuInField = "buried">
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>похоронен</p></li>
-                        <li class="bigTextFrame pick"><textarea></textarea></li>
-                        <li class="menuAll menuAutofill last pick"><p>неизвестно</p><input type="checkbox"></li>
-                    </div>
-                    <div class="submit defaultBtn" btnType='default'><p>СОХРАНИТЬ</p></div>
-                </ul>
-
-
-            <!----------------------------------------цитаты----------------------------------->
-            <ul class="menu" menuField = "factsQuotes">
-                <li menuInField = 'composQuotes'>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">ЦИТАТЫ композитора</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li menuInField = 'quotesAboutP'>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">цитаты о композиторе (П)</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li menuInField = 'quotesAboutN'>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">ЦИТАТЫ о композиторе (Н)</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li menuInField = 'interestingFacts'>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">интересные факты</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li menuInField = 'delusion'>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">заблуждения</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-            </ul> <!--1 уровень-->
-
-                <ul class="menuIn" menuInField = "composQuotes">
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>цитаты композитора</p></li>
-                        <div class="quoteContainer">
-                                <textarea></textarea>
-                        </div>
-                        <div class="quoteContainerBtn last">
-                            <div class="plusBtn"><p>+</p></div>
-                        </div>
-                    </div>
-                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
-                </ul> <!--2 уровень-->
-
-                <ul class="menuIn" menuInField = "quotesAboutP">
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>положительные цитаты о композиторе</p></li>
-                        <div class="quoteContainer">
-                            <textarea></textarea>
-                        </div>
-                        <div class="quoteContainerBtn">
-                            <div class="plusBtn"><p>+</p></div>
-                        </div>
-                    </div>
-                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
-                </ul>
-
-                <ul class="menuIn" menuInField = "quotesAboutN">
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>негативные цитаты о композиторе</p></li>
-                        <div class="quoteContainer">
-                            <textarea></textarea>
-                        </div>
-                        <div class="quoteContainerBtn">
-                            <div class="plusBtn"><p>+</p></div>
-                        </div>
-                    </div>
-                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
-                </ul>
-
-                <ul class="menuIn" menuInField = "interestingFacts">
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>интересные факты</p></li>
-                        <div class="quoteContainer">
-                            <textarea></textarea>
-                        </div>
-                        <div class="quoteContainerBtn last">
-                            <div class="plusBtn"><p>+</p></div>
-                        </div>
-                    </div>
-                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
-                </ul>
-
-                <ul class="menuIn" menuInField = "delusion">
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>заблуждения</p></li>
-                        <div class="quoteContainer">
-                            <textarea></textarea>
-                        </div>
-                        <div class="quoteContainerBtn last">
-                            <div class="plusBtn"><p>+</p></div>
-                        </div>
-                    </div>
-                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
-                </ul>
-
-
-            <!-------------------------------фио эпоха автограф-------------------------------->
-            <ul class="menu" menuField = "aboutFio">
-                <li menuInField = "fio">
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">ФИО</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-
-                <li menuInField = "epoch">
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">ЭПОХА</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-
-                <li menuInField = "autograph">
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">АВТОГРАФ (В РАЗРАБОТКЕ)</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-            </ul> <!--1 уровень-->
-
-                <ul class="menuIn" menuInField = "fio">
-                    <div class="splite">
-                        <li class="menuAll menuTitle"><p>фио</p></li>
-                        <li class="miniTextFrame px8"><textarea placeholder="Фамилия"></textarea></li>
-                        <li class="miniTextFrame px8"><textarea placeholder="Имя"></textarea></li>
-                        <li class="miniTextFrame last"><textarea placeholder="Отчество"></textarea></li>
-                    </div>
-                    <div class="submit defaultBtn" btnType='quote'><p>СОХРАНИТЬ</p></div>
-                </ul> <!--2 уровень-->
-                <ul class="menuIn" menuInField = "epoch">
-                    <div class="splite">
-                        <li class="menuAll menuTitle px8"><p>эпоха</p></li>
-                        <li>
-                            <select class="menuList menuListOp last">
-                                <option value="" disabled selected>Выбор эпохи</option>
-                                <option>Средневековье</option>
-                                <option>Ренессанс</option>
-                                <option>Барокко</option>
-                                <option>Классицизм</option>
-                                <option>Романтизм</option>
-                                <option>Модернизм</option>
-                                <option>XX век</option>
-                                <option>XXI век</option>
-                            </select>
-                        </li>
-                    </div>
-                    <div class="submit defaultBtn" btnType='select'><p>СОХРАНИТЬ</p></div>
-                </ul>
-                <ul class="menuIn" menuInField = "autograph">
-                    <div class="splite">
-                        <li class="menuAll menuTitle fileInput"><input type="file"></li>
-                    </div>
-                </ul>
-
-            <!-------------------------------загрузка фото------------------------------------->
-            <ul class="menu" menuField = "photo">
-                <li>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">В разработке</p>
-                        <input type="file">
-                    </div>
-                </li>
-
-            </ul>
-
-            <!-------------------------------разное-------------------------------------------->
-            <ul class="menu" menuField = "etc">
-                <li class="menuAll menuTitle"><p>в разработке</p></li>
-            </ul>
-
-            <!-------------------------------биография----------------------------------------->
-            <ul class="menu bio" menuField = "bio">
-                <div class="bioLeft">
-                    <div class="childAge">
-                        <li>
-                            <div class="menuFrame">
-                                <input class="bioAge" type="text" placeholder="Введите название раздела">
-                                <div class="addBioBtn"><p>+</p></div>
-                            </div>
-                        </li>
-
-                    </div>
-                    <div class="youngAge">
-                        <li>
-                            <div class="menuFrame">
-                                <input class="bioAge" type="text" placeholder="Введите название раздела">
-                                <div class="addBioBtn"><p>+</p></div>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="adultAge">
-                        <li>
-                            <div class="menuFrame">
-                                <input class="bioAge" type="text" placeholder="Введите название раздела">
-                                <div class="addBioBtn"><p>+</p></div>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="oldAge">
-                        <li>
-                            <div class="menuFrame">
-                                <input class="bioAge" type="text" placeholder="Введите название раздела">
-                                <div class="addBioBtn"><p>+</p></div>
-                            </div>
-                        </li>
-                    </div>
-                </div>
-                <div class="bioRight">
-                    <div class="splite">
-
-                    </div>
-                </div>
-                <div class="submit defaultBtn bioSave" btnType='bio'><p>сохранить</p></div>
-            </ul>
-
-
-            <!-------------------------------окружение----------------------------------------->
-            <ul class="menu" menuField = "environment">
-                <li class="menuAll menuTitle"><p>в разработке</p></li>
-                <!--    <li>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">музыкальное окружение</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">литературное окружение</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">учителя</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">ученики</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">вдохновители</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="menuFrame">
-                        <p class="menuFrameTitle">последователи</p>
-                        <p class="menuStatus">100%</p>
-                    </div>
-                </li>-->
-            </ul>
-
-        </div>
-        <div class="footer">footer</div>
-    </div>
-</div>
 <div class="fog"></div>
-<script th:src="@{/assets/newComposer/main.js}"></script>
-<script th:src="@{/assets/newComposer/quotes.js}"></script>
-<script th:src="@{/assets/newComposer/bio.js}"></script>
-<script th:src="@{/assets/newComposer/debug.js}"></script>
-<script th:src="@{/assets/newComposer/concat.js}"></script>
-<script th:src="@{/assets/newComposer/imask.js}"></script>
+<div class="content">
+    <div class="header">ЛОГОТИП И НАВИГАЦИЯ</div>
+    <sss>
+        <form th:method="POST" th:action="@{/templates/composerOld}" th:object="${composer}">
+            <div class="roundMenu">
+                <div class="col">
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>жизнь | смерть</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div attr='0' class="m1 btn_js">
+                                <p>дата рождения</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='1' class="m1 btn_js">
+                                <p>место рождения</p>
+                                <p>100%</p>
+
+                            </div>
+                            <div attr='2' class="m1 btn_js">
+                                <p>годы активности</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='3' class="m1 btn_js">
+                                <p>дата | причина смерти</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='4' class="m1 btn_js">
+                                <p>место смерти</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='5' class="m1 btn_js">
+                                <p>похоронен</p>
+                                <p>100%</p>
+                            </div>
+                            <div class="back_js">назад</div>
+                        </div>
+                        <div class="menu">
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{dateOfBirth}">
+                                    <div class="m2Title"><p>дата рождения (выбрать одно)</p></div>
+                                    <div class="m2Label"><p class="except">точная дата</p><input type="number"></div>
+                                    <div class="m2Label"><p>между</p><input type="number">
+                                        <p>и</p><input type="number"></div>
+                                    <div class="m2Label"><p>около</p><input type="number"></div>
+                                    <div class="m2Label"><p>неизвестно</p><input class="except" type="checkbox"></div>
+                                </section>
+
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{placeOfBirth}">
+                                    <div class="m2Title"><p>место рождения</p></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>государство</option>
+                                            <option>страна</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>регион</option>
+                                            <option>область</option>
+                                            <option>губерния</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>город</option>
+                                            <option>село</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                </section>
+
+
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{activity}">
+                                    <div class="m2Title"><p>годы активности</p></div>
+                                    <div class="m2Label"><p class="except">даты</p><input type="number">
+                                        <p>-</p><input type="number"></div>
+                                </section>
+
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{dateOfDeath}">
+                                    <div class="m2Title"><p>дата смерти (выбрать одно)</p></div>
+                                    <div class="m2Label"><p class="except">точная дата</p><input type="number"></div>
+                                    <div class="m2Label"><p>между</p><input type="number">
+                                        <p>и</p><input type="number"></div>
+                                    <div class="m2Label"><p>около</p><input type="number"></div>
+                                    <div class="m2Label"><p>неизвестно</p><input class="except" type="checkbox"></div>
+                                </section>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{reasonOfDeath}">
+                                    <div class="m2Title m2TitleIn"><p>причина смерти (выбрать одно)</p></div>
+                                    <div class="m2Textarea"><textarea></textarea></div>
+                                    <div class="m2Label"><p>неизвестно</p><input class="except" type="checkbox"></div>
+                                </section>
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{placeOfDeath}">
+                                    <div class="m2Title"><p>место смерти</p></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>государство</option>
+                                            <option>страна</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>регион</option>
+                                            <option>область</option>
+                                            <option>губерния</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                    <div class="m2Label">
+                                        <select>
+                                            <option>город</option>
+                                            <option>село</option>
+                                        </select>
+                                    </div>
+                                    <div class="m2Label"><input type="text"></div>
+                                </section>
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{buried}">
+                                    <div class="m2Title"><p>похоронен (выбрать одно)</p></div>
+                                    <div class="m2Textarea"><textarea></textarea></div>
+                                    <div class="m2Label"><p>неизвестно</p><input class="except" type="checkbox"></div>
+                                </section>
+
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                        </div>
+                    </div> <!--жизнь смерть | th:скрытые поля-->
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>литература</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div attr='0' class="m1 btn_js">
+                                <p>цитаты композитора</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='1' class="m1 btn_js">
+                                <p>цитаты о композиторе(п)</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='2' class="m1 btn_js">
+                                <p>цитаты о композиторе(н)</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='3' class="m1 btn_js">
+                                <p>интересные факты</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='4' class="m1 btn_js">
+                                <p>статьи</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='5' class="m1 btn_js">
+                                <p>письма от композитора</p>
+                                <p>100%</p>
+                            </div>
+                            <div attr='6' class="m1 btn_js">
+                                <p>письма к композитору</p>
+                                <p>100%</p>
+                            </div>
+                            <div class="back_js">назад</div>
+                        </div>
+                        <div class="menu">
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{composQuotes}">
+                                    <div class="m2Title"><p>цитата композитора</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">quote</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите цитату"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "quote" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{positiveQuotes}">
+                                    <div class="m2Title"><p>положительные цитаты о композиторе</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">qAuthor</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="автор цитаты">
+                                                <p style="display: none">quote</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите цитату о композиторе"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "quoteAbout" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn2 saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{negativeQuotes}">
+                                    <div class="m2Title"><p>негативные цитаты о композиторе</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">qAuthor</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="автор цитаты">
+                                                <p style="display: none">quote</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите цитату о композиторе"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "quoteAbout" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn2 saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{facts}">
+                                    <div class="m2Title"><p>факты</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">fact</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите факт"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "facts" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{article}">
+                                    <div class="m2Title"><p>статьи</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">author</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="автор статьи">
+                                                <p style="display: none">article</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите статью"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "topic" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn2 saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <!--ПИСЬМА ОТ КОМПОЗИТОРА-->
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{letterTo}">
+                                    <div class="m2Title"><p>письма от композитора</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">from</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="адресат">
+                                                <p style="display: none">topic</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="тема письма">
+                                                <p style="display: none">letter</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите письмо"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "letterFrom" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn2 saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                            <!--ПИСЬМА К КОМПОЗИТОРА-->
+                            <div class="m2 l3_js">
+                                <div class="back_js">назад</div>
+                                <section>
+                                    <input type="hidden" placeholder="скрытое поле" th:field="*{letterFrom}">
+                                    <div class="m2Title"><p>письма к композитору</p></div>
+                                    <div class="newDivCell">
+                                        <div class="m2Textarea">
+                                            <div class="textareaCont">
+                                                <p style="display: none">from</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="имя отравителя">
+                                                <p style="display: none">topic</p>
+                                                <input oninput="this.setAttribute('value', value)" type="text" placeholder="тема письма">
+                                                <p style="display: none">letter</p>
+                                                <textarea oninput="this.innerHTML = this.value" placeholder="введите письмо"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div btnType = "letterTo" class="btnAdd btnAddJs"></div>
+                                </section>
+                                <div class="saveBtn2 saveBtn_js"><p>сохранить</p></div>
+                            </div>
+                        </div>
+
+                        <div class="menu">
+                            <div class="m2 l3_js">
+                                <p>факты вглубь2</p>
+                            </div>
+                        </div>
+                    </div> <!--литература | th:скрытые поля-->
+                </div>
+                <div class="col">
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>фио | эпоха</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div class="back_js">назад</div>
+                            <div class="m2Title"><p>фио</p></div>
+                            <div class="m2Label"><input type="text" placeholder="фамилия" th:field="*{lastName}"></div>
+                            <div class="m2Label"><input type="text" placeholder="имя" th:field="*{firstName}"></div>
+                            <div class="m2Label"><input type="text" placeholder="отчество" th:field="*{middleName}">
+                            </div>
+                            <div class="m2Title m2TitleIn"><p>эпоха</p></div>
+                            <div class="m2Label">
+                                <select th:field="*{epoch}">
+                                    <option th:value="'тип не выбран'">выбрать эпоху</option>
+                                    <option th:value="'Средневековье'">Средневековье</option>
+                                    <option th:value="'Ренессанс'">Ренессанс</option>
+                                    <option th:value="'Барокко'">Барокко</option>
+                                    <option th:value="'Классицизм'">Классицизм</option>
+                                    <option th:value="'Романтизм'">Романтизм</option>
+                                    <option th:value="'Модернизм*'">Модернизм</option>
+                                    <option th:value="'XX век'">XX век</option>
+                                    <option th:value="'XXI век'">XXI век</option>
+                                </select>
+                            </div>
+                            <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
+                        </div>
+                    </div> <!--фио и эпоха | th:обычные поля-->
+                    <div class="cell">
+                        <div class="round roundJs"></div>
+                    </div> <!--фото-->
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>разное</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div attr='0' class="m1">
+                                <p>в разработке</p>
+                                <p>...</p>
+                            </div>
+                            <div class="back_js">назад</div>
+                        </div>
+                    </div> <!--разное | в разработке-->
+                </div>
+                <div class="col">
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>биография</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div class="back_js">назад</div>
+                            <div class="bioFrame">
+                                <div class="bioLeft">
+                                    <div class="m1">
+                                        <p>краткая биография</p>
+                                        <p>100%</p>
+                                    </div>
+                                    <section class="bioSect">
+                                        <div class="cont">
+                                            <div class="mainC"><input type="text" placeholder="введите название раздела"><div class="btnLabelAdd" onclick="f2(this)"></div></div>
+                                            <div class="cells">
+                                                <div class="cellBio"><div class="item" draggable="true"><p>подраздел</p><div class="btnDell" onclick="this.parentElement.parentElement.remove()"></div></div></div>
+                                            </div>
+                                            <div class="addBtn" onclick=f1(this)></div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="bioRight">
+                                    <div class="miniBio">
+                                        <textarea placeholder="введите краткую биографию"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!--био-->
+                    <div class="frame">
+                        <div class="cell">
+                            <div class="round btn_js"></div>
+                            <p>окружение</p>
+                            <p>100%</p>
+                        </div>
+                        <div class="menu">
+                            <div attr='0' class="m1">
+                                <p>в разработке</p>
+                                <p>...</p>
+                            </div>
+                            <div class="back_js">назад</div>
+                        </div>
+                    </div> <!--окружение | в разработке-->
+                </div>
+            </div>
+            <div class="submitBar">
+                <input type="submit" value="опубликовать">
+                <input class="ls_js" type="button" value="Сохранить в черновик">
+            </div>
+        </form>
+    </sss>
+    <div class="draftFrame" th:if="${updatedDraft==null}">
+        <form th:method="POST" th:action="@{/draft/newDraft}" th:object="${draft}">
+            <input class="draftName" type="hidden" placeholder="введите название черновика" th:field="*{draftName}">
+            <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}">
+            <input class="localSave" type="submit" value="Сохранить в черновик">
+
+        </form>
+    </div>
+
+    <div class="draftFrame" th:if="${updatedDraft!=null}">
+        <form th:method="PATCH" th:action="@{/draft/{id}(id=${updatedDraft.getId()})}" th:object="${updatedDraft}">
+            <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}">
+            <input class="localSave" type="submit" value="Обновить черновик">
+        </form>
+    </div>
+    <div class="footer">ПОДВАЛ</div>
+</div>
+<script th:src="@{/assets/composer/main3.js}"></script>
+<script th:src="@{/assets/composer/bio.js}"></script>
 </body>
 </html>
+
+

@@ -83,6 +83,27 @@ window.onload = function (){
                 section.querySelectorAll('input')[0].value = str.trimEnd()
             })
         }
+        if(this.classList[0] === 'saveBtn3'){
+            let str = ''
+            let count = 0
+            document.querySelector('.bioSect').querySelectorAll('.cont').forEach(cont=>{
+                str += "label "+cont.children[0].querySelector('.mainC input').value +" " //значение
+                for(let el of cont.children[1].children){
+
+                    let attr = el.querySelector('.item').getAttribute('pairing')
+                    let cont = document.querySelector('.bioAll[pairing="'+attr+'"]')
+                    for(let el of cont.children){
+                        if(el.tagName !== 'DIV'){
+                            str += el.getAttribute('sep') + " " + el.value +" "
+                        }
+                    }
+                }
+            })
+            this.parentElement.querySelector('input').value = str
+
+
+
+        }
     }
 
     document.querySelector('.roundJs').addEventListener('drop', function (e){

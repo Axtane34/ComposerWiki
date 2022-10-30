@@ -35,6 +35,7 @@ p, option, select {
     display: flex;
     justify-content: space-between;
     padding: 0 110px;
+    background-size: 100%,100%;
 }
 
 .col {
@@ -57,11 +58,11 @@ p, option, select {
 }
 
 .round {
+    cursor: pointer;
     transition: all 1s ease 0s;
-    background-color: rgba(54, 66, 114);
     width: 176px;
     height: 176px;
-    border: 1px dotted black;
+/*    border: 1px dotted black;*/
     margin: 0 auto;
     border-radius: 50%;
     background-size: 100%, 100%;
@@ -69,9 +70,8 @@ p, option, select {
 
 .roundF{
 
-    background-color: rgb(52, 77, 169);
-    border-radius: 30%;
-    transform: rotate(-360deg);
+
+    transform: rotate(-360deg) scale(1.2);
 }
 
 .cell p:nth-child(2) {
@@ -183,26 +183,37 @@ input[type=submit], input[type=button] {
     display: flex;
 }
 .bioLeft{
+    width: 310px;
     position: relative;
 }
 .bioRight{
+    position: relative;
     width: 780px;
     margin-left: 24px;
 }
-.miniBio{
-    width: 100%;
-    height: 100%;
-    background-color: whitesmoke;
+
+.roundAll{
+    background-image: url("img/okr.svg");
 }
-.miniBio textarea{
-    width: 100%;
-    height: 100%;
-    resize: none;
-    padding: 10px;
-
+.roundBio{
+    background-image: url("img/bio.svg");
+}
+.roundFacts{
+    background-image: url("img/facts.svg");
+}
+.roundLive{
+    background-image: url("img/live.svg");
+}
+.roundFio{
+    background-image: url("img/fio.svg");
+}
+.roundOther{
+    background-image: url("img/oth.svg");
 }
 
-
+.roundFoto{
+    background-image: url("img/no_photo.svg");
+}
 
 .btnAdd{
     position: absolute;
