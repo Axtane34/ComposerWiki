@@ -123,8 +123,12 @@ function test1(){
     document.querySelectorAll('.cellBio').forEach(cell=>{
         cell.addEventListener('dragenter', function (e){
             if(this.parentElement.contains(lastItem)){
-                lastCell.append(this.children[0])
-                this.append(lastItem)
+                if(this.children.length === 1){
+                    this.append(lastItem)
+                }
+                if(lastCell.children.length === 0){
+                    lastCell.append(this.children[0])
+                }
             }
 
         })
@@ -135,13 +139,15 @@ function test1(){
                 lastCell = this
             }
         })
-
         cell.addEventListener('dragover', function (e){
             e.preventDefault()
         })
         cell.addEventListener('drop', function (){
             if(this.parentElement.contains(lastItem)){
-                this.append(lastItem)
+                if(this.children.length === 0){
+                    this.append(lastItem)
+                }
+
             }
         })
     })

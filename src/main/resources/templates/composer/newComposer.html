@@ -56,10 +56,10 @@
                                 <section>
                                     <input type="hidden" placeholder="скрытое поле" th:field="*{dateOfBirth}">
                                     <div class="m2Title"><p>дата рождения (выбрать одно)</p></div>
-                                    <div class="m2Label"><p class="except">точная дата</p><input type="number"></div>
-                                    <div class="m2Label"><p>между</p><input type="number">
-                                        <p>и</p><input type="number"></div>
-                                    <div class="m2Label"><p>около</p><input type="number"></div>
+                                    <div class="m2Label"><p class="except">точная дата</p><input type="text"></div>
+                                    <div class="m2Label"><p>между</p><input type="text">
+                                        <p>и</p><input type="text"></div>
+                                    <div class="m2Label"><p>около</p><input type="text"></div>
                                     <div class="m2Label"><p>неизвестно</p><input class="except" type="checkbox"></div>
                                 </section>
 
@@ -90,6 +90,7 @@
                                         <select>
                                             <option>город</option>
                                             <option>село</option>
+                                            <option>уезд</option>
                                         </select>
                                     </div>
                                     <div class="m2Label"><input type="text"></div>
@@ -104,8 +105,8 @@
                                 <section>
                                     <input type="hidden" placeholder="скрытое поле" th:field="*{activity}">
                                     <div class="m2Title"><p>годы активности</p></div>
-                                    <div class="m2Label"><p class="except">даты</p><input type="number">
-                                        <p>-</p><input type="number"></div>
+                                    <div class="m2Label"><p class="except">даты</p><input type="text">
+                                        <p>-</p><input type="text"></div>
                                 </section>
 
                                 <div class="saveBtn saveBtn_js"><p>сохранить</p></div>
@@ -116,10 +117,10 @@
                                 <section>
                                     <input type="hidden" placeholder="скрытое поле" th:field="*{dateOfDeath}">
                                     <div class="m2Title"><p>дата смерти (выбрать одно)</p></div>
-                                    <div class="m2Label"><p class="except">точная дата</p><input type="number"></div>
-                                    <div class="m2Label"><p>между</p><input type="number">
-                                        <p>и</p><input type="number"></div>
-                                    <div class="m2Label"><p>около</p><input type="number"></div>
+                                    <div class="m2Label"><p class="except">точная дата</p><input type="text"></div>
+                                    <div class="m2Label"><p>между</p><input type="text">
+                                        <p>и</p><input type="text"></div>
+                                    <div class="m2Label"><p>около</p><input type="text"></div>
                                     <div class="m2Label"><p>неизвестно</p><input class="except" type="checkbox"></div>
                                 </section>
                                 <section>
@@ -155,6 +156,7 @@
                                         <select>
                                             <option>город</option>
                                             <option>село</option>
+                                            <option>уезд</option>
                                         </select>
                                     </div>
                                     <div class="m2Label"><input type="text"></div>
@@ -415,7 +417,7 @@
                         </div>
                         <div class="menu">
                             <div class="back_js">назад</div>
-                            <input type="text" placeholder="скрытое поле1" th:field="*{bio}"> <!--ПОЛНОЕ БИО-->
+                            <input type="hidden" placeholder="скрытое поле1" th:field="*{bio}"> <!--ПОЛНОЕ БИО-->
                             <div class="bioFrame">
                                 <div class="bioLeft">
                                     <div class="bioMini" style="border: 2px dotted white" onclick="f3(this)">
