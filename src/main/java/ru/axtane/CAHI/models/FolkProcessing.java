@@ -11,8 +11,8 @@ public class FolkProcessing {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "folkProcessingAuthor")
-    private String folkProcessingAuthor;
+    @Column(name = "composerFio")
+    private String composerFio;
     @Column(name = "folkProcessingName")
     private String folkProcessingName;
     @Column(name = "region")
@@ -60,12 +60,12 @@ public class FolkProcessing {
         this.id = id;
     }
 
-    public String getFolkProcessingAuthor() {
-        return folkProcessingAuthor;
+    public String getComposerFio() {
+        return composerFio;
     }
 
-    public void setFolkProcessingAuthor(String folkProcessingAuthor) {
-        this.folkProcessingAuthor = folkProcessingAuthor;
+    public void setComposerFio(String composerFio) {
+        this.composerFio = composerFio;
     }
 
     public String getFolkProcessingName() {

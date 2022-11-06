@@ -5,9 +5,9 @@
     <style>
         .container {
             position: absolute;
-            top: 50%;
+            top: 80px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
         }
 
         input, select, button {
@@ -19,14 +19,33 @@
         .optionInstruments {
             display: none;
         }
+
+        .hid {
+            display: none;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <sss>
         <form th:method="POST" th:action="@{/arrangement}" th:object="${arrangement}">
-            <div class="arrangementAuthor"><input type="text" placeholder="введите автора аранжировки"
-                                                  th:field="*{arrangementAuthor}"></div>
+            <div>
+                <input type="hidden" th:object="${composer}" th:field="*{fio}">
+                <input class="fioInp" list="arrangement"
+                       placeholder="начните вводить фио композитора ИЛИ НАЙДИТЕ В СПИСКЕ (ПРАШУ)">
+                <datalist class="fioInp2" id="arrangement">
+                    <option th:each="composer : ${composers}" th:value="${composer.getFio()}"
+                            th:text="${composer.getFio()}">
+                </datalist>
+            </div>
+            <input class="fioBtn" type="button" value="композитора нет в списке">
+            <div>
+                <section style="display: none">
+                    <input type="text" placeholder="введите ФИО композитора" th:field="*{composerFio}"><br>
+                    <button class="unknown">неизвестный композитор</button>
+                </section>
+            </div>
+
             <div class="arrangementName"><input type="text" placeholder="введите название"
                                                 th:field="*{arrangementName}"></div>
             <div class="dedication"><input type="text" placeholder="посвящение (если есть)" th:field="*{dedication}">
@@ -152,10 +171,39 @@
     </div>
 </div>
 <script>
-    if (document.querySelector('.statement').value!==''){
+    if (document.querySelector('.statement').value !== '') {
         document.getElementsByTagName("sss")[0].innerHTML = document.querySelector('.statement').value
     }
-    window.onload = function (){
+    window.onload = function () {
+        document.querySelector('.unknown').addEventListener('click', function (e){
+            e.preventDefault()
+            this.previousElementSibling.previousElementSibling.value = this.innerHTML
+        })
+        document.querySelector('.fioInp').addEventListener('input', function () {
+            this.previousElementSibling.value = this.value;
+
+        })
+
+
+        document.querySelector('.fioBtn').addEventListener('click', function () {
+            this.previousElementSibling.children[0].value = ''
+            this.previousElementSibling.children[1].value = ''
+            if (getComputedStyle(this.nextElementSibling.children[0]).display === 'none') {
+                this.value = 'попробовать найти в списке'
+                this.nextElementSibling.children[0].style.display = 'block'
+                document.querySelector('.fioInp').classList.add('hid')
+                document.querySelector('.fioInp2').classList.add('hid')
+            } else {
+                this.nextElementSibling.children[0].querySelectorAll('input').forEach(input => {
+                    input.value = ''
+                })
+                document.querySelector('.fioInp').classList.remove('hid')
+                document.querySelector('.fioInp2').classList.remove('hid')
+                this.value = 'композитора нет в списке'
+                this.nextElementSibling.children[0].style.display = 'none'
+            }
+        })
+
         let music = document.querySelector('.music')
         let musicTrigger = music.querySelector('select')
         let optionInstruments = document.querySelector('.optionInstruments')
@@ -205,23 +253,25 @@
         selector(optionVoices, 'выбрать солиста', 'количество голосов выбранного типа')
 
         let btnSave = document.querySelector('.btnSave')
-        btnSave.addEventListener('click', ()=>{
+        btnSave.addEventListener('click', () => {
+
+
             let inputs = document.querySelectorAll('input')
 
             let selects = document.querySelectorAll('select')
 
-            inputs.forEach(inp =>{
+            inputs.forEach(inp => {
                 let value = inp.value
                 inp.setAttribute("value", value)
             })
-            selects.forEach(select =>{
+            selects.forEach(select => {
                 const selectedOption = select.options[select.selectedIndex];
                 console.log(selectedOption)
                 let options = select.querySelectorAll('option')
-                options.forEach(option =>{
+                options.forEach(option => {
                     option.removeAttribute("selected")
                 })
-                selectedOption.setAttribute("selected","selected")
+                selectedOption.setAttribute("selected", "selected")
             })
             let statement = document.querySelector('.statement')
             statement.value = document.getElementsByTagName("sss")[0].innerHTML

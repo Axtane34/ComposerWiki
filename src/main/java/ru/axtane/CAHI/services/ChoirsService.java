@@ -27,19 +27,19 @@ public class ChoirsService {
         return choirsRepository.findById(id);
     }
 
-    public List<Chorus> findByComposerName(String lastname){
-        return choirsRepository.findByComposerName(lastname);
+    public List<Chorus> findByComposerFio(String fio){
+        return choirsRepository.findByComposerFio(fio);
     }
 
-    public Composer findComposer(String lastname){
-        return composersRepository.findByLastName(lastname);
+    public Composer findComposer(String fio){
+        return composersRepository.findByFio(fio);
     }
 
     @Transactional
     public void save(Chorus chorus){
         chorus.setPublicationStatus(PublicationStatus.PUBLISHED);
         chorus.getUserAuthor().addChorus(chorus);
-        Composer composer = findComposer(chorus.getComposerName());
+        Composer composer = findComposer(chorus.getComposerFio());
         if (composer != null){
             composer.addChorus(chorus);
         }

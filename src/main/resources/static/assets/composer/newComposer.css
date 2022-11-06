@@ -1,5 +1,5 @@
     /*тень*/
-input[type=submit], .saveBtn, .m1, .m2Title, .m2Label, input[type=button] {
+input[type=submit], .m1, .m2Title, .m2Label, input[type=button] {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }
 
@@ -96,12 +96,13 @@ input[type=submit], input[type=button] {
     height: 24px;
 }
 
-.saveBtn, .saveBtn2{
+.saveBtn, .saveBtn2, .saveBtnFio{
     cursor: pointer;
     width: 220px;
     height: 30px;
     margin: 54px auto 0 auto;
-    background-color: rgba(255, 255, 255, 0.8);;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }
 
 .footer {

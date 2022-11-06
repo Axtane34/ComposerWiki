@@ -11,9 +11,9 @@
             <div class="content cMain">
                 <div class="left">
                     <div class="l1">
-                        <p th:text="${composer.getLastName()}"></p>
-                        <p th:text="${composer.getFirstName()}"></p>
-                        <p th:text="${composer.getMiddleName()}"></p>
+                        <p th:text="${composer.getFio()}"></p>
+                     <!--   <p th:text="${composer.getFirstName()}"></p>
+                        <p th:text="${composer.getMiddleName()}"></p>-->
                     </div>
                     <div class="l2"><p th:text="${'Эпоха - ' + composer.getEpoch()}"></p></div>
                     <div class="l3"><p>Дата рождения:</p><p class ="mainText" th:text="${composer.getDateOfBirth()}"></p></div>
@@ -75,10 +75,6 @@
                              th:each="folkProcessing : ${cappellaChoirs.getFolkProcessingList()}">
                             <a th:href="@{/folkProcessing/{id}(id=${folkProcessing.getId()})}" th:text="${'folkProcessing: ' + folkProcessing.getFolkProcessingName()}"></a>
                         </div>
-                        <div class="item" th:if="${!cappellaChoirs.getOpusAS().isEmpty()}"
-                             th:each="opusAS : ${cappellaChoirs.getOpusAS()}">
-                            <a th:href="@{/opusAS/{id}(id=${opusAS.getId()})}" th:text="${'opusAS: ' + opusAS.getChorusName()}"></a>
-                        </div>
                     </div>
                     <div class="frame chorusW">
                         <div class="labelFrame"><p>Хор в сопровождении</p></div>
@@ -96,10 +92,6 @@
                         <div class="item" th:if="${!instrumentalChoirs.getFolkProcessingList().isEmpty()}"
                              th:each="folkProcessing : ${instrumentalChoirs.getFolkProcessingList()}">
                             <a th:href="@{/folkProcessing/{id}(id=${folkProcessing.getId()})}" th:text="${'folkProcessing: ' + folkProcessing.getFolkProcessingName()}"></a>
-                        </div>
-                        <div class="item" th:if="${!instrumentalChoirs.getOpusAS().isEmpty()}"
-                             th:each="opusAS : ${instrumentalChoirs.getOpusAS()}">
-                            <a th:href="@{/opusAS/{id}(id=${opusAS.getId()})}" th:text="${'opusAS: ' + opusAS.getChorusName()}"></a>
                         </div>
                     </div>
                     <div class="frame chorusW">

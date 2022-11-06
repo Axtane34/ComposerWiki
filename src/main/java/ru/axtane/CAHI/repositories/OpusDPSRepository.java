@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface OpusDPSRepository extends JpaRepository<OpusDPS, Integer> {
     OpusDPS findById(int id);
-    List<OpusDPS> findByComposerName(String lastname);
+    List<OpusDPS> findByComposerFio(String fio);
 }

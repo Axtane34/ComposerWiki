@@ -1,7 +1,5 @@
 package ru.axtane.CAHI.models;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import ru.axtane.CAHI.models.enums.PublicationStatus;
 
 import javax.persistence.*;
@@ -15,12 +13,8 @@ public class Composer {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "firstname")
-    private String firstName;
-    @Column(name = "lastname")
-    private String lastName;
-    @Column(name = "middleName")
-    private String middleName;
+    @Column(name = "fio")
+    private String fio;
     @Column(name = "epoch")
     private String epoch;
     @Column(name = "dateOfBirth")
@@ -69,8 +63,6 @@ public class Composer {
     @OneToMany(mappedBy = "composer")
     private List<FolkProcessing> folkProcessingList = new ArrayList<>();
     @OneToMany(mappedBy = "composer")
-    private List<OpusAS> opusAS = new ArrayList<>();
-    @OneToMany(mappedBy = "composer")
     private List<OpusDPS> opusDPS = new ArrayList<>();
     @Transient
     private boolean publicationsEmpty;
@@ -83,28 +75,12 @@ public class Composer {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFio() {
+        return fio;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+    public void setFio(String fio) {
+        this.fio = fio;
     }
 
     public String getEpoch() {
@@ -291,14 +267,6 @@ public class Composer {
         this.folkProcessingList = folkProcessingList;
     }
 
-    public List<OpusAS> getOpusAS() {
-        return opusAS;
-    }
-
-    public void setOpusAS(List<OpusAS> opusAS) {
-        this.opusAS = opusAS;
-    }
-
     public List<OpusDPS> getOpusDPS() {
         return opusDPS;
     }
@@ -319,12 +287,6 @@ public class Composer {
             this.setOpusDPS(new ArrayList<>());
         this.getOpusDPS().add(opusDPS);
         opusDPS.setComposer(this);
-    }
-    public void addOpusAS(OpusAS opusAS){
-        if (this.getOpusAS()==null)
-            this.setOpusAS(new ArrayList<>());
-        this.getOpusAS().add(opusAS);
-        opusAS.setComposer(this);
     }
     public void addFolkProcessing(FolkProcessing folkProcessing){
         if (this.getFolkProcessingList()==null)

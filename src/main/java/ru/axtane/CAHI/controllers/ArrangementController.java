@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.axtane.CAHI.models.Arrangement;
+import ru.axtane.CAHI.models.Composer;
 import ru.axtane.CAHI.models.Draft;
 import ru.axtane.CAHI.models.Person;
 import ru.axtane.CAHI.security.PersonDetails;
 import ru.axtane.CAHI.services.ArrangementsService;
+import ru.axtane.CAHI.services.ComposersService;
 import ru.axtane.CAHI.services.DraftsService;
 
 @Controller
@@ -18,11 +20,13 @@ import ru.axtane.CAHI.services.DraftsService;
 public class ArrangementController {
     private final ArrangementsService arrangementsService;
     private final DraftsService draftsService;
+    private final ComposersService composersService;
 
     @Autowired
-    public ArrangementController(ArrangementsService arrangementsService, DraftsService draftsService) {
+    public ArrangementController(ArrangementsService arrangementsService, DraftsService draftsService, ComposersService composersService) {
         this.arrangementsService = arrangementsService;
         this.draftsService = draftsService;
+        this.composersService = composersService;
     }
 
     @GetMapping("/{id}")
@@ -38,20 +42,27 @@ public class ArrangementController {
     }
 
     @GetMapping("/newArrangement")
-    public String newArrangement(@ModelAttribute("arrangement") Arrangement arrangement, Model model){
+    public String newArrangement(@ModelAttribute("arrangement") Arrangement arrangement, Model model,
+                                 @ModelAttribute("composer")Composer composer){
         model.addAttribute("draft", new Draft());
+        model.addAttribute("composers", composersService.findAll());
         return "arrangement/newArrangement";
     }
 
     @GetMapping("/newArrangement/{id}")
-    public String newArrangementFromDraft(@ModelAttribute("arrangement") Arrangement arrangement, Model model, @PathVariable("id") int id){
+    public String newArrangementFromDraft(@ModelAttribute("arrangement") Arrangement arrangement, Model model,
+                                          @ModelAttribute("composer") Composer composer, @PathVariable("id") int id){
         model.addAttribute("updatedDraft", draftsService.findById(id));
+        model.addAttribute("composers", composersService.findAll());
         return "arrangement/newArrangement";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("arrangement") Arrangement arrangement){
+    public String create(@ModelAttribute("arrangement") Arrangement arrangement, @ModelAttribute("composer") Composer composer){
         arrangement.setUserAuthor(getPerson());
+        if (!"".equals(composer.getFio())){
+            arrangement.setComposer(composersService.findByFio(composer.getFio()));
+        }
         arrangementsService.save(arrangement);
         return "redirect:/CAHI/account";
     }

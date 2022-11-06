@@ -27,19 +27,19 @@ public class OpusDPSService {
         return opusDPSRepository.findById(id);
     }
 
-    public List<OpusDPS> findByComposerName(String lastname){
-        return opusDPSRepository.findByComposerName(lastname);
+    public List<OpusDPS> findByComposerFio(String fio){
+        return opusDPSRepository.findByComposerFio(fio);
     }
 
-    public Composer findComposer(String lastname){
-        return composersRepository.findByLastName(lastname);
+    public Composer findComposer(String fio){
+        return composersRepository.findByFio(fio);
     }
 
     @Transactional
     public void save(OpusDPS opusDPS){
             opusDPS.setPublicationStatus(PublicationStatus.PUBLISHED);
         opusDPS.getUserAuthor().addOpusDPS(opusDPS);
-        Composer composer = findComposer(opusDPS.getComposerName());
+        Composer composer = findComposer(opusDPS.getComposerFio());
         if (composer != null){
             composer.addOpusDPS(opusDPS);
         }

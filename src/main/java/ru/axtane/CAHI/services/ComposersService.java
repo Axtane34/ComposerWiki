@@ -19,18 +19,16 @@ public class ComposersService {
     private final ArrangementsService arrangementsService;
     private final ChoirsService choirsService;
     private final FolkProcessingService folkProcessingService;
-    private final OpusASService opusASService;
     private final OpusDPSService opusDPSService;
     private final ModelMapper modelMapper;
 
 
     @Autowired
-    public ComposersService(ComposersRepository composersRepository, ArrangementsService arrangementsService, ChoirsService choirsService, FolkProcessingService folkProcessingService, OpusASService opusASService, OpusDPSService opusDPSService, ModelMapper modelMapper) {
+    public ComposersService(ComposersRepository composersRepository, ArrangementsService arrangementsService, ChoirsService choirsService, FolkProcessingService folkProcessingService, OpusDPSService opusDPSService, ModelMapper modelMapper) {
         this.composersRepository = composersRepository;
         this.arrangementsService = arrangementsService;
         this.choirsService = choirsService;
         this.folkProcessingService = folkProcessingService;
-        this.opusASService = opusASService;
         this.opusDPSService = opusDPSService;
         this.modelMapper = modelMapper;
     }
@@ -43,16 +41,14 @@ public class ComposersService {
         return composersRepository.findById(id).orElse(null);
     }
 
-    public Composer findByLastName(String lastname){
-        return composersRepository.findByLastName(lastname);
+    public Composer findByFio(String fio){
+        return composersRepository.findByFio(fio);
     }
 
     public ComposerDTO findChoirs(PublicationStatus publicationStatus, Composer composer, boolean isCapella){
         Hibernate.initialize(composer);
         ComposerDTO composerDTO = convertToComposerDTO(composer);
             if (isCapella) {
-                composerDTO.getOpusAS().removeIf(opusAS -> !opusAS.getPublicationStatus().equals(publicationStatus)
-                        || !opusAS.getMusic().startsWith("Cappella"));
                 composerDTO.getFolkProcessingList().removeIf(folkProcessing -> !folkProcessing.getPublicationStatus().equals(publicationStatus)
                         || !folkProcessing.getMusic().startsWith("Cappella"));
                 composerDTO.getArrangements().removeIf(arrangement -> !arrangement.getPublicationStatus().equals(publicationStatus)
@@ -61,8 +57,6 @@ public class ComposersService {
                         || !chorus.getMusic().startsWith("Cappella"));
             } else {
                 composerDTO.getOpusDPS().clear();
-                composerDTO.getOpusAS().removeIf(opusAS -> !opusAS.getPublicationStatus().equals(publicationStatus)
-                        || opusAS.getMusic().startsWith("Cappella"));
                 composerDTO.getFolkProcessingList().removeIf(folkProcessing -> !folkProcessing.getPublicationStatus().equals(publicationStatus)
                         || folkProcessing.getMusic().startsWith("Cappella"));
                 composerDTO.getArrangements().removeIf(arrangement -> !arrangement.getPublicationStatus().equals(publicationStatus)
@@ -70,8 +64,8 @@ public class ComposersService {
                 composerDTO.getChoirs().removeIf(chorus -> !chorus.getPublicationStatus().equals(publicationStatus)
                         || chorus.getMusic().startsWith("Cappella"));
             }
-        composerDTO.setPublicationsEmpty(composerDTO.getOpusDPS().isEmpty() && composerDTO.getOpusAS().isEmpty() &&
-                composerDTO.getFolkProcessingList().isEmpty() && composerDTO.getArrangements().isEmpty() && composerDTO.getChoirs().isEmpty());
+        composerDTO.setPublicationsEmpty(composerDTO.getOpusDPS().isEmpty() && composerDTO.getFolkProcessingList().isEmpty()
+                && composerDTO.getArrangements().isEmpty() && composerDTO.getChoirs().isEmpty());
         return composerDTO;
     }
 
@@ -80,19 +74,16 @@ public class ComposersService {
         composer.setPublicationStatus(PublicationStatus.PUBLISHED);
         composer.getUserAuthor().addComposer(composer);
         composersRepository.save(composer);
-        for (Arrangement arrangement : arrangementsService.findByComposerName(composer.getLastName())){
+        for (Arrangement arrangement : arrangementsService.findByComposerFio(composer.getFio())){
             composer.addArrangement(arrangement);
         }
-        for (Chorus chorus : choirsService.findByComposerName(composer.getLastName())){
+        for (Chorus chorus : choirsService.findByComposerFio(composer.getFio())){
             composer.addChorus(chorus);
         }
-        for (FolkProcessing folkProcessing : folkProcessingService.findByComposerName(composer.getLastName())){
+        for (FolkProcessing folkProcessing : folkProcessingService.findByComposerFio(composer.getFio())){
             composer.addFolkProcessing(folkProcessing);
         }
-        for (OpusAS opusAS : opusASService.findByComposerName(composer.getLastName())){
-            composer.addOpusAS(opusAS);
-        }
-        for (OpusDPS opusDPS : opusDPSService.findByComposerName(composer.getLastName())){
+        for (OpusDPS opusDPS : opusDPSService.findByComposerFio(composer.getFio())){
             composer.addOpusDPS(opusDPS);
         }
         composersRepository.save(composer);

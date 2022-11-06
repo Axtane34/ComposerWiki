@@ -27,19 +27,19 @@ public class FolkProcessingService {
         return folkProcessingRepository.findById(id);
     }
 
-    public List<FolkProcessing> findByComposerName(String lastname){
-        return folkProcessingRepository.findByFolkProcessingAuthor(lastname);
+    public List<FolkProcessing> findByComposerFio(String fio){
+        return folkProcessingRepository.findByComposerFio(fio);
     }
 
-    public Composer findComposer(String lastname){
-        return composersRepository.findByLastName(lastname);
+    public Composer findComposer(String fio){
+        return composersRepository.findByFio(fio);
     }
 
     @Transactional
     public void save(FolkProcessing folkProcessing){
             folkProcessing.setPublicationStatus(PublicationStatus.PUBLISHED);
         folkProcessing.getUserAuthor().addFolkProcessing(folkProcessing);
-        Composer composer = findComposer(folkProcessing.getFolkProcessingAuthor());
+        Composer composer = findComposer(folkProcessing.getComposerFio());
         if (composer != null){
             composer.addFolkProcessing(folkProcessing);
         }

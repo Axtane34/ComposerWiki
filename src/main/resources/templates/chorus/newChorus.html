@@ -25,7 +25,7 @@
 <div class="container">
     <sss>
     <form th:method="POST" th:action="@{/chorus}" th:object="${chorus}">
-        <div class="composerName"><input type="text" placeholder="введите композитора" th:field="*{composerName}"></div>
+        <div class="composerName"><input type="text" placeholder="введите композитора" th:field="*{composerFio}"></div>
         <div class="chorusName"><input type="text" placeholder="введите название" th:field="*{chorusName}"></div>
         <div class="dedication"><input type="text" placeholder="посвящение (если есть)" th:field="*{dedication}"></div>
         <div class="textAuthor">

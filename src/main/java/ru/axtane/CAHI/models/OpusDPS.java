@@ -13,8 +13,8 @@ public class OpusDPS {
     private int id;
     @Column(name = "writingStyle")
     private String writingStyle;
-    @Column(name = "composerName")
-    private String composerName;
+    @Column(name = "composerFio")
+    private String composerFio;
     @Column(name = "incipit")
     private String incipit;
     @Column(name = "compilerDecoder")
@@ -66,12 +66,12 @@ public class OpusDPS {
         this.writingStyle = writingStyle;
     }
 
-    public String getComposerName() {
-        return composerName;
+    public String getComposerFio() {
+        return composerFio;
     }
 
-    public void setComposerName(String composerName) {
-        this.composerName = composerName;
+    public void setComposerFio(String composerFio) {
+        this.composerFio = composerFio;
     }
 
     public String getIncipit() {

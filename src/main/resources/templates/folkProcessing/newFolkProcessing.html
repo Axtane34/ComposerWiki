@@ -26,7 +26,7 @@
     <sss>
         <form th:method="POST" th:action="@{/folkProcessing}" th:object="${folkProcessing}">
             <div class="folkProcessingAuthor"><input type="text" placeholder="введите автора обработки"
-                                                     th:field="*{folkProcessingAuthor}"></div>
+                                                     th:field="*{getComposer().getFio()}"></div>
             <div class="folkProcessingName"><input type="text" placeholder="введите название обработки"
                                                    th:field="*{folkProcessingName}"></div>
             <div class="dedication"><input type="text" placeholder="посвящение (если есть)" th:field="*{dedication}">

@@ -44,9 +44,6 @@ public class Person {
     private List<FolkProcessing> folkProcessingList = new ArrayList<>();
     @OneToMany(mappedBy = "userAuthor")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<OpusAS> opusAS = new ArrayList<>();
-    @OneToMany(mappedBy = "userAuthor")
-    @LazyCollection(LazyCollectionOption.FALSE)
     private List<OpusDPS> opusDPS = new ArrayList<>();
     @OneToMany(mappedBy = "userAuthor")
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -163,21 +160,6 @@ public class Person {
             this.setFolkProcessingList(new ArrayList<>());
         this.getFolkProcessingList().add(folkProcessing);
         folkProcessing.setUserAuthor(this);
-    }
-
-    public List<OpusAS> getOpusAS() {
-        return opusAS;
-    }
-
-    public void setOpusAS(List<OpusAS> opusAS) {
-        this.opusAS = opusAS;
-    }
-
-    public void addOpusAS(OpusAS opusAS){
-        if (this.getOpusAS()==null)
-            this.setOpusAS(new ArrayList<>());
-        this.getOpusAS().add(opusAS);
-        opusAS.setUserAuthor(this);
     }
 
     public List<OpusDPS> getOpusDPS() {

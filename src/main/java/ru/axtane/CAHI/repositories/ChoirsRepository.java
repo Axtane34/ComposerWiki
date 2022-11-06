@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ChoirsRepository extends JpaRepository<Chorus, Integer> {
     Chorus findById(int id);
-    List<Chorus> findByComposerName(String name);
+    List<Chorus> findByComposerFio(String name);
 }

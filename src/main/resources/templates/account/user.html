@@ -19,7 +19,6 @@
         <p><a th:href="@{/opusDPS/newOpusDPS}">Добавить сочинение древнерусского певческого стиля</a></p>
         <p><a th:href="@{/arrangement/newArrangement}">Добавить аранжировку</a></p>
         <p><a th:href="@{/folkProcessing/newFolkProcessing}">Добавить обработку народной песни</a></p>
-       <!-- <p><a th:href="@{/opusAS/newOpusAS}">Добавить авторское духовное сочинение</a></p> надо к черту удалить будет однажды-->
         <p><a th:href="@{/chants/newChants}">Добавить распев</a></p>
     </div>
     <div class="about">
@@ -58,17 +57,13 @@
                  th:each="folkProcessing : ${publications.getFolkProcessingList()}">
                 <a th:href="@{/folkProcessing/{id}(id=${folkProcessing.getId()})}" th:text="${'folkProcessing: ' + folkProcessing.getFolkProcessingName()}"></a>
             </div>
-            <div class="item" th:if="${!publications.getOpusAS().isEmpty()}"
-                 th:each="opusAS : ${publications.getOpusAS()}">
-                <a th:href="@{/opusAS/{id}(id=${opusAS.getId()})}" th:text="${'opusAS: ' + opusAS.getChorusName()}"></a>
-            </div>
             <div class="item" th:if="${!publications.getChants().isEmpty()}"
                  th:each="chants : ${publications.getChants()}">
                 <a th:href="@{/chants/{id}(id=${chants.getId()})}" th:text="${'Распев: ' + chants.getIncipit()}"></a>
             </div>
             <div class="item" th:if="${!publications.getComposers().isEmpty()}"
                  th:each="composer : ${publications.getComposers()}">
-                <a th:href="@{/composer/{id}(id=${composer.getId()})}" th:text="${'Композитор: ' + composer.getLastName()}"></a>
+                <a th:href="@{/composer/{id}(id=${composer.getId()})}" th:text="${'Композитор: ' + composer.getFio()}"></a>
             </div>
         </div>
 
@@ -79,7 +74,7 @@
             </div>
             <div class="item" th:if="${!composers.isEmpty()}"
                  th:each="composer : ${composers}">
-                <a th:href="@{/composer/{id}(id=${composer.getId()})}" th:text="${'Композитор: ' + composer.getLastName()}"></a>
+                <a th:href="@{/composer/{id}(id=${composer.getId()})}" th:text="${'Композитор: ' + composer.getFio()}"></a>
             </div>
         </div>
     </div>

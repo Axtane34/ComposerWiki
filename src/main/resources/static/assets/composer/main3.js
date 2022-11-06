@@ -116,6 +116,14 @@ window.onload = function (){
                 section.querySelectorAll('input')[0].value = str.trimEnd()
             })
         }
+        if(this.classList[0] === 'saveBtnFio'){
+            let str = ''
+            this.parentElement.querySelector('input').value = ''
+            for(let el of this.parentElement.querySelector('section').children){
+                str += el.children[0].value +" "
+            }
+            this.parentElement.querySelector('input').value = str.trimEnd()
+        }
         if(this.classList[0] === 'saveBtn2'){
             let str = ''
             this.parentElement.querySelectorAll('.textareaCont').forEach(textareaCont=>{

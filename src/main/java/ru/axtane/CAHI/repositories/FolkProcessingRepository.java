@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface FolkProcessingRepository extends JpaRepository<FolkProcessing, Integer> {
     FolkProcessing findById(int id);
-    List<FolkProcessing> findByFolkProcessingAuthor(String lastname);
+    List<FolkProcessing> findByComposerFio(String fio);
 }

@@ -33,7 +33,6 @@ public class ComposerDTO {
     private List<Chorus> choirs = new ArrayList<>();
     private List<Arrangement> arrangements = new ArrayList<>();
     private List<FolkProcessing> folkProcessingList = new ArrayList<>();
-    private List<OpusAS> opusAS = new ArrayList<>();
     private List<OpusDPS> opusDPS = new ArrayList<>();
     private boolean publicationsEmpty;
 
@@ -243,14 +242,6 @@ public class ComposerDTO {
 
     public void setFolkProcessingList(List<FolkProcessing> folkProcessingList) {
         this.folkProcessingList = folkProcessingList;
-    }
-
-    public List<OpusAS> getOpusAS() {
-        return opusAS;
-    }
-
-    public void setOpusAS(List<OpusAS> opusAS) {
-        this.opusAS = opusAS;
     }
 
     public List<OpusDPS> getOpusDPS() {

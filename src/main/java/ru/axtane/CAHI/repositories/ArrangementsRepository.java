@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ArrangementsRepository extends JpaRepository<Arrangement, Integer> {
     Arrangement findById(int id);
-    List<Arrangement> findByArrangementAuthor(String lastname);
+    List<Arrangement> findByComposerFio(String fio);
 }

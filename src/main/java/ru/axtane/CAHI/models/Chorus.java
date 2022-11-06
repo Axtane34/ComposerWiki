@@ -11,8 +11,8 @@ public class Chorus {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "composerName")
-    private String composerName;
+    @Column(name = "composerFio")
+    private String composerFio;
     @Column(name = "chorusName")
     private String chorusName;
     @Column(name = "textAuthor")
@@ -62,12 +62,12 @@ public class Chorus {
         this.id = id;
     }
 
-    public String getComposerName() {
-        return composerName;
+    public String getComposerFio() {
+        return composerFio;
     }
 
-    public void setComposerName(String composerName) {
-        this.composerName = composerName;
+    public void setComposerFio(String composerFio) {
+        this.composerFio = composerFio;
     }
 
     public String getChorusName() {

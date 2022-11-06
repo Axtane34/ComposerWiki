@@ -11,8 +11,8 @@ public class Arrangement {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "arrangementAuthor")
-    private String arrangementAuthor;
+    @Column(name = "composerFio")
+    private String composerFio;
     @Column(name = "arrangementName")
     private String arrangementName;
     @Column(name = "textAuthor")
@@ -60,12 +60,12 @@ public class Arrangement {
         this.id = id;
     }
 
-    public String getArrangementAuthor() {
-        return arrangementAuthor;
+    public String getComposerFio() {
+        return composerFio;
     }
 
-    public void setArrangementAuthor(String arrangementAuthor) {
-        this.arrangementAuthor = arrangementAuthor;
+    public void setComposerFio(String composerFio) {
+        this.composerFio = composerFio;
     }
 
     public String getArrangementName() {

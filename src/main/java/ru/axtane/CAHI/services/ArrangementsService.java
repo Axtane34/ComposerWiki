@@ -25,21 +25,20 @@ public class ArrangementsService {
         return arrangementsRepository.findById(id);
     }
 
-    public List<Arrangement> findByComposerName(String lastname){
-        return arrangementsRepository.findByArrangementAuthor(lastname);
+    public List<Arrangement> findByComposerFio(String fio){
+        return arrangementsRepository.findByComposerFio(fio);
     }
 
-    public Composer findComposer(String lastname){
-        return composersRepository.findByLastName(lastname);
+    public Composer findComposer(String fio){
+        return composersRepository.findByFio(fio);
     }
     
     @Transactional
     public void save(Arrangement arrangement){
-            arrangement.setPublicationStatus(PublicationStatus.PUBLISHED);
+        arrangement.setPublicationStatus(PublicationStatus.PUBLISHED);
         arrangement.getUserAuthor().addArrangement(arrangement);
-        Composer composer = findComposer(arrangement.getArrangementAuthor());
-        if (composer != null){
-            composer.addArrangement(arrangement);
+        if (arrangement.getComposer() != null){
+            findComposer(arrangement.getComposer().getFio()).addArrangement(arrangement);
         }
         arrangementsRepository.save(arrangement);
     }

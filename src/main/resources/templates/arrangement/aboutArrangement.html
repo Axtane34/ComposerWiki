@@ -16,7 +16,8 @@
         <div class="nav"></div>
     </div>
     <div class="cap">
-        <p><span th:text="${arrangement.getArrangementAuthor()}">Дмитрий Cмирнов</span></p>
+        <!--TODO th:if-->
+        <p><span th:text="${arrangement.getComposerFio()}">Дмитрий Cмирнов</span></p>
         <p><span th:text="${arrangement.getArrangementName()}">Утро в лесу</span></p>
         <p><span>Аранжировка</span></p>
         <p><span th:text="${arrangement.getDedication()}">Посвящается камерному хору “Lege Artis”</span></p>
