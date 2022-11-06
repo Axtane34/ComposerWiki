@@ -23,6 +23,10 @@ public class Chants {
     private String voiceCount;
     @Column(name = "chorusStructure")
     private String chorusStructure;
+    @Column(name = "chorusAmount")
+    private String chorusAmount;
+    @Column(name = "chorusVoicesList")
+    private String chorusVoicesList;
     @Column(name = "timing")
     private String timing;
     @ManyToOne
@@ -85,6 +89,22 @@ public class Chants {
 
     public void setChorusStructure(String chorusStructure) {
         this.chorusStructure = chorusStructure;
+    }
+
+    public String getChorusAmount() {
+        return chorusAmount;
+    }
+
+    public void setChorusAmount(String chorusAmount) {
+        this.chorusAmount = chorusAmount;
+    }
+
+    public String getChorusVoicesList() {
+        return chorusVoicesList;
+    }
+
+    public void setChorusVoicesList(String chorusVoicesList) {
+        this.chorusVoicesList = chorusVoicesList;
     }
 
     public String getTiming() {

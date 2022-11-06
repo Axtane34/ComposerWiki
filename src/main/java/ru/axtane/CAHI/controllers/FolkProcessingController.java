@@ -55,7 +55,7 @@ public class FolkProcessingController {
     public String create(@ModelAttribute("folkProcessing") FolkProcessing folkProcessing){
         folkProcessing.setUserAuthor(getPerson());
         folkProcessingService.save(folkProcessing);
-        return "redirect:/CAHI/{account}";
+        return "redirect:/CAHI/account";
     }
 
     private Person getPerson(){

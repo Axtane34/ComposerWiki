@@ -22,7 +22,7 @@
 <div class="container">
     <sss>
         <form th:method="POST" th:action="@{/chants}" th:object="${chants}">
-            <div class="region"><input type="text" placeholder="введите регион" th:field="*{region}"></div>
+            <div class="region"><input type="text" placeholder="введите регион/монастырь" th:field="*{region}"></div>
             <div class="incipit"><input type="text" placeholder="введите инципит" th:field="*{incipit}"></div>
             <div class="description"><input type="text" placeholder="описание" th:field="*{description}"></div>
             <div class="chorusType">
@@ -38,7 +38,7 @@
             </div>
             <div class="chorusStructure">
                 <input type="text" placeholder="состав хора (например, SATB)" th:field="*{chorusStructure}"> <br>
-                <select th:field="*{chorusStructure}">
+                <select th:field="*{chorusAmount}">
                     <option th:value="'количество не выбрано'">количество хоров</option>
                     <option th:value="'один хор'">один хор</option>
                     <option th:value="'двойной'">двойной</option>
@@ -57,7 +57,7 @@
                         <option>баритон</option>
                         <option>бас</option>
                     </select> </br>
-                    <input type="text" class="instruments" placeholder="список голосов" th:field="*{chorusStructure}">
+                    <input type="text" class="instruments" placeholder="список голосов" th:field="*{chorusVoicesList}">
                 </div>
             </div>
             <div class="timing"><input type="text" placeholder="хронометраж" th:field="*{timing}"></div>

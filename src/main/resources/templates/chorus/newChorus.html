@@ -29,8 +29,10 @@
         <div class="chorusName"><input type="text" placeholder="введите название" th:field="*{chorusName}"></div>
         <div class="dedication"><input type="text" placeholder="посвящение (если есть)" th:field="*{dedication}"></div>
         <div class="textAuthor">
-            <input type="text" placeholder="введите автора текста или нажмите кнопки снизу" th:field="*{textAuthor}"><br>
+            <input type="text" style="margin-top: 6px" placeholder="введите автора текста или нажмите кнопку снизу" th:field="*{textAuthor}"><br>
             <button class="btnToInput">народный текст</button>
+            <br>
+            <button class="btnToInput2">канонический текст</button>
         </div>
         <div class="description"><input type="text" placeholder="описание" th:field="*{description}"></div>
         <div class="opus"><input type="text" placeholder="введите опус (цифра)" th:field="*{opus}"></div>
@@ -40,6 +42,8 @@
                 <option th:value="'не определен'">не определен</option>
                 <option th:value="'кант'">кант</option>
                 <option th:value="'гимн'">гимн</option>
+                <option th:value="'духовное сочинение'">духовное сочинение</option>
+                <option th:value="'авторское духовное сочинение'">авторское духовное сочинение</option>
                 <option th:value="'хоровая миниатюра'">хоровая миниатюра</option>
                 <option th:value="'хор крупной формы'">хор крупной формы</option>
                 <option th:value="'хоровая аранжировка'">хоровая аранжировка</option>
@@ -57,7 +61,7 @@
         <div class="music">
             <select th:field="*{music}">
                 <option th:value="'Cappella'">a'Cappella</option>
-                <option th:value="'Инструментальный состав: '">Инструментальный состав</option>
+                <option th:value="''">Инструментальный состав</option>
             </select> </br>
             <div class="optionInstruments">
                 <select>
@@ -120,7 +124,7 @@
         <div class="voiceCount"><input type="text" placeholder="введите кол-во голосов" th:field="*{voiceCount}"></div>
         <div class="chorusStructure">
             <input type="text" placeholder="состав хора (например, SATB)" th:field="*{chorusStructure}"> <br>
-            <select th:field="*{chorusStructure}">
+            <select th:field="*{chorusAmount}">
                 <option th:value="'количество не выбрано'">количество хоров</option>
                 <option th:value="'один хор'">один хор</option>
                 <option th:value="'двойной'">двойной</option>
@@ -139,7 +143,7 @@
                     <option>баритон</option>
                     <option>бас</option>
                 </select> </br>
-                <input type="text" class="instruments" placeholder="список голосов" th:field="*{chorusStructure}">
+                <input type="text" class="instruments" placeholder="список голосов" th:field="*{chorusVoicesList}">
             </div>
         </div>
         <div class="timing"><input type="text" placeholder="хронометраж" th:field="*{timing}"></div>
@@ -180,7 +184,7 @@
         let optionInstruments = document.querySelector('.optionInstruments')
         let optionVoices = document.querySelector('.optionVoices')
         musicTrigger.addEventListener('change', () => {
-            if (musicTrigger.value === "Инструментальный состав: ") {
+            if (musicTrigger.value === "") {
                 optionInstruments.style.display = 'block'
             } else {
                 optionInstruments.style.display = 'none'
@@ -199,6 +203,11 @@
         btnToInput.addEventListener('click', e => {
             e.preventDefault()
             btnToInput.parentElement.querySelector('input').value = btnToInput.innerHTML
+        })
+        let btnToInput2 = document.querySelector('.btnToInput2')
+        btnToInput2.addEventListener('click', e => {
+            e.preventDefault()
+            btnToInput2.parentElement.querySelector('input').value = btnToInput2.innerHTML
         })
 
 

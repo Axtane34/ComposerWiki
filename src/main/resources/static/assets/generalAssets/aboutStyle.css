@@ -1,0 +1,150 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+}
+
+body:before{
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    content: '';
+    width: 50%;
+    height: 100%;
+    background-image: url("img/bg.jpg");
+    background-size: cover;
+}
+
+.content {
+    margin: 0 auto;
+    width: 880px;
+    padding-top: 24px;
+}
+
+.column{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+	height:600px;
+}
+.bLeft,.bCenter,.bRight{
+    padding-top: 20px;
+    width: 36%;
+    margin-bottom: 40px;
+}
+
+.bCenter{
+    padding-left: 26px;
+    padding-right: 26px;
+    border-right: 1px solid black;
+/*    background-color: #930000;*/
+}
+.bCenter p{
+    font-size: 10pt;
+    height: 100%;
+}
+
+.bRight{
+    width: 28%;
+    padding-left: 26px;
+}
+
+.btn{
+    width: 100%;
+    height: 26px;
+    margin-bottom: 12px;
+    background: #D9D9D9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+.btn p{
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: center;
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+}
+
+.cap{
+    margin-bottom: 48px;
+}
+
+.cap p:nth-child(1){
+    color: #930000;
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+.cap p:nth-child(2){
+    font-size: 32px;
+    margin-bottom: 6px;
+}
+.cap p:nth-child(3){
+    font-size: 16px;
+    line-height: 20px;
+}
+.cap p:nth-child(4){
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.labels p{
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.labels p:last-child{
+    margin-bottom: 0;
+}
+.labels span{
+    font-weight: normal;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    margin-bottom: 50px;
+    text-align: center;
+    border: 1px dotted black;
+}
+.nav{
+    position: relative;
+    width: 10%;
+    height: 100%;
+}
+.btnHome{
+    position: absolute;
+    left:10px;
+    top:10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-image: url("img/home.png");
+    background-size: 100%,100%;
+    background-repeat: no-repeat;
+}
+
+.logo{
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+    width: 168px;
+    height: 65px;
+    background-image: url("img/logo.png");
+    background-size: 100%,100%;
+    background-repeat: no-repeat;
+}
+
+
+.footer {
+    line-height: 32px;
+    text-align: center;
+    height: 32px;
+    border: 1px dotted black;
+}
+

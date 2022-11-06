@@ -15,8 +15,8 @@ public class FolkProcessing {
     private String folkProcessingAuthor;
     @Column(name = "folkProcessingName")
     private String folkProcessingName;
-    @Column(name = "textAuthor")
-    private String textAuthor;
+    @Column(name = "region")
+    private String region;
     @Column(name = "dedication")
     private String dedication;
     @Column(name = "description")
@@ -31,6 +31,10 @@ public class FolkProcessing {
     private String voiceCount;
     @Column(name = "chorusStructure")
     private String chorusStructure;
+    @Column(name = "chorusAmount")
+    private String chorusAmount;
+    @Column(name = "chorusVoicesList")
+    private String chorusVoicesList;
     @Column(name = "timing")
     private String timing;
     @Column(name = "writeDate")
@@ -72,12 +76,12 @@ public class FolkProcessing {
         this.folkProcessingName = folkProcessingName;
     }
 
-    public String getTextAuthor() {
-        return textAuthor;
+    public String getRegion() {
+        return region;
     }
 
-    public void setTextAuthor(String textAuthor) {
-        this.textAuthor = textAuthor;
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getDedication() {
@@ -134,6 +138,22 @@ public class FolkProcessing {
 
     public void setChorusStructure(String chorusStructure) {
         this.chorusStructure = chorusStructure;
+    }
+
+    public String getChorusAmount() {
+        return chorusAmount;
+    }
+
+    public void setChorusAmount(String chorusAmount) {
+        this.chorusAmount = chorusAmount;
+    }
+
+    public String getChorusVoicesList() {
+        return chorusVoicesList;
+    }
+
+    public void setChorusVoicesList(String chorusVoicesList) {
+        this.chorusVoicesList = chorusVoicesList;
     }
 
     public String getTiming() {

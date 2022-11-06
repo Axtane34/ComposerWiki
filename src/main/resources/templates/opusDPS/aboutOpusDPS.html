@@ -1,56 +1,80 @@
+<!doctype html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Добавление нового хора</title>
-    <style>
-        *{
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-        .container{
-            padding: 30px;
-        }
-        .s{
-            display: flex;
-            margin-bottom: 10px;
-            border-bottom: 2px dotted black;
-            padding-bottom: 6px;
-        }
-        .s > p:first-child{
-            color: #494949;
-            width: 250px;
-            text-align: right;
-            font-weight: bold;
-        }
-        .s > p:last-child {
-            margin-left: 10px;
-        }
-    </style>
+    <title>Сочинение древнерусского певческого стиля</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/aboutStyle.css}"/>
+<!--    <link rel="stylesheet" href="aboutStyle.css">-->
 </head>
 <body>
-<div class="container">
-    <div class="writingStyle s"><p>Стиль сочинения: </p><p th:text="${opusDPS.getWritingStyle()}"></p></div>
-    <div class="composerName s"><p>Имя композитора: </p><p th:text="${opusDPS.getComposerName()}"></p></div>
-    <div class="incipit s"><p>Инципит: </p><p th:text="${opusDPS.getIncipit()}"></p></div>
-    <div class="compilerDecoder s"><p>Составитель/расшифровщик: </p><p th:text="${opusDPS.getCompilerDecoder()}"></p></div>
-    <div class="cypher s"><p>Шифр: </p><p th:text="${opusDPS.getCypher()}"></p></div>
-    <div class="description s"><p>Описание: </p><p th:text="${opusDPS.getDescription()}"></p></div>
-    <div class="chorusType s"><p>Тип хора: </p><p th:text="${opusDPS.getChorusType()}"></p></div>
-    <div class="voiceCount s"><p>Количество голосов: </p><p th:text="${opusDPS.getVoiceCount()}"></p></div>
-    <div class="chorusStructure s"><p>Состав хора и солисты: </p><p th:text="${opusDPS.getChorusStructure()}"></p></div>
-    <div class="timing s"><p>Хронометраж: </p><p th:text="${opusDPS.getTiming()}"></p></div>
-    <div class="writeDate s"><p>Дата написания: </p><p th:text="${opusDPS.getWriteDate()}"></p></div>
-    <div class="premiereDate s"><p>Дата премьеры: </p><p th:text="${opusDPS.getPremiereDate()}"></p></div>
-    <div class="premierePlace s"><p>Место премьеры: </p><p th:text="${opusDPS.getPremierePlace()}"></p></div>
+<div class="content">
+    <div class="header">
+        <div class="nav">
+            <a class="btnHome"></a>
+        </div>
+        <div class="logo"></div>
+        <div class="nav"></div>
+    </div>
+    <div class="cap">
+        <p><span th:text="${opusDPS.getComposerName()}">Дмитрий Cмирнов</span></p>
+        <p><span th:text="${opusDPS.getIncipit()}">Утро в лесу</span></p>
+        <p><span th:text="${opusDPS.getWritingStyle()}">Стиль сочинения</span></p>
+    </div>
+    <div class="column">
+        <div class="bLeft">
+            <div class="labels">
+                <p>Составитель/расшифровщик:
+                    <span th:text="${opusDPS.getCompilerDecoder()}">А. А. Фет</span>
+                </p>
+                <p>Шифр:
+                    <span th:text="${opusDPS.getCypher()}">13 a</span>
+                </p>
+                <p>Тип хора: 
+                    <span th:text="${opusDPS.getChorusType()}">Смешанный</span>
+                </p>
+                <p>Количество голосов: 
+                    <span th:text="${opusDPS.getVoiceCount()}">8</span>
+                </p>
+                <p>Состав хора:
+                    <span th:text="${opusDPS.getChorusStructure()}"></span>
+                </p>
+                <p>Количество хоров:
+                    <span th:text="${opusDPS.getChorusAmount()}"></span>
+                </p>
+                <p>Солисты:
+                    <span th:text="${opusDPS.getChorusVoicesList()}"></span>
+                </p>
+                <p>Хронометраж:
+                    <span th:text="${opusDPS.getTiming()}">2'14</span>
+                </p>
+                <p>Дата написания:
+                    <span th:text="${opusDPS.getWriteDate()}">14.02.1992</span>
+                </p>
+                <p>Дата | Место премьеры 
+                    <span style="display: block" th:text="${opusDPS.getPremiereDate()}">17 марта 2004 года</span>
+                    <span style="display: block" th:text="${opusDPS.getPremierePlace()}">Концертный зал Шереметьевского дворца</span>
+                </p>
+            </div>
+            
+        </div>
+        <div class="bCenter">
+            <p><span th:text="${opusDPS.getDescription()}">Описание</span></p>
+        </div>
+        <div class="bRight"> 
+            <div class="btn"><p>история | о исполнении</p></div>
+            <div class="btn"><p>о тексте</p></div>
+            <div class="btn"><p>статьи | заметки</p></div>
+            <div class="btn"><p>значимые исполнения</p></div>
+            <div class="btn"><p>опечатки | комменатрии</p></div>
+        </div>
+    </div>
+    <div class="footer"></div>
 </div>
-<script>
-    let bodys = document.querySelectorAll('p')
+<!--<script src="aboutJs.js"></script>-->
+<script th:src="@{/assets/generalAssets/aboutJs.js}"></script>
 
-    bodys.forEach(body => {
-        body.innerHTML = body.innerHTML.replace(",", ", ")
-    })
 
-</script>
 </body>
 </html>
+
+

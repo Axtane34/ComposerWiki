@@ -31,7 +31,7 @@
                                                    th:field="*{folkProcessingName}"></div>
             <div class="dedication"><input type="text" placeholder="посвящение (если есть)" th:field="*{dedication}">
             </div>
-            <div class="regionSong"><input type="text" placeholder="введите регион песни" th:field="*{textAuthor}">
+            <div class="regionSong"><input type="text" placeholder="введите регион песни" th:field="*{region}">
             </div>
             <!--не поменяли базу-->
             <div class="description"><input type="text" placeholder="описание" th:field="*{description}"></div>
@@ -39,7 +39,7 @@
             <div class="music">
                 <select th:field="*{music}">
                     <option th:value="'Cappella'">a'Cappella</option>
-                    <option th:value="'Инструментальный состав: '">Инструментальный состав</option>
+                    <option th:value="''">Инструментальный состав</option>
                 </select> </br>
                 <div class="optionInstruments">
                     <select>
@@ -103,7 +103,7 @@
             </div>
             <div class="chorusStructure">
                 <input type="text" placeholder="состав хора (например, SATB)" th:field="*{chorusStructure}"> <br>
-                <select th:field="*{chorusStructure}">
+                <select th:field="*{chorusAmount}">
                     <option th:value="'количество не выбрано'">количество хоров</option>
                     <option th:value="'один хор'">один хор</option>
                     <option th:value="'двойной'">двойной</option>
@@ -122,7 +122,7 @@
                         <option>баритон</option>
                         <option>бас</option>
                     </select> </br>
-                    <input type="text" class="instruments" placeholder="список голосов" th:field="*{chorusStructure}">
+                    <input type="text" class="instruments" placeholder="список голосов" th:field="*{chorusVoicesList}">
                 </div>
             </div>
             <div class="timing"><input type="text" placeholder="хронометраж" th:field="*{timing}"></div>
@@ -161,7 +161,7 @@
         let optionInstruments = document.querySelector('.optionInstruments')
         let optionVoices = document.querySelector('.optionVoices')
         musicTrigger.addEventListener('change', () => {
-            if (musicTrigger.value === "Инструментальный состав: ") {
+            if (musicTrigger.value === "") {
                 optionInstruments.style.display = 'block'
             } else {
                 optionInstruments.style.display = 'none'
