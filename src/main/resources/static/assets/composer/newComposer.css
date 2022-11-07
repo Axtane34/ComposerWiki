@@ -1,6 +1,36 @@
-    /*тень*/
+/*тень*/
 input[type=submit], .m1, .m2Title, .m2Label, input[type=button] {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+
+.nav {
+    position: relative;
+    width: 10%;
+    height: 100%;
+}
+
+.btnHome {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-image: url("img/home.png");
+    background-size: 100%, 100%;
+    background-repeat: no-repeat;
+}
+
+.logo {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 168px;
+    height: 65px;
+    background-image: url("img/logo.png");
+    background-size: 100%, 100%;
+    background-repeat: no-repeat;
 }
 
 p, option, select {
@@ -13,7 +43,7 @@ p, option, select {
     box-sizing: border-box;
 }
 
-.localSave{
+.localSave {
     display: none;
 }
 
@@ -24,10 +54,11 @@ p, option, select {
 }
 
 .header {
-    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
     margin-bottom: 50px;
     text-align: center;
-    line-height: 100px;
     border: 1px dotted black;
 }
 
@@ -35,7 +66,7 @@ p, option, select {
     display: flex;
     justify-content: space-between;
     padding: 0 110px;
-    background-size: 100%,100%;
+    background-size: 100%, 100%;
 }
 
 .col {
@@ -62,13 +93,14 @@ p, option, select {
     transition: all 1s ease 0s;
     width: 176px;
     height: 176px;
-/*    border: 1px dotted black;*/
+    /*    border: 1px dotted black;*/
     margin: 0 auto;
     border-radius: 50%;
     background-size: 100%, 100%;
+    border: 1px solid black;
 }
 
-.roundF{
+.roundF {
 
 
     transform: rotate(-360deg) scale(1.2);
@@ -96,7 +128,7 @@ input[type=submit], input[type=button] {
     height: 24px;
 }
 
-.saveBtn, .saveBtn2, .saveBtnFio{
+.saveBtn, .saveBtn2, .saveBtnFio {
     cursor: pointer;
     width: 220px;
     height: 30px;
@@ -179,19 +211,24 @@ input[type=submit], input[type=button] {
     height: 100%;
     background-color: rgba(28, 28, 28, 0.9);
 }
-.bioFrame{
+
+.bioFrame {
     height: 760px;
     display: flex;
 }
-.bioLeft{
+
+.bioLeft {
     width: 310px;
     position: relative;
 }
-.bioRight{
+
+.bioRight {
     position: relative;
     width: 780px;
     margin-left: 24px;
 }
+
+/*
 
 .roundAll{
     background-image: url("img/okr.svg");
@@ -215,8 +252,9 @@ input[type=submit], input[type=button] {
 .roundFoto{
     background-image: url("img/no_photo.svg");
 }
+*/
 
-.btnAdd{
+.btnAdd {
     position: absolute;
     margin-top: 10px;
     right: 10px;
@@ -227,7 +265,7 @@ input[type=submit], input[type=button] {
     cursor: pointer;
 }
 
-.btnDel{
+.btnDel {
     position: absolute;
     right: 8px;
     bottom: 11px;
@@ -237,26 +275,30 @@ input[type=submit], input[type=button] {
     background-image: url("img/close.png");
     cursor: pointer;
 }
-.textareaCont{
+
+.textareaCont {
     width: 350px;
     position: relative;
     margin-bottom: 4px;
 }
-.textareaCont input{
+
+.textareaCont input {
     height: 30px;
     width: 100%;
     margin-bottom: 4px;
 }
-.newDivCell{
+
+.newDivCell {
     overflow: hidden;
     overflow-y: scroll;
     max-height: 550px;
 }
+
 ::-webkit-scrollbar {
     width: 0;
 }
 
-.bioLabelAdd, .biaLabelDell{
+.bioLabelAdd, .biaLabelDell {
     position: absolute;
     width: 18px;
     height: 18px;
@@ -265,16 +307,20 @@ input[type=submit], input[type=button] {
     cursor: pointer;
     bottom: 7px;
 }
-.bioLabelAdd{
+
+.bioLabelAdd {
     right: 7px;
 }
-.biaLabelDell{
+
+.biaLabelDell {
     right: 28px;
 }
-.bioLabel{
+
+.bioLabel {
     position: relative;
 }
-.bioLabelIn{
+
+.bioLabelIn {
     width: 310px;
     height: 54px;
     background-color: #C4C4C4;

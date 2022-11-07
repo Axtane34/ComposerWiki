@@ -5,8 +5,8 @@ document.querySelectorAll('span').forEach(span=>{
     }
 })
 //если кол-во хоров = 1, скрыть блок
-if(document.querySelector('.count').innerHTML === '1'){
+/*if(document.querySelector('.count').innerHTML === 'один хор'){
     document.querySelector('.count').parentElement.style.display ='none'
-}
+}*/
 //кнопка домой, добавить ссылку на ЛК
 document.querySelector('.btnHome').setAttribute("href", "/CAHI/account")

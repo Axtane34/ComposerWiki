@@ -6,25 +6,27 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.axtane.CAHI.models.Composer;
 import ru.axtane.CAHI.models.Draft;
 import ru.axtane.CAHI.models.FolkProcessing;
 import ru.axtane.CAHI.models.Person;
 import ru.axtane.CAHI.security.PersonDetails;
+import ru.axtane.CAHI.services.ComposersService;
 import ru.axtane.CAHI.services.DraftsService;
 import ru.axtane.CAHI.services.FolkProcessingService;
-import ru.axtane.CAHI.services.PeopleService;
 
 @Controller
 @RequestMapping("/folkProcessing")
 public class FolkProcessingController {
     private final FolkProcessingService folkProcessingService;
     private final DraftsService draftsService;
+    private final ComposersService composersService;
 
     @Autowired
-    public FolkProcessingController(FolkProcessingService folkProcessingService, DraftsService draftsService) {
+    public FolkProcessingController(FolkProcessingService folkProcessingService, DraftsService draftsService, ComposersService composersService) {
         this.folkProcessingService = folkProcessingService;
         this.draftsService = draftsService;
+        this.composersService = composersService;
     }
 
     @GetMapping("/{id}")
@@ -40,20 +42,27 @@ public class FolkProcessingController {
     }
 
     @GetMapping("/newFolkProcessing")
-    public String newFolkProcessing(@ModelAttribute("folkProcessing") FolkProcessing folkProcessing, Model model){
+    public String newFolkProcessing(@ModelAttribute("folkProcessing") FolkProcessing folkProcessing, Model model,
+                                    @ModelAttribute("composer") Composer composer){
         model.addAttribute("draft", new Draft());
+        model.addAttribute("composers", composersService.findAll());
         return "folkProcessing/newFolkProcessing";
     }
 
     @GetMapping("/newFolkProcessing/{id}")
-    public String newFolkProcessingFromDraft(@ModelAttribute("folkProcessing") FolkProcessing folkProcessing, Model model, @PathVariable("id") int id){
+    public String newFolkProcessingFromDraft(@ModelAttribute("folkProcessing") FolkProcessing folkProcessing, Model model,
+                                             @ModelAttribute("composer") Composer composer, @PathVariable("id") int id){
         model.addAttribute("updatedDraft", draftsService.findById(id));
+        model.addAttribute("composers", composersService.findAll());
         return "folkProcessing/newFolkProcessing";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("folkProcessing") FolkProcessing folkProcessing){
+    public String create(@ModelAttribute("folkProcessing") FolkProcessing folkProcessing, @ModelAttribute("composer") Composer composer){
         folkProcessing.setUserAuthor(getPerson());
+        if (!"".equals(composer.getFio())){
+            folkProcessing.setComposer(composersService.findByFio(composer.getFio()));
+        }
         folkProcessingService.save(folkProcessing);
         return "redirect:/CAHI/account";
     }

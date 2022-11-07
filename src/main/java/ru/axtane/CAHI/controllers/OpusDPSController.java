@@ -6,25 +6,27 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.axtane.CAHI.models.Composer;
 import ru.axtane.CAHI.models.Draft;
 import ru.axtane.CAHI.models.OpusDPS;
 import ru.axtane.CAHI.models.Person;
 import ru.axtane.CAHI.security.PersonDetails;
+import ru.axtane.CAHI.services.ComposersService;
 import ru.axtane.CAHI.services.DraftsService;
 import ru.axtane.CAHI.services.OpusDPSService;
-import ru.axtane.CAHI.services.PeopleService;
 
 @Controller
 @RequestMapping("/opusDPS")
 public class OpusDPSController {
     private final OpusDPSService opusDPSService;
     private final DraftsService draftsService;
+    private final ComposersService composersService;
 
     @Autowired
-    public OpusDPSController(OpusDPSService opusDPSService, DraftsService draftsService) {
+    public OpusDPSController(OpusDPSService opusDPSService, DraftsService draftsService, ComposersService composersService) {
         this.opusDPSService = opusDPSService;
         this.draftsService = draftsService;
+        this.composersService = composersService;
     }
 
     @GetMapping("/{id}")
@@ -40,20 +42,27 @@ public class OpusDPSController {
     }
 
     @GetMapping("/newOpusDPS")
-    public String newOpusDPS(@ModelAttribute("opusDPS") OpusDPS opusDPS, Model model){
+    public String newOpusDPS(@ModelAttribute("opusDPS") OpusDPS opusDPS, Model model,
+                             @ModelAttribute("composer") Composer composer){
         model.addAttribute("draft", new Draft());
+        model.addAttribute("composers", composersService.findAll());
         return "opusDPS/newOpusDPS";
     }
 
     @GetMapping("/newOpusDPS/{id}")
-    public String newOpusDPSFromDraft(@ModelAttribute("opusDPS") OpusDPS opusDPS, Model model, @PathVariable("id") int id){
+    public String newOpusDPSFromDraft(@ModelAttribute("opusDPS") OpusDPS opusDPS, Model model,
+                                      @ModelAttribute("composer")Composer composer, @PathVariable("id") int id){
         model.addAttribute("updatedDraft", draftsService.findById(id));
+        model.addAttribute("composers", composersService.findAll());
         return "opusDPS/newOpusDPS";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("opusDPS") OpusDPS opusDPS){
+    public String create(@ModelAttribute("opusDPS") OpusDPS opusDPS, @ModelAttribute("composer")Composer composer){
         opusDPS.setUserAuthor(getPerson());
+        if (!"".equals(composer.getFio())){
+            opusDPS.setComposer(composersService.findByFio(composer.getFio()));
+        }
         opusDPSService.save(opusDPS);
         return "redirect:/CAHI/account";
     }

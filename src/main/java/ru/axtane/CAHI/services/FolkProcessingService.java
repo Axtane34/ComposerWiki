@@ -39,9 +39,8 @@ public class FolkProcessingService {
     public void save(FolkProcessing folkProcessing){
             folkProcessing.setPublicationStatus(PublicationStatus.PUBLISHED);
         folkProcessing.getUserAuthor().addFolkProcessing(folkProcessing);
-        Composer composer = findComposer(folkProcessing.getComposerFio());
-        if (composer != null){
-            composer.addFolkProcessing(folkProcessing);
+        if (folkProcessing.getComposer() != null){
+            findComposer(folkProcessing.getComposer().getFio()).addFolkProcessing(folkProcessing);
         }
         folkProcessingRepository.save(folkProcessing);
     }

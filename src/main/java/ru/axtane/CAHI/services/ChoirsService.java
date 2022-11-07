@@ -39,9 +39,8 @@ public class ChoirsService {
     public void save(Chorus chorus){
         chorus.setPublicationStatus(PublicationStatus.PUBLISHED);
         chorus.getUserAuthor().addChorus(chorus);
-        Composer composer = findComposer(chorus.getComposerFio());
-        if (composer != null){
-            composer.addChorus(chorus);
+        if (chorus.getComposer() != null){
+            findComposer(chorus.getComposer().getFio()).addChorus(chorus);
         }
         choirsRepository.save(chorus);
     }

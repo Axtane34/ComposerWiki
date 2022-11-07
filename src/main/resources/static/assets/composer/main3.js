@@ -3,6 +3,9 @@ if (document.querySelector('.statement').value!==''){
 }
 
 window.onload = function (){
+
+    document.querySelector('.btnHome').setAttribute("href", "/CAHI/account")
+
     if(!document.querySelector('.draftName')){
         document.querySelector('.ls_js').value = "Обновить черновик"
     }

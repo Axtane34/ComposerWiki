@@ -1,49 +1,52 @@
+<!doctype html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Добавление новой обработки</title>
-    <style>
-        .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+    <title>Добавление новой обработки народной песни</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/aboutStyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/newStyle.css}"/>
 
-        input, select, button {
-            height: 26px;
-            width: 400px;
-            margin-bottom: 10px;
-        }
-
-        .optionInstruments {
-            display: none;
-        }
-    </style>
+ <!--   <link rel="stylesheet" href="aboutStyle.css">-->
+   <!-- <link rel="stylesheet" href="newStyle.css">-->
 </head>
 <body>
-<div class="container">
-    <sss>
-        <form th:method="POST" th:action="@{/folkProcessing}" th:object="${folkProcessing}">
-            <div class="folkProcessingAuthor"><input type="text" placeholder="введите автора обработки"
-                                                     th:field="*{getComposer().getFio()}"></div>
-            <div class="folkProcessingName"><input type="text" placeholder="введите название обработки"
-                                                   th:field="*{folkProcessingName}"></div>
-            <div class="dedication"><input type="text" placeholder="посвящение (если есть)" th:field="*{dedication}">
-            </div>
-            <div class="regionSong"><input type="text" placeholder="введите регион песни" th:field="*{region}">
-            </div>
-            <!--не поменяли базу-->
-            <div class="description"><input type="text" placeholder="описание" th:field="*{description}"></div>
-            <div class="opus"><input type="text" placeholder="введите опус (цифра)" th:field="*{opus}"></div>
-            <div class="music">
-                <select th:field="*{music}">
-                    <option th:value="'Cappella'">a'Cappella</option>
-                    <option th:value="''">Инструментальный состав</option>
-                </select> </br>
-                <div class="optionInstruments">
-                    <select>
-                        <option disabled selected>выбрать инструмент</option>
+<div class="content">
+    <div class="header">
+        <div class="nav">
+            <a class="btnHome"></a>
+        </div>
+        <div class="logo"></div>
+        <div class="nav"></div>
+    </div>
+    <div class="main">
+        <sss>
+            <form th:method="POST" th:action="@{/folkProcessing}" th:object="${folkProcessing}">
+                <label>
+                    <input class="valid" type="hidden" th:object="${composer}" th:field="*{fio}"
+                           placeholder="скрытое FIO => в composer">
+                    <input class="invalid" type="hidden" th:field="*{composerFio}"
+                           placeholder="скрытое composerFio => в сочинение">
+                    <p style="font-size:12px; color: #0f700f">ВАЖНО! ввод автора обработки ТОЛЬКО в формате ФИО, если
+                        автор неизвестен - нажать кнопку под формой ввода</p>
+                    <input oninput="doValidate(this)" type="text" class="composer" list="composers"
+                           placeholder="выбрать из списка или написать свое ФИО">
+                    <datalist id="composers">
+                        <option th:each="composer : ${composers}" th:value="${composer.getFio()}"
+                                th:text="${composer.getFio()}">
+                    </datalist>
+                    <input type="button" value="Неизвестный автор" onclick="unknownFIO(this)">
+                    <input type="text" placeholder="введите название обработки" th:field="*{folkProcessingName}">
+                    <input type="text" placeholder="посвящение (если есть)" th:field="*{dedication}">
+                    <input type="text" placeholder="введите регион песни" th:field="*{region}">
+                    <input type="text" placeholder="описание" th:field="*{description}">
+                    <input type="text" placeholder="введите опус" th:field="*{opus}">
+                    <select class="music" th:field="*{music}">
+                        <option th:value="'музыкальное сопровождение не определено'">выбрать сопровождение</option>
+                        <option th:value="'Cappella'">a'Cappella</option>
+                        <option th:value="''">Инструментальный состав</option>
+                    </select>
+                    <select class="hide musicList" oninput="insertText(this, 'инструментов')">
+                        <option disabled selected>выбрать инструменты</option>
                         <option>фортепиано</option>
                         <option>рояль</option>
                         <option>скрипка</option>
@@ -82,36 +85,28 @@
                         <option>аккордеон</option>
                         <option>балалайка</option>
                         <option>домра</option>
-                    </select> </br>
-                    <input type="text" class="instruments" placeholder="список инструментов" th:field="*{music}">
-                </div>
-
-            </div>
-            <div class="chorusType">
-                <select th:field="*{chorusType}">
-                    <option th:value="'тип не выбран'">выбрать тип хора</option>
-                    <option th:value="'Вокальный ансамбль'">Вокальный ансамбль</option>
-                    <option th:value="'Смешанный'">Смешанный</option>
-                    <option th:value="'Мужской'">Мужской</option>
-                    <option th:value="'Женский'">Женский</option>
-                    <option th:value="'Женский (детский)'">Женский (детский)</option>
-                    <option th:value="'Детский'">Детский</option>
-                    <option th:value="'Синодальный*'">Синодальный*</option>
-                </select>
-            </div>
-            <div class="voiceCount"><input type="text" placeholder="введите кол-во голосов" th:field="*{voiceCount}">
-            </div>
-            <div class="chorusStructure">
-                <input type="text" placeholder="состав хора (например, SATB)" th:field="*{chorusStructure}"> <br>
-                <select th:field="*{chorusAmount}">
-                    <option th:value="'количество не выбрано'">количество хоров</option>
-                    <option th:value="'один хор'">один хор</option>
-                    <option th:value="'двойной'">двойной</option>
-                    <option th:value="'тройной'">тройной</option>
-                    <option th:value="'четверной'">четверной</option>
-                </select>
-                <div class="optionVoices">
-                    <select>
+                    </select>
+                    <input class="hide musicInput" type="text" placeholder="инструменты" th:field="*{music}">
+                    <select th:field="*{chorusType}">
+                        <option th:value="'тип хора не определен'">выбрать тип хора</option>
+                        <option th:value="'Вокальный ансамбль'">Вокальный ансамбль</option>
+                        <option th:value="'Смешанный'">Смешанный</option>
+                        <option th:value="'Мужской'">Мужской</option>
+                        <option th:value="'Женский'">Женский</option>
+                        <option th:value="'Женский (детский)'">Женский (детский)</option>
+                        <option th:value="'Детский'">Детский</option>
+                        <option th:value="'Синодальный*'">Синодальный*</option>
+                    </select>
+                    <input type="text" placeholder="введите кол-во голосов" th:field="*{voiceCount}">
+                    <input type="text" placeholder="состав хора (например, SATB)" th:field="*{chorusStructure}">
+                    <select th:field="*{chorusAmount}">
+                        <option th:value="'количество хоров не определено'">выбрать количество хоров</option>
+                        <option th:value="'один хор'">один хор</option>
+                        <option th:value="'двойной'">двойной</option>
+                        <option th:value="'тройной'">тройной</option>
+                        <option th:value="'четверной'">четверной</option>
+                    </select>
+                    <select oninput="insertText(this, 'голосов', 'обработке')">
                         <option disabled selected>выбрать солиста</option>
                         <option>дискант</option>
                         <option>альт</option>
@@ -121,105 +116,40 @@
                         <option>тенор</option>
                         <option>баритон</option>
                         <option>бас</option>
-                    </select> </br>
+                    </select>
                     <input type="text" class="instruments" placeholder="список голосов" th:field="*{chorusVoicesList}">
-                </div>
-            </div>
-            <div class="timing"><input type="text" placeholder="хронометраж" th:field="*{timing}"></div>
-            <div class="writeDate"><input type="text" placeholder="дата написания" th:field="*{writeDate}"></div>
-            <div class="premiereDate"><input type="text" placeholder="дата премьеры" th:field="*{premiereDate}"></div>
-            <div class="premierePlace"><input type="text" placeholder="место премьеры" th:field="*{premierePlace}">
-            </div>
-            <input type="submit" value="Опубликовать">
-        </form>
-    </sss>
+                    <input type="text" placeholder="хронометраж" th:field="*{timing}">
+                    <input type="text" placeholder="дата написания" th:field="*{writeDate}">
+                    <input type="text" placeholder="дата премьеры" th:field="*{premiereDate}">
+                    <input type="text" placeholder="место премьеры" th:field="*{premierePlace}">
+                </label>
+                <input type="submit" value="Опубликовать">
+            </form>
 
-    <div th:if="${updatedDraft==null}">
-        <form th:method="POST" th:action="@{/draft/newDraft}" th:object="${draft}">
-            <input type="text" placeholder="введите название черновика" th:field="*{draftName}">
-            <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}"> <br>
-            <input class="btnSave" type="submit" value="Сохранить в черновик">
-        </form>
+
+        </sss>
+        <div th:if="${updatedDraft==null}">
+            <form th:method="POST" th:action="@{/draft/newDraft}" th:object="${draft}">
+                <input type="text" placeholder="введите название черновика" th:field="*{draftName}">
+                <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}"> <br>
+                <input class="btnSave" type="submit" value="Сохранить в черновик">
+            </form>
+        </div>
+
+        <div th:if="${updatedDraft!=null}">
+            <form th:method="PATCH" th:action="@{/draft/{id}(id=${updatedDraft.getId()})}" th:object="${updatedDraft}">
+                <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}">
+                <input class="btnSave" type="submit" value="Обновить черновик">
+            </form>
+        </div>
     </div>
-
-    <div th:if="${updatedDraft!=null}">
-        <form th:method="PATCH" th:action="@{/draft/{id}(id=${updatedDraft.getId()})}" th:object="${updatedDraft}">
-            <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}">
-            <input class="btnSave" type="submit" value="Обновить черновик">
-        </form>
-    </div>
-
+    <div class="footer"></div>
 </div>
+<!--<script src="newJs.js"></script>-->
+<script th:src="@{/assets/generalAssets/newJs.js}"></script>
 
-<script>
-    if (document.querySelector('.statement').value!==''){
-        document.getElementsByTagName("sss")[0].innerHTML = document.querySelector('.statement').value
-    }
-    window.onload = function () {
-        let music = document.querySelector('.music')
-        let musicTrigger = music.querySelector('select')
-        let optionInstruments = document.querySelector('.optionInstruments')
-        let optionVoices = document.querySelector('.optionVoices')
-        musicTrigger.addEventListener('change', () => {
-            if (musicTrigger.value === "") {
-                optionInstruments.style.display = 'block'
-            } else {
-                optionInstruments.style.display = 'none'
-                optionInstruments.querySelector('.instruments').value = ''
-            }
-        })
 
-        function selector(target, placeHolder, targetName) {
-            let select = target.querySelector('select')
-            let input = target.querySelector('input')
-            select.addEventListener('change', () => {
-                if (input.value === '') {
-                    let time
-                    setTimeout(() => {
-                        time = prompt(targetName)
-                        input.value += select.value + ' ' + 'x' + time
-                        select.options[select.selectedIndex].remove()
-                        select.value = placeHolder
-                    }, 0)
-                } else if (input.value.includes(select.value)) {
-                } else {
-                    let time
-                    setTimeout(() => {
-                        time = prompt(targetName)
-                        input.value += ', ' + select.value + ' ' + 'x' + time
-                        select.options[select.selectedIndex].remove()
-                        select.value = placeHolder
-                    }, 0)
-                }
-            })
-        }
-
-        selector(optionInstruments, 'выбрать инструмент', 'количество инструментов выбранного типа')
-        selector(optionVoices, 'выбрать солиста', 'количество голосов выбранного типа')
-
-        let btnSave = document.querySelector('.btnSave')
-        btnSave.addEventListener('click', ()=>{
-            let inputs = document.querySelectorAll('input')
-
-            let selects = document.querySelectorAll('select')
-
-            inputs.forEach(inp =>{
-                let value = inp.value
-                inp.setAttribute("value", value)
-            })
-            selects.forEach(select =>{
-                const selectedOption = select.options[select.selectedIndex];
-                console.log(selectedOption)
-                let options = select.querySelectorAll('option')
-                options.forEach(option =>{
-                    option.removeAttribute("selected")
-                })
-                selectedOption.setAttribute("selected","selected")
-            })
-            let statement = document.querySelector('.statement')
-            statement.value = document.getElementsByTagName("sss")[0].innerHTML
-        })
-    }
-</script>
 </body>
 </html>
+
+

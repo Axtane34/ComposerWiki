@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Аранжировка</title>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/aboutStyle.css}"/>
-<!--    <link rel="stylesheet" href="aboutStyle.css">-->
+    <!--    <link rel="stylesheet" href="aboutStyle.css">-->
 </head>
 <body>
 <div class="content">
@@ -16,8 +16,13 @@
         <div class="nav"></div>
     </div>
     <div class="cap">
-        <!--TODO th:if-->
-        <p><span th:text="${arrangement.getComposerFio()}">Дмитрий Cмирнов</span></p>
+        <div th:if="${arrangement.getComposer()!=null}">
+            <p><span> <a th:href="@{/composer/{id}(id=${arrangement.getComposer().getId()})}"
+                         th:text="${arrangement.getComposer().getFio()}"></a></span></p>
+        </div>
+        <div th:if="${arrangement.getComposer()==null}">
+            <p><span th:text="${arrangement.getComposerFio()}"></span></p>
+        </div>
         <p><span th:text="${arrangement.getArrangementName()}">Утро в лесу</span></p>
         <p><span>Аранжировка</span></p>
         <p><span th:text="${arrangement.getDedication()}">Посвящается камерному хору “Lege Artis”</span></p>
@@ -34,17 +39,17 @@
                 <p>Инструментальный состав:
                     <span style="display: block" th:text="${arrangement.getMusic()}">рояль, флейта, скрипка</span>
                 </p>
-                <p>Тип хора: 
+                <p>Тип хора:
                     <span th:text="${arrangement.getChorusType()}">Смешанный</span>
                 </p>
-                <p>Количество голосов: 
+                <p>Количество голосов:
                     <span th:text="${arrangement.getVoiceCount()}">8</span>
                 </p>
-                <p>Состав хора: 
+                <p>Состав хора:
                     <span th:text="${arrangement.getChorusStructure()}"></span>
                 </p>
                 <p>Количество хоров:
-                    <span th:text="${arrangement.getChorusAmount()}"></span>
+                    <span class="count" th:text="${arrangement.getChorusAmount()}"></span>
                 </p>
                 <p>Солисты:
                     <span th:text="${arrangement.getChorusVoicesList()}"></span>
@@ -55,22 +60,22 @@
                 <p>Дата написания:
                     <span th:text="${arrangement.getWriteDate()}">14.02.1992</span>
                 </p>
-                <p>Дата | Место премьеры 
+                <p>Дата | Место премьеры
                     <span style="display: block" th:text="${arrangement.getPremiereDate()}">17 марта 2004 года</span>
                     <span style="display: block" th:text="${arrangement.getPremierePlace()}">Концертный зал Шереметьевского дворца</span>
                 </p>
             </div>
-            
+
         </div>
         <div class="bCenter">
             <p><span th:text="${arrangement.getDescription()}">Описание</span></p>
         </div>
-        <div class="bRight"> 
+        <div class="bRight">
             <div class="btn"><p>история | о исполнении</p></div>
             <div class="btn"><p>о тексте</p></div>
             <div class="btn"><p>статьи | заметки</p></div>
             <div class="btn"><p>значимые исполнения</p></div>
-            <div class="btn"><p>опечатки | комменатрии</p></div>
+            <div class="btn"><p>опечатки | комментарии</p></div>
         </div>
     </div>
     <div class="footer"></div>

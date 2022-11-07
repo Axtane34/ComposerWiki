@@ -8,6 +8,11 @@
       height: 0;
 }
 
+a{
+    text-decoration: none;
+    color: #930000;
+}
+
 body:before{
     z-index: -1;
     position: absolute;

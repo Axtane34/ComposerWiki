@@ -16,7 +16,13 @@
         <div class="nav"></div>
     </div>
     <div class="cap">
-        <p><span th:text="${chorus.getComposer().getFio()}">Дмитрий Cмирнов</span></p>
+        <div th:if="${chorus.getComposer()!=null}">
+            <p><span> <a th:href="@{/composer/{id}(id=${chorus.getComposer().getId()})}"
+                         th:text="${chorus.getComposer().getFio()}"></a></span></p>
+        </div>
+        <div th:if="${chorus.getComposer()==null}">
+            <p><span th:text="${chorus.getComposerFio()}"></span></p>
+        </div>
         <p><span th:text="${chorus.getChorusName()}">Утро в лесу</span></p>
         <p><span th:text="${chorus.getGenre()}">Хоровая миниатюра</span></p>
         <p><span th:text="${chorus.getDedication()}">Посвящается камерному хору “Lege Artis”</span></p>
@@ -69,7 +75,7 @@
             <div class="btn"><p>о тексте</p></div>
             <div class="btn"><p>статьи | заметки</p></div>
             <div class="btn"><p>значимые исполнения</p></div>
-            <div class="btn"><p>опечатки | комменатрии</p></div>
+            <div class="btn"><p>опечатки | комментарии</p></div>
         </div>
     </div>
     <div class="footer"></div>

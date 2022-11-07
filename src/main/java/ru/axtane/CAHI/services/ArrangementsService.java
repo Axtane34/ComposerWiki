@@ -1,5 +1,6 @@
 package ru.axtane.CAHI.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.axtane.CAHI.models.Arrangement;
@@ -16,6 +17,7 @@ public class ArrangementsService {
     private final ArrangementsRepository arrangementsRepository;
     private final ComposersRepository composersRepository;
 
+    @Autowired
     public ArrangementsService(ArrangementsRepository arrangementsRepository, ComposersRepository composersRepository) {
         this.arrangementsRepository = arrangementsRepository;
         this.composersRepository = composersRepository;

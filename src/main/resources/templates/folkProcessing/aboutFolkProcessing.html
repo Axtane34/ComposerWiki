@@ -16,7 +16,13 @@
         <div class="nav"></div>
     </div>
     <div class="cap">
-        <p><span th:text="${folkProcessing.getComposer().getFio()}">Дмитрий Cмирнов</span></p>
+        <div th:if="${folkProcessing.getComposer()!=null}">
+            <p><span> <a th:href="@{/composer/{id}(id=${folkProcessing.getComposer().getId()})}"
+                         th:text="${folkProcessing.getComposer().getFio()}"></a></span></p>
+        </div>
+        <div th:if="${folkProcessing.getComposer()==null}">
+            <p><span th:text="${folkProcessing.getComposerFio()}"></span></p>
+        </div>
         <p><span th:text="${folkProcessing.getFolkProcessingName()}">Утро в лесу</span></p>
         <p><span th:text="${'Обработка ' + folkProcessing.getRegion() + ' народной песни'}"> </span></p>
         <p><span th:text="${folkProcessing.getDedication()}">Посвящается камерному хору “Lege Artis”</span></p>

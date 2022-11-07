@@ -39,9 +39,8 @@ public class OpusDPSService {
     public void save(OpusDPS opusDPS){
             opusDPS.setPublicationStatus(PublicationStatus.PUBLISHED);
         opusDPS.getUserAuthor().addOpusDPS(opusDPS);
-        Composer composer = findComposer(opusDPS.getComposerFio());
-        if (composer != null){
-            composer.addOpusDPS(opusDPS);
+        if (opusDPS.getComposer() != null){
+            findComposer(opusDPS.getComposer().getFio()).addOpusDPS(opusDPS);
         }
         opusDPSRepository.save(opusDPS);
     }
