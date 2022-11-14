@@ -1,4 +1,5 @@
 let input = document.querySelector('.bio input')
-window.onload = function (){
-    input.parentElement.innerHTML = input.value
-}
+input.parentElement.innerHTML = input.value
+
+
+document.querySelector('.btnHome').setAttribute("href", "/CAHI/account")
