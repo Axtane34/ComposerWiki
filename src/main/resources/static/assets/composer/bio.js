@@ -7,10 +7,10 @@ function f1(sender){
 
 
     document.querySelector('.bioRight').innerHTML += "<div class=\"bioAll fullBio\" pairing="+count+">\n" +
-        "                                        <input oninput=\"this.setAttribute('value', this.value)\" type=\"text\" class=\"bioLabelInput\" sep =\"subLabel\" placeholder=\"введите название подраздела\">\n" +
+        "                                        <input oninput=\"this.setAttribute('value', this.value)\" type=\"text\" class=\"bioLabelInput\" sepOpen ='<p class=\"subLabel\">' sepClose ='</p>' placeholder=\"введите название подраздела\">\n" +
         "                                        <div class=\"line2\"></div>\n" +
-        "                                        <textarea oninput=\"this.innerHTML = this.value\" maxlength=\"120\" class=\"bioSourceInput\" sep =\"source\" placeholder=\"введите источник (не более 120 символов)\"></textarea>\n" +
-        "                                        <textarea oninput=\"this.innerHTML = this.value\" placeholder=\"Введите текст подраздела\" sep =\"labelText\" class=\"bioTextInput\"></textarea>\n" +
+        "                                        <textarea oninput=\"this.innerHTML = this.value\" maxlength=\"120\" class=\"bioSourceInput\" sepOpen ='<p class=\"sourceLabel\">' sepClose ='</p>' placeholder=\"введите источник (не более 120 символов)\"></textarea>\n" +
+        "                                        <textarea oninput=\"this.innerHTML = this.value\" placeholder=\"Введите текст подраздела\" sepOpen ='<p class=\"textLabel\">' sepClose ='</p>' class=\"bioTextInput\"></textarea>\n" +
         "                                    </div>"
 
     sender.parentElement.querySelector('.cells').innerHTML += "<div class=\"cellBio\"><div class=\"item\" style=\"border: 2px dotted white\" onclick='f3(this)' draggable=\"true\" pairing="+count+"><p>...</p><div class=\"btnDell\" onclick=\"btnRemove(this)\"></div></div></div>"

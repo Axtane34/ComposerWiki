@@ -404,7 +404,7 @@
                                     <option th:value="'Барокко'">Барокко</option>
                                     <option th:value="'Классицизм'">Классицизм</option>
                                     <option th:value="'Романтизм'">Романтизм</option>
-                                    <option th:value="'Модернизм*'">Модернизм</option>
+                                    <option th:value="'Модернизм'">Модернизм</option>
                                     <option th:value="'XX век'">XX век</option>
                                     <option th:value="'XXI век'">XXI век</option>
                                 </select>
@@ -439,7 +439,7 @@
                         </div>
                         <div class="menu">
                             <div class="back_js">назад</div>
-                            <input type="hidden" placeholder="скрытое поле1" th:field="*{bio}"> <!--ПОЛНОЕ БИО-->
+                            <input type="text" placeholder="скрытое поле1" th:field="*{bio}"> <!--ПОЛНОЕ БИО-->
                             <div class="bioFrame">
                                 <div class="bioLeft">
                                     <div class="bioMini" style="border: 2px dotted white" onclick="f3(this)">
@@ -449,7 +449,7 @@
 
                                     <section class="bioSect">
                                         <div class="cont">
-                                            <div class="mainC"><input type="text" sep="label"
+                                            <div class="mainC"><input type="text" sepOpen='<p class="mainLabel">' sepClose="</p>"
                                                                       placeholder="введите название раздела"
                                                                       oninput="this.setAttribute('value', this.value)">
                                                 <div class="btnLabelAdd" onclick="f2(this)"></div>

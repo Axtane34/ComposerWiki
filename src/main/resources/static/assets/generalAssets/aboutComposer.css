@@ -1,0 +1,126 @@
+.bLeft{
+    padding: 0;
+    width: 290px;
+}
+.bRight{
+    padding: 0 0 0 40px;
+    width: 290px;
+}
+
+
+.bCenter{
+    padding: 0;
+    width: 260px;
+    border: 0;
+}
+
+.round{
+    width: 100%;
+    height: 260px;
+    border-radius: 50%;
+    border: 1px dotted gray;
+    margin-bottom: 60px;
+}
+
+
+.draftFrame{
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+    width: 90%;
+    text-transform: revert;
+    font-style: italic;
+}
+
+
+.fioFrame{
+    text-transform: uppercase;
+    font-size: 30px;
+    line-height: 36px;
+    word-spacing: 100vw;
+    font-weight: 700;
+}
+
+.epoch{
+    font-weight: 700;
+    color: #930000;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.life{
+    margin-top: 46px;
+    margin-bottom: 32px;
+}
+
+.about{
+
+}
+
+.about p{
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.about p:last-child{
+    margin-bottom: 0;
+}
+
+.about p span{
+    color: black;
+    font-weight: normal;
+}
+
+.bio{
+    padding: 14px;
+    display: none;
+    z-index: 1;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 860px;
+    height: 860px;
+    background-color: #f8f8f8;
+}
+.btnClose{
+    position: absolute;
+    right: -10px;
+    top:-10px;
+    width: 30px;
+    height: 30px;
+    background-image: url("img/close.png");
+    background-size: 100%,100%;
+    cursor: pointer;
+}
+
+.column{
+    height: 730px;
+}
+
+.mainLabel{
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 18pt;
+}
+.subLabel{
+
+    text-transform: uppercase;
+    font-size: 16pt;
+}
+.textLabel{
+    margin-bottom: 10px;
+    font-size: 14pt;
+}
+
+.sourceLabel{
+    font-size: 10pt;
+    color: gray;
+    margin-bottom: 15px;
+}
+
+
+
+

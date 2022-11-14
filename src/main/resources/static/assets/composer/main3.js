@@ -102,7 +102,7 @@ window.onload = function (){
                 section.children[0].value =""
 
                 section.querySelectorAll('input, textarea, select').forEach(input=>{
-                    if(input.parentElement.querySelectorAll('input, textarea').length>1){
+                    if(input.parentElement.querySelectorAll('input, textarea').length>1 && input.value !== ""){
                         str = ''
                     }
                     if((input.value !== "" && input.type !== 'checkbox') || input.checked){
@@ -146,14 +146,14 @@ window.onload = function (){
             let str = ''
             let count = 0
             document.querySelector('.bioSect').querySelectorAll('.cont').forEach(cont=>{
-                str += "label "+cont.children[0].querySelector('.mainC input').value +" " //значение
+                str += '<p class="mainLabel">'+cont.children[0].querySelector('.mainC input').value +"</p>"//значение
                 for(let el of cont.children[1].children){
 
                     let attr = el.querySelector('.item').getAttribute('pairing')
                     let cont = document.querySelector('.bioAll[pairing="'+attr+'"]')
                     for(let el of cont.children){
                         if(el.tagName !== 'DIV'){
-                            str += el.getAttribute('sep') + " " + el.value +" "
+                            str += el.getAttribute('sepOpen') + el.value + el.getAttribute('sepClose')
                         }
                     }
                 }
