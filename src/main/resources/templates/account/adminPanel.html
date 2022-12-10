@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>AdminPanel</title>
+    <style>
+        *{
+            padding: 5px 0 0 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .content{
+            margin: 0 auto;
+            width: 800px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .bRight,.bLeft{
+            width: 400px;
+        }
+        .cell{
+            display: flex;
+        }
+        .cell input{
+            width: 20px;
+        }
+        .cell a{
+            text-decoration: none;
+            cursor:pointer;
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="bLeft">
+        <p>список композиторов</p>
+        <div class="count" th:if="${composers.isEmpty()}">
+            <p>КОМПОЗИТОРОВ НЕТ</p>
+        </div>
+        <div class="cell" th:if="${!composers.isEmpty()}"
+             th:each="composer : ${composers}">
+            <a th:href="@{/composer/{id}(id=${composer.getId()})}" th:text="${'№' + composerCounter.incrementAndGet() +'. '+ composer.getFio() + ' | автор: ' + composer.getUserAuthor().getUsername()}"></a>
+            <form th:method="DELETE" th:action="@{/composer/{id}(id=${composer.getId()})}">
+                <input type="submit" value="x">
+            </form>
+        </div>
+    </div>
+    <div class="bRight">
+        <p>список сочинений</p>
+        <div class="count" th:if="${essays.isEmpty()}">
+            <p>СОЧИНЕНИЙ НЕТ</p>
+        </div>
+        <div class="cell"
+             th:each="chorus : ${essays.get('chorus')}">
+            <a th:href="@{/chorus/{id}(id=${chorus.getId()})}" th:text="${'(ХОР)№'+ essayCounter.incrementAndGet() + '. ' + chorus.getName() + ' | автор: ' + chorus.getAuthor().getUsername()}"></a>
+            <form th:method="DELETE" th:action="@{/chorus/{id}(id=${chorus.getId()})}">
+                <input type="submit" value="x">
+            </form>
+        </div>
+        <div class="cell"
+             th:each="opusDPS : ${essays.get('opusDPS')}">
+            <a th:href="@{/opusDPS/{id}(id=${opusDPS.getId()})}" th:text="${'(ДПС)№'+ essayCounter.incrementAndGet() + '. ' + opusDPS.getName() + ' | автор: ' + opusDPS.getAuthor().getUsername()}"></a>
+            <form th:method="DELETE" th:action="@{/opusDPS/{id}(id=${opusDPS.getId()})}">
+                <input type="submit" value="x">
+            </form>
+        </div>
+        <div class="cell"
+             th:each="arrangement : ${essays.get('arrangement')}">
+            <a th:href="@{/arrangement/{id}(id=${arrangement.getId()})}" th:text="${'(АРА)№'+ essayCounter.incrementAndGet() + '. ' + arrangement.getName() + ' | автор: ' + arrangement.getAuthor().getUsername()}"></a>
+            <form th:method="DELETE" th:action="@{/arrangement/{id}(id=${arrangement.getId()})}">
+                <input type="submit" value="x">
+            </form>
+        </div>
+        <div class="cell"
+             th:each="folkProcessing : ${essays.get('folkProcessing')}">
+            <a th:href="@{/folkProcessing/{id}(id=${folkProcessing.getId()})}" th:text="${'(НАР)№'+ essayCounter.incrementAndGet() + '. ' + folkProcessing.getName() + ' | автор: ' + folkProcessing.getAuthor().getUsername()}"></a>
+            <form th:method="DELETE" th:action="@{/folkProcessing/{id}(id=${folkProcessing.getId()})}">
+                <input type="submit" value="x">
+            </form>
+        </div>
+        <div class="cell"
+             th:each="chants : ${essays.get('chants')}">
+            <a th:href="@{/chants/{id}(id=${chants.getId()})}" th:text="${'(РАС)№'+ essayCounter.incrementAndGet() + '. ' + chants.getName() + ' | автор: ' + chants.getAuthor().getUsername()}"></a>
+            <form th:method="DELETE" th:action="@{/chants/{id}(id=${chants.getId()})}">
+                <input type="submit" value="x">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

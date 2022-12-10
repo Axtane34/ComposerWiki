@@ -26,7 +26,7 @@
                     <p>Дата рождения:
                         <span style="display: block" th:text="${composer.getDateOfBirth()}">17 марта 2004 года</span>
                     </p>
-                    <p>Место рождения рождения:
+                    <p>Место рождения:
                         <span style="display: block" th:text="${composer.getPlaceOfBirth()}">17 марта 2004 года</span>
                     </p>
                     <p>Годы активности:
@@ -65,12 +65,13 @@
             </div>
             <div class="btn"><p>окружение</p></div>
             <div class="btn"><p>статьи письма</p></div>
-            <div class="btn"><p>сочинения</p></div>
+            <div class="btn" onclick="this.children[1].click()"><p>сочинения</p><a style="display: none" th:href="@{/composer/{id}/essay(id=${composer.getId()})}"></a></div>
             <div class="btn"><p>факты | цитаты</p></div>
         </div>
     </div>
-    <div class="footer"></div>
 </div>
+<div class="footer"></div>
+
 <!--<script src="aboutComposer.js"></script>-->
 <script th:src="@{/assets/generalAssets/aboutComposer.js}"></script>
 

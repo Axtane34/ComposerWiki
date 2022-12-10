@@ -30,15 +30,28 @@ public class ComposerController {
     public String show(@PathVariable("id") int id, Model model) {
         Composer composer = composersService.findById(id);
             model.addAttribute("composer", composer);
-            model.addAttribute("cappellaChoirs", composersService.findChoirs(PublicationStatus.PUBLISHED, composer, true));
-            model.addAttribute("instrumentalChoirs", composersService.findChoirs(PublicationStatus.PUBLISHED, composer, false));
         return "composer/aboutComposer";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         composersService.delete(id);
-        return "redirect:/CAHI/account";
+        return "redirect:/CAHI/adminPanel";
+    }
+
+    @GetMapping("/composers")
+    public String showAll(Model model){
+        model.addAttribute("composers", composersService.findAll());
+        return "composer/composers";
+    }
+
+    @GetMapping("/{id}/essay")
+    public String composerEssay(@PathVariable("id") int id, Model model){
+        Composer composer = composersService.findById(id);
+        model.addAttribute("composer", composer);
+        model.addAttribute("cappellaChoirs", composersService.findChoirs(PublicationStatus.PUBLISHED, composer, true));
+        model.addAttribute("instrumentalChoirs", composersService.findChoirs(PublicationStatus.PUBLISHED, composer, false));
+        return "composer/essay";
     }
 
     @GetMapping("/newComposer")

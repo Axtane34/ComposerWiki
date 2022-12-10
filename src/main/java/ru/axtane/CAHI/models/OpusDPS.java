@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "opusDPS")
-public class OpusDPS {
+public class OpusDPS implements Essay {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class OpusDPS {
     private String compilerDecoder;
     @Column(name = "cypher")
     private String cypher;
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "text")
     private String description;
     @Column(name = "chorusType")
     private String chorusType;
@@ -52,6 +52,16 @@ public class OpusDPS {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String getName() {
+        return this.getIncipit();
+    }
+
+    @Override
+    public Person getAuthor() {
+        return getUserAuthor();
     }
 
     public void setId(int id) {

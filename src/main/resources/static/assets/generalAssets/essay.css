@@ -1,0 +1,40 @@
+.uMain2{
+    margin-top: 48px;
+
+}
+
+.nameComp{
+    margin-bottom: 25px;
+    margin-top: 50px;
+    text-transform: uppercase;
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 800;
+}
+.ac,.noAC{
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    width: 400px;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding-bottom: 15px;
+    margin-bottom: 17px;
+}
+
+.uFrame{
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 200px;
+    margin-bottom: 40px;
+    overflow-y: scroll;
+}
+.uFrame p{
+    margin-bottom: 4px;
+}
+

@@ -3,6 +3,7 @@ package ru.axtane.CAHI.models;
 import ru.axtane.CAHI.models.enums.DraftType;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 
 @Entity
 @Table(name = "drafts")
@@ -13,7 +14,7 @@ public class Draft {
     private int id;
     @Column(name = "draftName")
     private String draftName;
-    @Column(name = "pageStatement")
+    @Column(name = "pageStatement", columnDefinition = "text")
     private String pageStatement;
     @Enumerated(EnumType.STRING)
     private DraftType draftType;

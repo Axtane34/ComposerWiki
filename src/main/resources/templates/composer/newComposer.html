@@ -399,14 +399,22 @@
                             <div class="m2Label">
                                 <select th:field="*{epoch}">
                                     <option th:value="'тип не выбран'">выбрать эпоху</option>
-                                    <option th:value="'Средневековье'">Средневековье</option>
-                                    <option th:value="'Ренессанс'">Ренессанс</option>
-                                    <option th:value="'Барокко'">Барокко</option>
-                                    <option th:value="'Классицизм'">Классицизм</option>
-                                    <option th:value="'Романтизм'">Романтизм</option>
-                                    <option th:value="'Модернизм'">Модернизм</option>
+                                    <option th:value="'XIII век'">XIII век</option>
+                                    <option th:value="'XIII-XIV века'">XIII-XIV века</option>
+                                    <option th:value="'XIV век'">XIV век</option>
+                                    <option th:value="'XIV-XV века'">XIV-XV века</option>
+                                    <option th:value="'XV век'">XV век</option>
+                                    <option th:value="'XV-XVI века'">XV-XVI века</option>
+                                    <option th:value="'XVI век'">XVI век</option>
+                                    <option th:value="'XVI-XVII века'">XVI-XVII века</option>
+                                    <option th:value="'XVII век'">XVII век</option>
+                                    <option th:value="'XVII-XVIII века'">XVII-XVIII века</option>
+                                    <option th:value="'XVIII век'">XVIII век</option>
+                                    <option th:value="'XVIII-XIX века'">XVIII-XIX века</option>
+                                    <option th:value="'XIX век'">XIX век</option>
+                                    <option th:value="'XIX-XX века'">XIX-XX века</option>
                                     <option th:value="'XX век'">XX век</option>
-                                    <option th:value="'XXI век'">XXI век</option>
+                                    <option th:value="'XX-XXI века'">XX-XXI века</option>
                                 </select>
                             </div>
                             <div class="saveBtnFio saveBtn_js"><p>сохранить</p></div>
@@ -439,7 +447,7 @@
                         </div>
                         <div class="menu">
                             <div class="back_js">назад</div>
-                            <input type="text" placeholder="скрытое поле1" th:field="*{bio}"> <!--ПОЛНОЕ БИО-->
+                            <input type="hidden" placeholder="скрытое поле1" th:field="*{bio}"> <!--ПОЛНОЕ БИО-->
                             <div class="bioFrame">
                                 <div class="bioLeft">
                                     <div class="bioMini" style="border: 2px dotted white" onclick="f3(this)">

@@ -33,14 +33,20 @@ public class PeopleService {
 
     public Person findAllWithEnum(PublicationStatus publicationStatus, String login){
         Person person = findByLogin(login);
-        person.getComposers().removeIf(composer -> !composer.getPublicationStatus().equals(publicationStatus));
         person.getOpusDPS().removeIf(opusDPS -> !opusDPS.getPublicationStatus().equals(publicationStatus));
         person.getChants().removeIf(chants -> !chants.getPublicationStatus().equals(publicationStatus));
         person.getFolkProcessingList().removeIf(folkProcessing -> !folkProcessing.getPublicationStatus().equals(publicationStatus));
         person.getArrangements().removeIf(arrangement -> !arrangement.getPublicationStatus().equals(publicationStatus));
         person.getChoirs().removeIf(chorus -> !chorus.getPublicationStatus().equals(publicationStatus));
-        person.setPublicationsEmpty(person.getComposers().isEmpty() && person.getOpusDPS().isEmpty() && person.getChants().isEmpty() &&
+        person.setPublicationsEmpty(person.getOpusDPS().isEmpty() && person.getChants().isEmpty() &&
                 person.getFolkProcessingList().isEmpty() && person.getArrangements().isEmpty() && person.getChoirs().isEmpty());
+        return person;
+    }
+
+    public Person findComposersWithEnum(PublicationStatus publicationStatus, String login){
+        Person person = findByLogin(login);
+        person.getComposers().removeIf(composer -> !composer.getPublicationStatus().equals(publicationStatus));
+        person.setPublicationsEmpty(person.getComposers().isEmpty());
         return person;
     }
 }

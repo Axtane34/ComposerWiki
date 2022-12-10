@@ -54,6 +54,16 @@ public class Person {
     @Transient
     private boolean publicationsEmpty;
 
+    public Person() {
+    }
+
+    public Person(String username, String password, String email, AccessLevel accessLevel) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.accessLevel = accessLevel;
+    }
+
     public int getId() {
         return id;
     }

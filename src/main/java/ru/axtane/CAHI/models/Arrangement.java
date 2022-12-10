@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "arrangement")
-public class Arrangement {
+public class Arrangement implements Essay {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class Arrangement {
     private String textAuthor;
     @Column(name = "dedication")
     private String dedication;
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "text")
     private String description;
     @Column(name = "opus")
     private String opus;
@@ -54,6 +54,16 @@ public class Arrangement {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String getName() {
+        return this.getArrangementName();
+    }
+
+    @Override
+    public Person getAuthor() {
+        return this.getUserAuthor();
     }
 
     public void setId(int id) {

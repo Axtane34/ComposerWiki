@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Гостевые покои</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/account/user.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/aboutStyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/acc.css}"/>
+<!--        <link rel="stylesheet" href="user.css">
+        <link rel="stylesheet" href="aboutStyle.css">
+        <link rel="stylesheet" href="acc.css">-->
+
+</head>
+<body>
+<div class="content">
+    <div class="header">
+        <div class="nav">
+        </div>
+        <div class="logo"></div>
+        <div class="nav">
+            <form th:method="POST" th:action="@{/logout}">
+                <input class="logout" type="submit" value=""/>
+            </form>
+        </div>
+    </div>
+    <div class="about2">
+        <div class="photoGuest"></div>
+        <p>ГОСТЬ</p>
+    </div>
+    <div class="uMain">
+        <div class="uLeft">
+            <section>
+                <div class="btnUser profile" onclick="this.nextElementSibling.click()"></div>
+                <a style="display: none" href="/CAHI/registration"></a>
+                <div class="btnUser composers" onclick="this.nextElementSibling.click()"></div>
+                <a href="/composer/composers" style="display: none"></a>
+                <div class="btnUser authors"></div>
+                <div class="btnUser news"></div>
+            </section>
+
+        </div>
+
+
+    </div>
+
+</div>
+<div class="footer"></div>
+
+
+<!--<script src="aboutComposer.js"></script>-->
+<!--<script th:src="@{/assets/generalAssets/aboutComposer.js}"></script>-->
+
+</body>
+</html>

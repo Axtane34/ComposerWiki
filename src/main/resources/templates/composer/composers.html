@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Композиторы</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/account/user.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/aboutStyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/acc.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/essay.css}"/>
+    <!--
+        <link rel="stylesheet" href="user.css">
+        <link rel="stylesheet" href="aboutStyle.css">
+        <link rel="stylesheet" href="acc.css">
+        <link rel="stylesheet" href="labels.css">
+    -->
+
+</head>
+<body>
+<div class="content">
+    <div class="header">
+        <div class="nav">
+            <a class="btnHome"></a>
+        </div>
+        <div class="logo"></div>
+        <div class="nav">
+            <form th:method="POST" th:action="@{/logout}">
+                <input class="logIn" type="submit" value=""/>
+            </form>
+        </div>
+    </div>
+
+    <div class="uMain2">
+
+        <p class="ac">Список композиторов</p>
+        <div class="uFrame" style="height: 600px">
+            <div class="count" th:if="${composers.isEmpty()}">
+                <p>КОМПОЗИТОРОВ НЕТ</p>
+            </div>
+            <div th:if="${!composers.isEmpty()}"
+                 th:each="composer : ${composers}">
+                <a th:href="@{/composer/{id}(id=${composer.getId()})}" th:text="${composer.getFio()}"></a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="footer"></div>
+
+
+<script>
+    document.querySelector('.btnHome').setAttribute("href", "/CAHI/account")
+</script>
+<!--<script src="aboutComposer.js"></script>-->
+<!--<script th:src="@{/assets/generalAssets/aboutComposer.js}"></script>-->
+
+</body>
+</html>

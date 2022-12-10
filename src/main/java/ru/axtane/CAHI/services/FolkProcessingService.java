@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.axtane.CAHI.models.Composer;
+import ru.axtane.CAHI.models.Essay;
 import ru.axtane.CAHI.models.FolkProcessing;
 import ru.axtane.CAHI.models.enums.PublicationStatus;
 import ru.axtane.CAHI.repositories.ComposersRepository;
 import ru.axtane.CAHI.repositories.FolkProcessingRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +23,10 @@ public class FolkProcessingService {
     public FolkProcessingService(FolkProcessingRepository folkProcessingRepository, ComposersRepository composersRepository) {
         this.folkProcessingRepository = folkProcessingRepository;
         this.composersRepository = composersRepository;
+    }
+
+    public List<Essay> findAll(){
+        return new ArrayList<>(folkProcessingRepository.findAll());
     }
 
     public FolkProcessing findById(int id){

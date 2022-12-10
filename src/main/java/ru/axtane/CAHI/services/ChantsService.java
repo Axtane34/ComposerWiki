@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.axtane.CAHI.models.Chants;
+import ru.axtane.CAHI.models.Essay;
 import ru.axtane.CAHI.models.enums.PublicationStatus;
 import ru.axtane.CAHI.repositories.ChantsRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,6 +19,10 @@ public class ChantsService {
     @Autowired
     public ChantsService(ChantsRepository chantsRepository) {
         this.chantsRepository = chantsRepository;
+    }
+
+    public List<Essay> findAll(){
+        return new ArrayList<>(chantsRepository.findAll());
     }
 
     public Chants findById(int id){

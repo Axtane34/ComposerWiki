@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.axtane.CAHI.models.Arrangement;
 import ru.axtane.CAHI.models.Composer;
+import ru.axtane.CAHI.models.Essay;
 import ru.axtane.CAHI.models.enums.PublicationStatus;
 import ru.axtane.CAHI.repositories.ArrangementsRepository;
 import ru.axtane.CAHI.repositories.ComposersRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +23,9 @@ public class ArrangementsService {
     public ArrangementsService(ArrangementsRepository arrangementsRepository, ComposersRepository composersRepository) {
         this.arrangementsRepository = arrangementsRepository;
         this.composersRepository = composersRepository;
+    }
+    public List<Essay> findAll(){
+        return new ArrayList<>(arrangementsRepository.findAll());
     }
 
     public Arrangement findById(int id){

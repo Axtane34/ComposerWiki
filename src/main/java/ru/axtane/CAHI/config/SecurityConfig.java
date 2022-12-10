@@ -2,6 +2,9 @@ package ru.axtane.CAHI.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,8 +29,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //конфигурирует spring security
         //конфигурирует авторизацию
         http.authorizeRequests()
-                .antMatchers("/CAHI/login", "/CAHI/registration", "/error").permitAll()
-                .anyRequest().hasAnyRole("FREELANCER", "PROXY_USER", "MODERATOR", "ADMIN")
+                .antMatchers("/CAHI/login", "/CAHI/registration", "/error", "/CAHI/loginAsGuest", "/assets/**").permitAll()
+                .antMatchers("/CAHI/adminPanel").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/CAHI/guest", "/composer/**",
+                        "/arrangement/**", "/chants/**", "/chorus/**",
+                        "/folkProcessing/**", "/opusDps/**").hasAnyRole("FREELANCER", "PROXY_USER", "MODERATOR", "ADMIN")
+                .antMatchers(HttpMethod.PATCH, "/CAHI/guest", "/composer/**",
+                        "/arrangement/**", "/chants/**", "/chorus/**",
+                        "/folkProcessing/**", "/opusDps/**").hasAnyRole("FREELANCER", "PROXY_USER", "MODERATOR", "ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/CAHI/guest", "/composer/**",
+                        "/arrangement/**", "/chants/**", "/chorus/**",
+                        "/folkProcessing/**", "/opusDps/**").hasAnyRole("FREELANCER", "PROXY_USER", "MODERATOR", "ADMIN")
+                .anyRequest().hasAnyRole("GUEST", "FREELANCER", "PROXY_USER", "MODERATOR", "ADMIN")
+                .and().exceptionHandling().accessDeniedPage("/error")
                 .and()
                 .formLogin().loginPage("/CAHI/login")
                 .loginProcessingUrl("/process_login")
@@ -49,4 +63,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder getPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
 }

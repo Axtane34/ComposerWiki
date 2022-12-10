@@ -1,5 +1,6 @@
 package ru.axtane.CAHI.models;
 
+import org.hibernate.annotations.Cascade;
 import ru.axtane.CAHI.models.enums.PublicationStatus;
 
 import javax.persistence.*;
@@ -31,25 +32,25 @@ public class Composer {
     private String placeOfDeath;
     @Column(name = "buried")
     private String buried;
-    @Column(name = "composQuotes")
+    @Column(name = "composQuotes", columnDefinition = "text")
     private String composQuotes;
-    @Column(name = "positiveQuotes")
+    @Column(name = "positiveQuotes", columnDefinition = "text")
     private String positiveQuotes;
-    @Column(name = "negativeQuotes")
+    @Column(name = "negativeQuotes", columnDefinition = "text")
     private String negativeQuotes;
-    @Column(name = "facts")
+    @Column(name = "facts", columnDefinition = "text")
     private String facts;
-    @Column(name = "article")
+    @Column(name = "article", columnDefinition = "text")
     private String article;
-    @Column(name = "letterTo")
+    @Column(name = "letterTo", columnDefinition = "text")
     private String letterTo;
-    @Column(name = "letterFrom")
+    @Column(name = "letterFrom", columnDefinition = "text")
     private String letterFrom;
-    @Column(name = "mistake")
+    @Column(name = "mistake", columnDefinition = "text")
     private String mistake;
-    @Column(name = "bioMini")
+    @Column(name = "bioMini", columnDefinition = "text")
     private String bioMini;
-    @Column(name = "bio")
+    @Column(name = "bio", columnDefinition = "text")
     private String bio;
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "id")

@@ -3,6 +3,7 @@ package ru.axtane.CAHI.services;
 import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.axtane.CAHI.dto.ComposerDTO;
@@ -91,6 +92,19 @@ public class ComposersService {
 
     @Transactional
     public void delete(int id){
+        Composer composer = findById(id);
+        for (Arrangement arrangement : composer.getArrangements()){
+            arrangement.setComposer(null);
+        }
+        for (Chorus chorus : composer.getChoirs()){
+            chorus.setComposer(null);
+        }
+        for (FolkProcessing folkProcessing : composer.getFolkProcessingList()){
+            folkProcessing.setComposer(null);
+        }
+        for (OpusDPS opusDPS : composer.getOpusDPS()){
+            opusDPS.setComposer(null);
+        }
         composersRepository.deleteById(id);
     }
 

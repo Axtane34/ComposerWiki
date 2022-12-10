@@ -1,86 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
-    <title>Пользователь</title>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/account/user.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/aboutStyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/acc.css}"/>
+<!--    <link rel="stylesheet" href="aboutStyle.css">
+    <link rel="stylesheet" href="acc.css">-->
 </head>
 <body>
-<div class="container">
-    <div class="nav">
-        <p th:text="${publications.getUsername()}">Имя пользователя</p>
-        <form th:method="POST" th:action="@{/logout}">
-            <input type="submit" value="Logout"/>
-        </form>
-    </div>
-    <div class="newCard">
-        <p><a th:href="@{/composer/newComposer}">Добавить нового композитора</a></p>
-        <p><a th:href="@{/chorus/newChorus}">Добавить хор</a></p>
-        <p><a th:href="@{/opusDPS/newOpusDPS}">Добавить сочинение древнерусского певческого стиля</a></p>
-        <p><a th:href="@{/arrangement/newArrangement}">Добавить аранжировку</a></p>
-        <p><a th:href="@{/folkProcessing/newFolkProcessing}">Добавить обработку народной песни</a></p>
-        <p><a th:href="@{/chants/newChants}">Добавить распев</a></p>
-    </div>
-    <div class="about">
-        <div class="draft">
-            <div class="title"><p>Черновики</p></div>
-            <div class="count" th:if="${publications.getDrafts().isEmpty()}">
-                <p>ЧЕРНОВИКОВ НЕТ</p>
-            </div>
-            <div class="itemDraft" th:each="draft : ${publications.getDrafts()}">
-                <a th:href="@{/__${draft.getTypeUrl()}__/{id}(id=${draft.getId()})}"
-                   th:text="${draft.getDraftName()}"></a>
-                <form th:method="DELETE" th:action="@{/draft/{id}(id=${draft.getId()})}">
-                    <input type="submit" value="">
-                </form>
-            </div>
-
-        </div>
-        <div class="publications">
-            <div class="title"><p>Публикации</p></div>
-            <div class="count" th:if="${publications.isPublicationsEmpty()}">
-                <p>ПУБЛИКАЦИЙ НЕТ</p>
-            </div>
-            <div class="item" th:if="${!publications.getChoirs().isEmpty()}"
-                 th:each="chorus : ${publications.getChoirs()}">
-                <a th:href="@{/chorus/{id}(id=${chorus.getId()})}" th:text="${'Хор: ' + chorus.getChorusName()}"></a>
-            </div>
-            <div class="item" th:if="${!publications.getOpusDPS().isEmpty()}"
-                 th:each="opusDPS : ${publications.getOpusDPS()}">
-                <a th:href="@{/opusDPS/{id}(id=${opusDPS.getId()})}" th:text="${'opusDPS: ' + opusDPS.getIncipit()}"></a>
-            </div>
-            <div class="item" th:if="${!publications.getArrangements().isEmpty()}"
-                 th:each="arrangement : ${publications.getArrangements()}">
-                <a th:href="@{/arrangement/{id}(id=${arrangement.getId()})}" th:text="${'Аранжировка: ' + arrangement.getArrangementName()}"></a>
-            </div>
-            <div class="item" th:if="${!publications.getFolkProcessingList().isEmpty()}"
-                 th:each="folkProcessing : ${publications.getFolkProcessingList()}">
-                <a th:href="@{/folkProcessing/{id}(id=${folkProcessing.getId()})}" th:text="${'folkProcessing: ' + folkProcessing.getFolkProcessingName()}"></a>
-            </div>
-            <div class="item" th:if="${!publications.getChants().isEmpty()}"
-                 th:each="chants : ${publications.getChants()}">
-                <a th:href="@{/chants/{id}(id=${chants.getId()})}" th:text="${'Распев: ' + chants.getIncipit()}"></a>
-            </div>
-            <div class="item" th:if="${!publications.getComposers().isEmpty()}"
-                 th:each="composer : ${publications.getComposers()}">
-                <a th:href="@{/composer/{id}(id=${composer.getId()})}" th:text="${'Композитор: ' + composer.getFio()}"></a>
-            </div>
-        </div>
-
-        <div class="composers">
-            <div class="title"><p>Все композиторы</p></div>
+<div class="content">
+    <div class="bio2">
+        <div class="bioFrame" style="display:block;">
             <div class="count" th:if="${composers.isEmpty()}">
                 <p>КОМПОЗИТОРОВ НЕТ</p>
             </div>
-            <div class="item" th:if="${!composers.isEmpty()}"
+            <div th:if="${!composers.isEmpty()}"
                  th:each="composer : ${composers}">
                 <a th:href="@{/composer/{id}(id=${composer.getId()})}" th:text="${'Композитор: ' + composer.getFio()}"></a>
             </div>
         </div>
+        <div class="btnClose" onclick="this.parentElement.style.display = 'none'"></div>
+    </div>
+    <div class="bio">
+        <div class="bioFrame">
+            <div class="list draftList"><p>черновики</p>
+                <section>
+                    <div class="count" th:if="${publications.getDrafts().isEmpty()}">
+                        <p>ЧЕРНОВИКОВ НЕТ</p>
+                    </div>
+                    <div class="itemDraft" th:each="draft : ${publications.getDrafts()}">
+                        <a th:href="@{/__${draft.getTypeUrl()}__/{id}(id=${draft.getId()})}"
+                           th:text="${draft.getDraftName()}"></a>
+                        <form th:method="DELETE" th:action="@{/draft/{id}(id=${draft.getId()})}">
+                            <input type="submit" value="" onclick="localStorage.setItem('status', 'block')">
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <div class="list essayList"><p>мои сочинения</p>
+                <section>
+                    <div class="count" th:if="${publications.isPublicationsEmpty()}">
+                        <p>ПУБЛИКАЦИЙ НЕТ</p>
+                    </div>
+                    <div class="item" th:if="${!publications.getChoirs().isEmpty()}"
+                         th:each="chorus : ${publications.getChoirs()}">
+                        <a th:href="@{/chorus/{id}(id=${chorus.getId()})}" th:text="${'Хор: ' + chorus.getChorusName()}"></a>
+                    </div>
+                    <div class="item" th:if="${!publications.getOpusDPS().isEmpty()}"
+                         th:each="opusDPS : ${publications.getOpusDPS()}">
+                        <a th:href="@{/opusDPS/{id}(id=${opusDPS.getId()})}" th:text="${'opusDPS: ' + opusDPS.getIncipit()}"></a>
+                    </div>
+                    <div class="item" th:if="${!publications.getArrangements().isEmpty()}"
+                         th:each="arrangement : ${publications.getArrangements()}">
+                        <a th:href="@{/arrangement/{id}(id=${arrangement.getId()})}" th:text="${'Аранжировка: ' + arrangement.getArrangementName()}"></a>
+                    </div>
+                    <div class="item" th:if="${!publications.getFolkProcessingList().isEmpty()}"
+                         th:each="folkProcessing : ${publications.getFolkProcessingList()}">
+                        <a th:href="@{/folkProcessing/{id}(id=${folkProcessing.getId()})}" th:text="${'folkProcessing: ' + folkProcessing.getFolkProcessingName()}"></a>
+                    </div>
+                    <div class="item" th:if="${!publications.getChants().isEmpty()}"
+                         th:each="chants : ${publications.getChants()}">
+                        <a th:href="@{/chants/{id}(id=${chants.getId()})}" th:text="${'Распев: ' + chants.getIncipit()}"></a>
+                    </div>
+                </section>
+            </div>
+            <div class="list composerList"><p>мои композиторы</p>
+                <section>
+                    <div class="count" th:if="${userComposers.getComposers().isEmpty()}">
+                        <p>КОМПОЗИТОРОВ НЕТ</p>
+                    </div>
+                    <div class="item" th:if="${!userComposers.getComposers().isEmpty()}"
+                         th:each="composer : ${userComposers.getComposers()}">
+                        <a th:href="@{/composer/{id}(id=${composer.getId()})}" th:text="${'Композитор: ' + composer.getFio()}"></a>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="btnClose" onclick="this.parentElement.style.display = 'none'; localStorage.setItem('status','hidden')"></div>
+    </div>
+    <div class="header">
+        <div class="nav">
+        </div>
+        <div class="logo"></div>
+        <div class="nav">
+            <form th:method="POST" th:action="@{/logout}">
+                <input class="logout" type="submit" value=""/>
+            </form>
+        </div>
+    </div>
+    <div class="about2">
+        <div class="photo"></div>
+        <p th:text="${publications.getUsername()}">ИМЯ ПОЛЬЗОВАТЕЛЯ</p>
+    </div>
+    <div class="uMain">
+        <div class="uLeft">
+            <section>
+                <div class="btnUser profile"></div>
+                <div class="btnUser composers" onclick="this.nextElementSibling.click()"></div>
+                <a href="/composer/composers" style="display: none"></a>
+                <div class="btnUser authors"></div>
+                <div class="btnUser news"></div>
+            </section>
+
+        </div>
+        <div class="uRight" style="user-select: none">
+            <div class="btn" onclick="document.querySelector('.bio').style.display='block'"><p>мои работы</p></div>
+            <div class="btn disabled" ><p>задачи куратора</p></div>
+            <div class="btn disabled" ><p>задачи проекта</p></div>
+            <div class="btn" th:if="${publications.getUsername().equals('adminPanel')}"><p><a th:href="@{/CAHI/adminPanel}">Админ панель</a></p></div>
+            <div class="btn"><p><a th:href="@{/composer/newComposer}">добавить композитора</a></p></div>
+            <div class="btn btnHover"><p><a>добавить сочинение</a></p></div>
+            <section style="display: none">
+                <div class="btn btnAdd"><p><a th:href="@{/chorus/newChorus}">хор</a></p></div>
+                <div class="btn btnAdd"><p><a th:href="@{/arrangement/newArrangement}">аранжировка</a></p></div>
+                <div class="btn btnAdd"><p><a th:href="@{/folkProcessing/newFolkProcessing}">обработку</a></p></div>
+                <div class="btn btnAdd"><p><a th:href="@{/opusDPS/newOpusDPS}">сочинение дпс<abbr title="сочинение древнерусского певческого стиля">?</abbr></a></p></div>
+                <div class="btn btnAdd"><p><a th:href="@{/chants/newChants}">распев</a></p></div>
+            </section>
+        </div>
     </div>
 </div>
-</div>
+<div class="footer"></div>
 <script>
+
+    if(localStorage.getItem('status')){
+        document.querySelector('.bio').style.display = localStorage.getItem('status')
+    }
+    document.querySelectorAll('.btnAdd').forEach(btn=>{
+        btn.addEventListener('click', function (){
+            btn.children[0].children[0].click()
+
+        })
+    })
+
+    document.querySelector('.btnHover').addEventListener('click', function (){
+        if(getComputedStyle(this.nextElementSibling).display === 'none'){
+            this.nextElementSibling.style.display='block'
+        }
+        else {
+            this.nextElementSibling.style.display='none'
+        }
+    })
+
+
 </script>
+<!--<script src="aboutComposer.js"></script>-->
+<!--<script th:src="@{/assets/generalAssets/aboutComposer.js}"></script>-->
+
 </body>
 </html>

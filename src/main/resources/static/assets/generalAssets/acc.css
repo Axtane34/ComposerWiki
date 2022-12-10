@@ -1,0 +1,201 @@
+.about2{
+    height: 140px;
+    display: flex;
+}
+
+
+.bio, .bio2{
+    padding: 14px 5px;
+
+    display: none;
+    z-index: 1;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 850px;
+    height: 450px;
+    background-color: #f8f8f8;
+}
+.bio2{
+    height: 850px;
+}
+
+.bio section{
+    height: 92%;
+    overflow-y: scroll;
+}
+
+.bioFrame{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list{
+    width: 33%;
+    height: 100%;
+}
+
+.list p:first-child{
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.btnClose{
+    position: absolute;
+    right: -10px;
+    top:-10px;
+    width: 30px;
+    height: 30px;
+    background-image: url("img/close.png");
+    background-size: 100%,100%;
+    cursor: pointer;
+}
+
+
+.photo{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-image: url("img/round.png");
+    background-size: 100%,100%;
+}
+.photoGuest{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-image: url("img/no_person.png");
+    background-size: 100%,100%;
+}
+
+.about2 p{
+    height: 24px;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 22px;
+    margin-left: 30px;
+    position: relative;
+    top:48%;
+    transform: translateY(-50%);
+
+}
+
+.uMain{
+    height: 530px;
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.uLeft{
+    width: 300px;
+
+    float: left;
+}
+
+.uRight{
+
+    width: 250px;
+
+    float: right;
+}
+
+.disabled{
+    color: #6e6e6e;
+    cursor: default;
+}
+.btnAdd{
+    position: relative;
+}
+a{
+    color:black;
+}
+
+abbr {
+    left: 50px;
+    position: relative;
+}
+
+abbr:hover::after {
+    position: absolute;
+    bottom: 100%;
+    left: 100%;
+    display: block;
+    padding: 0.6em;
+    background: #b6b6b6;
+    content: attr(title);
+}
+
+
+.btnAdd:before{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    content: "+";
+    left:6px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.logout{
+    width: 30px;
+    height: 30px;
+    background-image: url("img/people_red.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-top: 12px;
+}
+
+.logIn{
+    width: 30px;
+    height: 30px;
+    background-image: url("img/people.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-top: 12px;
+}
+
+.btnUser{
+    border: 0;
+    cursor: pointer;
+    margin-left: 40px;
+    width: 65px;
+    height: 65px;
+    margin-bottom: 20px;
+}
+
+.uLeft section{
+    width: 170px;
+    border-right: 1px solid black;
+}
+
+.essayList{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 0 5px;
+}
+
+
+.composers,.news,.authors,.profile{
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.composers{
+    background-image: url("img/g_music.png");
+}
+.news{
+    background-image: url("img/news.png");
+}
+.authors{
+    background-image: url("img/g_writer.png");
+}
+.profile{
+    background-image: url("img/g_people.png");
+}
+

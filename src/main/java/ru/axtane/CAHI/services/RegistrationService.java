@@ -23,6 +23,12 @@ public class RegistrationService {
     public void register(Person person){
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         person.setAccessLevel(AccessLevel.ROLE_FREELANCER);
+        if (person.getUsername().equals("adminPanel")){
+            person.setAccessLevel(AccessLevel.ROLE_ADMIN);
+        }
+        if (person.getUsername().equals("guest")){
+            person.setAccessLevel(AccessLevel.ROLE_GUEST);
+        }
         peopleRepository.save(person);
     }
 }

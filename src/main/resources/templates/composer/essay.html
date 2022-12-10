@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Сочинения</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/account/user.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/aboutStyle.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/acc.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/generalAssets/essay.css}"/>
+    <!--
+        <link rel="stylesheet" href="user.css">
+        <link rel="stylesheet" href="aboutStyle.css">
+        <link rel="stylesheet" href="acc.css">
+        <link rel="stylesheet" href="labels.css">
+    -->
+
+</head>
+<body>
+<div class="content">
+    <div class="header">
+        <div class="nav">
+            <a class="btnHome"></a>
+        </div>
+        <div class="logo"></div>
+        <div class="nav">
+            <form th:method="POST" th:action="@{/logout}">
+                <input class="logIn" type="submit" value=""/>
+            </form>
+        </div>
+    </div>
+
+    <div class="uMain2">
+        <p class="nameComp" th:text="${composer.getFio()}"></p>
+        <p class="ac">A CAPPELLA</p>
+        <div class="uFrame">
+            <div class="count" th:if="${cappellaChoirs.isPublicationsEmpty()}">
+                <p>Хоры a'cappella не добавлены</p>
+            </div>
+            <div th:if="${!cappellaChoirs.getChoirs().isEmpty()}"
+                 th:each="chorus : ${cappellaChoirs.getChoirs()}">
+                <a th:href="@{/chorus/{id}(id=${chorus.getId()})}" th:text="${'Хор: ' + chorus.getChorusName()}"></a>
+            </div>
+            <div th:if="${!cappellaChoirs.getOpusDPS().isEmpty()}"
+                 th:each="opusDPS : ${cappellaChoirs.getOpusDPS()}">
+                <a th:href="@{/opusDPS/{id}(id=${opusDPS.getId()})}"
+                   th:text="${'opusDPS: ' + opusDPS.getIncipit()}"></a>
+            </div>
+            <div th:if="${!cappellaChoirs.getArrangements().isEmpty()}"
+                 th:each="arrangement : ${cappellaChoirs.getArrangements()}">
+                <a th:href="@{/arrangement/{id}(id=${arrangement.getId()})}"
+                   th:text="${'Аранжировка: ' + arrangement.getArrangementName()}"></a>
+            </div>
+            <div th:if="${!cappellaChoirs.getFolkProcessingList().isEmpty()}"
+                 th:each="folkProcessing : ${cappellaChoirs.getFolkProcessingList()}">
+                <a th:href="@{/folkProcessing/{id}(id=${folkProcessing.getId()})}"
+                   th:text="${'folkProcessing: ' + folkProcessing.getFolkProcessingName()}"></a>
+            </div>
+        </div>
+        <p class="noAC">C СОПРОВОЖДЕНИЕ</p>
+        <div class="uFrame">
+            <div class="count" th:if="${instrumentalChoirs.isPublicationsEmpty()}">
+                <p>Хоры с сопровождением не добавлены</p>
+            </div>
+            <div th:if="${!instrumentalChoirs.getChoirs().isEmpty()}"
+                 th:each="chorus : ${instrumentalChoirs.getChoirs()}">
+                <a th:href="@{/chorus/{id}(id=${chorus.getId()})}" th:text="${'Хор: ' + chorus.getChorusName()}"></a>
+            </div>
+            <div th:if="${!instrumentalChoirs.getArrangements().isEmpty()}"
+                 th:each="arrangement : ${instrumentalChoirs.getArrangements()}">
+                <a th:href="@{/arrangement/{id}(id=${arrangement.getId()})}"
+                   th:text="${'Аранжировка: ' + arrangement.getArrangementName()}"></a>
+            </div>
+            <div th:if="${!instrumentalChoirs.getFolkProcessingList().isEmpty()}"
+                 th:each="folkProcessing : ${instrumentalChoirs.getFolkProcessingList()}">
+                <a th:href="@{/folkProcessing/{id}(id=${folkProcessing.getId()})}"
+                   th:text="${'folkProcessing: ' + folkProcessing.getFolkProcessingName()}"></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="footer"></div>
+
+<script>
+    document.querySelector('.btnHome').addEventListener('click', function (){
+        window.history.go(-1)
+    })
+</script>
+<!--<script src="aboutComposer.js"></script>-->
+<!--<script th:src="@{/assets/generalAssets/aboutComposer.js}"></script>-->
+
+</body>
+</html>
