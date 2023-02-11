@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/assets/composer/bioStyle.css}"/>
     <!-- <link rel="stylesheet" href="newComposer.css">
      <link rel="stylesheet" href="bioStyle.css">-->
+
 </head>
 <body>
 <div class="fog"></div>
@@ -18,8 +19,8 @@
         <div class="logo"></div>
         <div class="nav"></div>
     </div>
-    <sss>
         <form th:method="POST" th:action="@{/composer}" th:object="${composer}">
+            <sss>
             <div class="roundMenu">
                 <div class="col">
                     <div class="frame">
@@ -508,14 +509,13 @@
                 <input type="submit" value="опубликовать">
                 <input class="ls_js" type="button" value="Сохранить в черновик">
             </div>
+            </sss>
         </form>
-    </sss>
     <div class="draftFrame" th:if="${updatedDraft==null}">
         <form th:method="POST" th:action="@{/draft/newDraft}" th:object="${draft}">
             <input class="draftName" type="hidden" placeholder="введите название черновика" th:field="*{draftName}">
             <input class="statement" type="hidden" placeholder="слепок" th:field="*{pageStatement}">
             <input class="localSave" type="submit" value="Сохранить в черновик">
-
         </form>
     </div>
 
@@ -527,6 +527,7 @@
     </div>
     <div class="footer">ПОДВАЛ</div>
 </div>
+
 <script th:src="@{/assets/composer/main3.js}"></script>
 <script th:src="@{/assets/composer/bio.js}"></script>
 <!--<script src="main3.js"></script>

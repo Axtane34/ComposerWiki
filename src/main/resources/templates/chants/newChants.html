@@ -19,8 +19,8 @@
         <div class="nav"></div>
     </div>
     <div class="main">
-        <sss>
             <form th:method="POST" th:action="@{/chants}" th:object="${chants}">
+                <sss>
                 <label>
                     <input type="text" placeholder="введите регион/монастырь" th:field="*{region}">
                     <input type="text" placeholder="введите инципит" th:field="*{incipit}">
@@ -56,10 +56,9 @@
                     <input type="text" placeholder="хронометраж" th:field="*{timing}">
                 </label>
                 <input type="submit" value="Опубликовать">
+                </sss>
             </form>
 
-
-        </sss>
         <div th:if="${updatedDraft==null}">
             <form th:method="POST" th:action="@{/draft/newDraft}" th:object="${draft}">
                 <input type="text" placeholder="введите название черновика" th:field="*{draftName}">

@@ -19,8 +19,8 @@
         <div class="nav"></div>
     </div>
     <div class="main">
-        <sss>
             <form th:method="POST" th:action="@{/opusDPS}" th:object="${opusDPS}">
+                <sss>
                 <label>
                     <select th:field="*{writingStyle}">
                         <option th:value="'стиль не cочинения не определен'">Выбрать стиль сочинения</option>
@@ -92,10 +92,9 @@
                     <input type="text" placeholder="место премьеры" th:field="*{premierePlace}">
                 </label>
                 <input type="submit" value="Опубликовать">
+                </sss>
             </form>
 
-
-        </sss>
         <div th:if="${updatedDraft==null}">
             <form th:method="POST" th:action="@{/draft/newDraft}" th:object="${draft}">
                 <input type="text" placeholder="введите название черновика" th:field="*{draftName}">
