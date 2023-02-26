@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.axtane.CAHI.dto.ComposerDTO;
+import ru.axtane.CAHI.dto.PersonDTO;
+import ru.axtane.CAHI.models.Composer;
 import ru.axtane.CAHI.models.Person;
 import ru.axtane.CAHI.models.enums.AccessLevel;
 import ru.axtane.CAHI.models.enums.PublicationStatus;
@@ -86,10 +89,9 @@ public class PersonController {
         if (getPerson().getUsername().equals("guest")){
             return "redirect:/CAHI/guest";
         }else {
-            //registration.addAttribute("drafts", registrationsService.findAllWithEnum(PublicationStatus.DRAFT, login));
-            //registration.addAttribute("moderating", registrationsService.findAllWithEnum(PublicationStatus.MODERATING, login));
-            person.addAttribute("publications", peopleService.findAllWithEnum(PublicationStatus.PUBLISHED, getPerson().getUsername()));
-            person.addAttribute("userComposers", peopleService.findComposersWithEnum(PublicationStatus.PUBLISHED, getPerson().getUsername()));
+            Person proxy = peopleService.findByLogin(getPerson().getUsername());
+            person.addAttribute("publications", peopleService.findAllWithEnum(PublicationStatus.PUBLISHED, proxy));
+            person.addAttribute("userComposers", peopleService.findComposersWithEnum(PublicationStatus.PUBLISHED, proxy));
             person.addAttribute("composers", composersService.findAll());
             return "account/user";
         }

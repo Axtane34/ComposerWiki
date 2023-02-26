@@ -1,9 +1,11 @@
 package ru.axtane.CAHI.services;
 
 import org.hibernate.Hibernate;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.axtane.CAHI.dto.PersonDTO;
 import ru.axtane.CAHI.models.Person;
 import ru.axtane.CAHI.models.enums.PublicationStatus;
 import ru.axtane.CAHI.repositories.PeopleRepository;
@@ -12,10 +14,12 @@ import ru.axtane.CAHI.repositories.PeopleRepository;
 @Service
 @Transactional(readOnly = true)
 public class PeopleService {
+    private final ModelMapper modelMapper;
     private final PeopleRepository peopleRepository;
 
     @Autowired
-    public PeopleService(PeopleRepository peopleRepository) {
+    public PeopleService(ModelMapper modelMapper, PeopleRepository peopleRepository) {
+        this.modelMapper = modelMapper;
         this.peopleRepository = peopleRepository;
     }
 
@@ -31,8 +35,10 @@ public class PeopleService {
         return peopleRepository.findByEmail(email);
     }
 
-    public Person findAllWithEnum(PublicationStatus publicationStatus, String login){
-        Person person = findByLogin(login);
+    public PersonDTO findAllWithEnum(PublicationStatus publicationStatus, Person proxy){
+        Hibernate.initialize(proxy);
+        PersonDTO person = convertToPersonDTO(proxy);
+        person.getComposers().clear();
         person.getOpusDPS().removeIf(opusDPS -> !opusDPS.getPublicationStatus().equals(publicationStatus));
         person.getChants().removeIf(chants -> !chants.getPublicationStatus().equals(publicationStatus));
         person.getFolkProcessingList().removeIf(folkProcessing -> !folkProcessing.getPublicationStatus().equals(publicationStatus));
@@ -43,10 +49,19 @@ public class PeopleService {
         return person;
     }
 
-    public Person findComposersWithEnum(PublicationStatus publicationStatus, String login){
-        Person person = findByLogin(login);
+    public PersonDTO findComposersWithEnum(PublicationStatus publicationStatus, Person proxy){
+        Hibernate.initialize(proxy);
+        PersonDTO person = convertToPersonDTO(proxy);
         person.getComposers().removeIf(composer -> !composer.getPublicationStatus().equals(publicationStatus));
         person.setPublicationsEmpty(person.getComposers().isEmpty());
         return person;
+    }
+
+    private Person convertToPerson(PersonDTO personDTO) {
+        return modelMapper.map(personDTO, Person.class);
+    }
+
+    private PersonDTO convertToPersonDTO(Person person){
+        return modelMapper.map(person, PersonDTO.class);
     }
 }
